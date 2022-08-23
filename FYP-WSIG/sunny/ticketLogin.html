@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Login to Ticket System</title>
+    <!-- password eye -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #EE790D, white);
+            width: auto;
+            height: 100vh;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h3 {
+            text-align: center;
+            font-family: Inter;
+            text-shadow: 1px 1px 1px lightgray;
+        }
+
+        .bg {
+            line-height: 40px;
+            background: #FFD700;
+            border: #FFD700;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+
+        }
+
+        .form-label {
+            font-family: Inter;
+            font-weight: bold;
+        }
+
+        i {
+            cursor: pointer;
+            position: absolute;
+            margin-left: -35px;
+            top: 328px;
+        }
+
+        i2 {
+            position: absolute;
+            margin-left: 0px;
+            top: 323px;
+        }
+
+        input {
+            padding: 0px 0px 0px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="" style="margin: 20px;"></p>
+    <img src="Photos/companyIcon1.png" height="50" width="50">
+    <p class="" style="margin: 10px;"></p>
+    <img src="Photos/companyIcon2.png" height="25" width="400">
+    <p class="" style="margin: 20px;"></p>
+    <h3>TICKET SYSTEM</h3>
+    <p class="" style="margin: 40px;"></p>
+
+    <div class="container">
+        <div class="d-flex justify-content-center align-items-center container">
+            <form action="">
+                <div class="form-group">
+                    <label for="useraccount" class="form-label">Name</label>
+                    <p class="" style="margin: 1px;"></p>
+                    <input type="text" class="label bg" id="userid" placeholder="" maxlength="11">
+                </div>
+                <p class="" style="margin: 15px;"></p>
+                <div class="form-group">
+                    <label for="userpwd" class="form-label">Password</label>
+                    <p class="" style="margin: 1px;"></p>
+                    <input type="password" class="label bg userpwd" id="userpwd" placeholder="" maxlength="11">
+                    <i id="visibilityBtn"><span id="icon" class="material-icons">visibility</span></i>
+                    <i2><input src="Photos/login.png" type="image" id="login" height="32" width="47"></i2>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- password eye -->
+    <script src="ticketLogin.js"></script>
+
+</body></html>
