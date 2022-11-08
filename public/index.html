@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Mongo JS Test</h1>
+    Name:<input type="text" id="username"><br>
+    Phone:<input type="text" id="phone"><br>
+    E-mail:<input type="email" id="email"><br>
+    <input type="button" value="Submit" id="btn">
+
+    <script>
+        document.querySelector("#btn").addEventListener("click",function(){
+            var username = document.querySelector("#username").value;
+            var phone = document.querySelector("#phone").value;
+            var email = document.querySelector("#email").value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET","/senddata?username="+username+"&phone="+phone+"&email="+email)
+            xhr.send()
+            alert("Sended")
+        })
+    </script>
+
+</body>
+</html>
