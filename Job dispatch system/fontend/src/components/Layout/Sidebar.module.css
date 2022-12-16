@@ -1,0 +1,21 @@
+section{
+    border: 2px solid;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 100%;
+    background-color: hsl(120, 99%, 67%);
+    position: fixed;
+}
+
+.top_logo {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  /* border: 2px solid; */
+  width: px;
+}
+
+.top_logo img {
+  width: 50px;
+}

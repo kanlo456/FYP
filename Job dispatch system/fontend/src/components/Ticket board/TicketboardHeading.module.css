@@ -1,0 +1,17 @@
+.heading {
+  display: flex;
+  margin-top: 20px;
+  border: 2px solid;
+  width: 80vw;
+  justify-content: space-between;
+}
+
+.searchbox {
+  border-radius: 10px;
+  border: 2px solid;
+  width: 50vw;
+}
+
+.user {
+}
+
