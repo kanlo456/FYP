@@ -1,11 +1,11 @@
-import Sidebar from "./components/Layout/Sidebar";
-import Ticketboard from "./components/Ticket board/Ticketboard";
+import { Route, Routes } from "react-router-dom";
+import AuthPage from "./pages/AuthPage";
+
 function App() {
   return (
-    <main>
-      <Sidebar />
-      <Ticketboard/>
-    </main>
+   <Routes>
+    <Route path="/" element={<AuthPage/>}/>
+   </Routes>
   );
 }
 
