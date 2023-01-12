@@ -25,9 +25,14 @@ const AuthForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(userIDValue, passwordValue);
+    console.log(userIDhasError)
     resetUserID();
     resetPassword();
   };
+
+  const checkUserIDErrorcss = userIDhasError
+    ? "border-teal-500"
+    : "border-inherit ";
   return (
     <section>
       <div className="border-2 grid grid-cols-1 gap-4 place-items-center">
@@ -36,22 +41,21 @@ const AuthForm = (props) => {
         <form onSubmit={submitHandler}>
           <p>Login ID:</p>
           <input
-            className="border-solid"
+            className={
+              "border-solid rounded-sm border-2" + checkUserIDErrorcss }
             type="text"
             value={userIDValue}
             onChange={userIDChangeHandler}
             onBlur={userIDBlurHandler}
           />
           <p>Password:</p>
-          <div>
           <input
-            className="border-solid"
+            className={"border-solid rounded-sm border-inherit border-2"}
             type="password"
             value={passwordValue}
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHanler}
           />
-          </div>
           <div>
             <button>Login</button>
           </div>
