@@ -1,7 +1,7 @@
-import NavigationBar from "../components/Layout/NavigationBar";
+import Sidebar from "../components/Layout/Sidebar";
 
 const NormalUserPage = () => {
-  return <NavigationBar />;
+  return <Sidebar />;
 };
 
-export default NavigationBar;
+export default NormalUserPage;
