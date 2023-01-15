@@ -1,26 +1,27 @@
-import { NavLink, Link } from "react-router-dom";
-import WSIGicon from "../../assets/WSIGicon.png";
-import React, { useState } from "react";
+import { useState } from "react";
+import controlicon from "../../assets/control.png";
 
 const Sidebar = () => {
+  const [open, setOpen] = useState(false);
   return (
-    <header className="">
-      <nav className="border-black border-2 w-1/5 bg-amber-600 h-screen">
-        <img src={WSIGicon} className="w-2/6" />
-        <p className="">WSIG Ticket System</p>
-        <ul className="grid grid-cols-1 gap-y-4 bottom-full">
-          <li className="">
-            <NavLink>Dashboard</NavLink>
-          </li>
-          <li>
-            <NavLink>Ticket</NavLink>
-          </li>
-          <li>
-            <NavLink>3</NavLink>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <div className="flex">
+      <div
+        className={`${
+          open ? "w-72" : "w-20"
+        } duration-300 h-screen bg-dark-purple relative`}
+      >
+        <img
+          src={controlicon}
+          className={`absolute cursor-pointer rounded-full 
+          -right-3 top-9 w-7 border-2 border-dark-purple"
+          ${!open && "rotate-180"}`}
+          onClick={() => setOpen(!open)}
+        />
+      </div>
+      <div className="p-7 flex-1 text-2x1 font-semibold h-screen">
+        <h1> Page</h1>
+      </div>
+    </div>
   );
 };
 
