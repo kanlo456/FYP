@@ -19,7 +19,7 @@ const Sidebar = () => {
         />
       </div>
       <div className="p-7 flex-1 text-2x1 font-semibold h-screen">
-        <h1> Page</h1>
+        <h1>User Page</h1>
       </div>
     </div>
   );
