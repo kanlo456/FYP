@@ -1,7 +1,6 @@
 import { useState } from "react";
 import controlicon from "../../assets/control.png";
 import logo from "../../assets/WSIGicon.png";
-import { GiTicket } from "react-icons/gi";
 import { Link } from "react-router-dom";
 const Sidebar = (props) => {
   const [open, setOpen] = useState(false);
