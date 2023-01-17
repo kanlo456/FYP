@@ -1,0 +1,64 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\kanlo\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @nvio/core @nivo/bar
+
+PATH: 
+  C:\Users\kanlo\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\kanlo\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet;C:\Program Files\Git\cmd;C:\Program Files\Go\bin;C:\Program Files\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\nodejs;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\mingw64\bin;C:\Program Files\Neovim\bin;C:\Program Files\Calibre2;C:\Users\kanlo\AppData\Local\Microsoft\WindowsApps;C:\Users\kanlo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\kanlo\.dotnet\tools;C:\Users\kanlo\AppData\Local\GitHubDesktop\bin;C:\Users\kanlo\go\bin;C:\Users\kanlo\AppData\Roaming\npm;C:\Users\kanlo\AppData\Local\Programs\oh-my-posh\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.12.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@nvio%2fcore: Not found
+      at params.callback [as _callback] (C:\Users\kanlo\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66145:18)
+      at self.callback (C:\Users\kanlo\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
+      at Request.emit (node:events:513:28)
+      at Request.<anonymous> (C:\Users\kanlo\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141862:10)
+      at Request.emit (node:events:513:28)
+      at IncomingMessage.<anonymous> (C:\Users\kanlo\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141784:12)
+      at Object.onceWrapper (node:events:627:28)
+      at IncomingMessage.emit (node:events:525:35)
+      at endReadableNT (node:internal/streams/readable:1359:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+
+npm manifest: 
+  {
+    "dependencies": {
+      "@reduxjs/toolkit": "^1.9.1",
+      "react-redux": "^8.0.5",
+      "react-router-dom": "^6.6.2",
+      "redux": "^4.2.0"
+    },
+    "devDependencies": {
+      "@redux-devtools/core": "^3.13.1"
+    },
+    "name": "fyp-wsig",
+    "description": "WSIG website project",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/kanlo456/FYP-WSIG.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/kanlo456/FYP-WSIG/issues"
+    },
+    "homepage": "https://github.com/kanlo456/FYP-WSIG#readme"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
