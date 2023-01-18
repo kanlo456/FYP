@@ -123,11 +123,10 @@ export const tokens = (mode) => ({
 //mui theme settings
 export const themeSetting = (mode) => {
   const colors = tokens(mode);
-
   return {
     palette: {
       mode: mode,
-      ...colors(
+      ...(
         mode === "dark"
           ? {
               primary: {
@@ -160,9 +159,8 @@ export const themeSetting = (mode) => {
               background: {
                 default: "#fcfcfc",
               },
-            },
-      ),
-    },
+            }),
+      },
     typography: {
       fontFamily: ["Source Sans Pro", "sans-serf"].join(","),
       fontSize: 12,
@@ -201,4 +199,13 @@ export const ColorModeContext = createContext({
 
 export const useMode = () => {
   const [mode, setMode] = useState("dark");
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () =>
+        setMode((prev) => (prev === "light" ? "dark" : "light")),
+    }),
+    [],
+  );
+  const theme = useMemo(() => createTheme(themeSetting(mode), [mode]));
+  return [theme, colorMode];
 };
