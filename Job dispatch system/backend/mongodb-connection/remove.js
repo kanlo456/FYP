@@ -1,14 +1,13 @@
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://oscar:j3SGuIIQbqpiTcWA@cluster0.lpvxprh.mongodb.net/?retryWrites=true&w=majority";
 
-
 MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("mydb");
-    var myobj = { name: "Kanlo", password: "a2431jdlk!" };
-    dbo.collection("customers").insertOne(myobj, function(err, res) {
+    var myquery = { name: "Kanlo" };
+    dbo.collection("customers").deleteMany(myquery, function(err, obj) {
         if (err) throw err;
-        console.log("1 document inserted");
+        console.log(obj.result.n + " document(s) deleted");
         db.close();
     });
 });
