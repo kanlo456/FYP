@@ -1,19 +1,19 @@
 import { useState } from 'react'
 import { useAuthContext } from './useAuthContext'
 
-export const useLogin = () =>{
+export const useCustSignup = () =>{
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const { dispatch } = useAuthContext()
 
-    const login = async(username,password)=>{
+    const signup = async(username,password,email,firstname,lastname)=>{
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch('/api/customer/login',{
+        const response = await fetch('/api/customer/signup',{
             method:'POST',
             headers:{'Content-Type':'application/json'},
-            body: JSON.stringify({username,password})
+            body: JSON.stringify({username,password,email,firstname,lastname})
         })
         //asynchronous method for get json data
         const json = await response.json()
@@ -23,8 +23,8 @@ export const useLogin = () =>{
             setError(json.error)
         }
         if(response.ok){
-            //save the user to local storage
-            localStorage.setItem('customer',JSON.stringify(json))
+            //save the customer to local storage
+            localStorage.setItem('Customer',JSON.stringify(json))
 
             //update the auth context 
             dispatch({type:'LOGIN',payload:json})
@@ -32,5 +32,5 @@ export const useLogin = () =>{
             setIsLoading(false)
         }
     }
-    return{login,isLoading,error}
+    return{signup,isLoading,error}
 }

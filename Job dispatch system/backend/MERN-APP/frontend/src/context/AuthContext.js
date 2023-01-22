@@ -15,7 +15,8 @@ export const authReducer = (state,action) =>{
 
 export const AuthContextProvider = ({children}) =>{
     const[state,dispatch] = useReducer(authReducer,{
-        user:null
+        user:null,
+        // customer:null//
     })
     //check the localStorage have record the user,if login will have data
     useEffect(()=>{

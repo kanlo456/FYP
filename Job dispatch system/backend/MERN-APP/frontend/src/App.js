@@ -5,10 +5,11 @@ import { useAuthContext } from './hooks/useAuthContext'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import SignupCust from './pages/SignupCust'
 import Navbar from './components/Navbar'
 
 function App() {
-  const {user} = useAuthContext()
+  const {user,costomer} = useAuthContext()
 
   return (
     <div className="App">
@@ -27,6 +28,10 @@ function App() {
             <Route 
               path="/Signup"
               element={!user ? <Signup /> :<Navigate to="/"/>}
+            />
+            <Route 
+              path="/signcust"
+              element={!costomer ? <SignupCust /> :<Navigate to="/"/>}
             />
           </Routes>
         </div>

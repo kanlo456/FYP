@@ -4,7 +4,7 @@ import { useAuthContext } from '../hooks/useAuthContext'
 
 const Navbar = () => {
   const {logout} = useLogout()
-  const {user} = useAuthContext()
+  const {user,customer} = useAuthContext()
 
   const handleClick = () =>{
     logout()
@@ -28,6 +28,12 @@ const Navbar = () => {
             <Link to="/login">Login</Link>
             <Link to="/signup">Signup</Link>
           </div>
+          )}
+
+          {!customer &&(
+            <div>
+              <Link to="/signcust">Customer Signup</Link>
+            </div>
           )}
           
         </nav>
