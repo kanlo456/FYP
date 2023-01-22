@@ -24,7 +24,7 @@ export const useCustSignup = () =>{
         }
         if(response.ok){
             //save the customer to local storage
-            localStorage.setItem('Customer',JSON.stringify(json))
+            localStorage.setItem('customer',JSON.stringify(json))
 
             //update the auth context 
             dispatch({type:'LOGIN',payload:json})
