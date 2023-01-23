@@ -5,6 +5,7 @@ import {
   Navigate,
   createBrowserRouter,
   RouterProvider,
+  useNavigate,
 } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 import { Error } from "./pages/Error";
@@ -15,20 +16,26 @@ import Signup from "./pages/SignIn";
 // import SignupCust from './pages/SignupCust'
 import Navbar from "./components/Navbar";
 import SignUpPage from "./pages/SignUpPage";
+import { Dashboard } from "./pages/Dashboard";
 
 function App() {
   const { user } = useAuthContext();
 
   const router = createBrowserRouter([
     {
-      path: "/Login",
-      element: <LoginPage/>,
+      path: "/",
+      element:<Navigate to="/login"/>,
       errorElement: <Error />,
     },
     {
-      path:"signUp",
-      element:<SignUpPage/>
-    }
+      path: "login",
+      element: <LoginPage />,
+      errorElement: <Error />,
+    },
+    {
+      path: "signUp",
+      element: <SignUpPage />,
+    },
   ]);
 
   return (
