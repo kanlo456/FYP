@@ -36,7 +36,6 @@
 // }
 // export default Login
 
-import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -50,6 +49,8 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useState } from "react";
+import { useLogin } from "../hooks/useLogin";
 
 function Copyright(props) {
   return (
@@ -60,7 +61,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://www.wsig.hk/">
         WSIG
       </Link>{" "}
       {new Date().getFullYear()}
@@ -72,13 +73,15 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function LoginPage() {
-  const handleSubmit = (event) => {
+  const { login, error, isLogin } = useLogin();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const username = data.get("username");
+    const password = data.get("password");
+    console.log(username, password);
+    await login(username, password);
   };
 
   return (
@@ -117,6 +120,7 @@ export default function LoginPage() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
+            {error && <Typography>{error}</Typography>}
             <Box
               component="form"
               noValidate
@@ -128,9 +132,9 @@ export default function LoginPage() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                label="User Name"
+                name="username"
+                autoComplete="username"
                 autoFocus
               />
               <TextField
