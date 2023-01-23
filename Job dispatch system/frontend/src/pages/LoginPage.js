@@ -120,7 +120,11 @@ export default function LoginPage() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            {error && <Typography>{error}</Typography>}
+            {error && (
+              <Typography
+                sx={{ color: "red" }}
+              >{`${error}! Please try angin!`}</Typography>
+            )}
             <Box
               component="form"
               noValidate
