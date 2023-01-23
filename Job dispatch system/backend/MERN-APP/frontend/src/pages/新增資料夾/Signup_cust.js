@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import{useSignup} from "../hooks/useSignup"
+import{useCustSignup} from "../hooks/useCustSignup"
 
 const SignupCust = () =>{
     const [username,setUsername] = useState('')
@@ -7,7 +7,7 @@ const SignupCust = () =>{
     const [email,setEmail] = useState('')
     const [firstname,setFirstname] = useState('')
     const [lastname,setLastname] = useState('')
-    const {signup, error, isLoading} = useSignup()
+    const {signup, error, isLoading} = useCustSignup()
 
     const handleSubmit = async (e)=>{
         e.preventDefault()

@@ -8,13 +8,13 @@ import WorkoutForm from '../components/WorkoutForm'
 
 const Home = () => {
   const {workouts, dispatch} = useWorkoutsContext()
-  const {customer} = useAuthContext()
+  const {user} = useAuthContext()
 
   useEffect(() => {
     const fetchWorkouts = async () => {
       const response = await fetch('/api/workouts',{
         headers:{
-          'Authorization': `Bearer ${customer.token}`
+          'Authorization': `Bearer ${user.token}`
         }
       })
       const json = await response.json()
@@ -23,10 +23,10 @@ const Home = () => {
         dispatch({type: 'SET_WORKOUTS', payload: json})
       }
     }
-    if(customer){
+    if(user){
           fetchWorkouts()
     }
-  }, [dispatch,customer])
+  }, [dispatch,user])
 
   return (
     <div className="home">

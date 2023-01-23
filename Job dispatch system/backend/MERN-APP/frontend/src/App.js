@@ -9,7 +9,7 @@ import Signup from './pages/Signup'
 import Navbar from './components/Navbar'
 
 function App() {
-  const {customer} = useAuthContext()
+  const {user} = useAuthContext()
 
   return (
     <div className="App">
@@ -19,15 +19,15 @@ function App() {
           <Routes>
             <Route 
               path="/"
-              element={customer ? <Home /> :<Navigate to="/login"/>}
+              element={user ? <Home /> :<Navigate to="/login"/>}
             />
             <Route 
               path="/login"
-              element={!customer ? <Login /> :<Navigate to="/"/>}
+              element={!user ? <Login /> :<Navigate to="/"/>}
             />
             <Route 
               path="/Signup"
-              element={!customer ? <Signup /> :<Navigate to="/"/>}
+              element={!user ? <Signup /> :<Navigate to="/"/>}
             />
 
           </Routes>

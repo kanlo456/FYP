@@ -6,10 +6,10 @@ const getWorkouts = async (req, res) => {
   const user_id  = req.user._id
 
   //find all data in the DB
-  // const workouts = await Workout.find({}).sort({createdAt: -1})
+  const workouts = await Workout.find({}).sort({createdAt: -1})
 
   //search the data which is saved by the user
-  const workouts = await Workout.find({user_id}).sort({createdAt: -1})
+  // const workouts = await Workout.find({user_id}).sort({createdAt: -1})
 
   res.status(200).json(workouts)
 }
