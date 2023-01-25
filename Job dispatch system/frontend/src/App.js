@@ -17,6 +17,8 @@ import Signup from "./pages/SignIn";
 import Navbar from "./components/Navbar";
 import SignUpPage from "./pages/SignUpPage";
 import { Dashboard } from "./pages/Dashboard";
+import Ticket from "./pages/Ticket";
+
 
 function App() {
   const { user } = useAuthContext();
@@ -36,6 +38,11 @@ function App() {
       path: "signUp",
       element: <SignUpPage />,
     },
+    {
+      path: "insert",
+      element: <Ticket />,
+    },
+
   ]);
 
   return (

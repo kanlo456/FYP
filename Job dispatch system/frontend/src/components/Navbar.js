@@ -16,6 +16,11 @@ const Navbar = () => {
           <h1>Workout Buddy</h1>
         </Link>
         <nav>
+          <div>
+            <link to="/insert"></link>
+          </div>
+        </nav>
+        <nav>
           {user &&(
           <div>
             <span>{user.username}</span>
