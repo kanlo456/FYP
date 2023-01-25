@@ -20,6 +20,7 @@ const SignupCust = () =>{
         <h3>Sign up</h3>
 
         <label>User Name:</label>
+
         <input
             type="string"
             onChange={(e)=>setUsername(e.target.value)}
