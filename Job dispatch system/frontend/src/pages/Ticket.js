@@ -23,7 +23,6 @@ const TicketCust = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         console.log(caller+"'s ticket has been created")
         await insert(caller, category, subcategory, service, offering, configItem, contactType, state, impact, urgency, priority, assignmentGroup, assigned, shortDesciption, Description)
     }
