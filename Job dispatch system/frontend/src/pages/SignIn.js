@@ -1,6 +1,8 @@
 import {useState} from 'react'
 import{useSignup} from "../hooks/useSignup"
 
+import {Formik} from 'formik'
+
 const SignupCust = () =>{
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
@@ -14,6 +16,11 @@ const SignupCust = () =>{
         // console.log(email,password)
         await signup(username,password,email,firstname,lastname)
     }
+
+    const initialValues ={
+        
+    }
+
 
     return(
         <form className='signup' onSubmit={handleSubmit}>

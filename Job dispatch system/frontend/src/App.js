@@ -23,6 +23,10 @@ import { useSelector } from "react-redux";
 import { useMemo } from "react";
 import { createTheme } from "@mui/material";
 import { themeSettings } from "./theme";
+import Layout from "./layout/Layout";
+import Ticketboartd from "./pages/Ticketboard/Ticketboard";
+import EditTicket from "./pages/EditTicket";
+import CreateTicket from "./pages/CreateTicket/CreateTicket";
 
 function App() {
   const { user } = useAuthContext();
@@ -48,7 +52,16 @@ function App() {
       path: "insert",
       element: <Ticket />,
     },
-    { path: "dashboard", element: <Dashboard /> },
+    {
+      path: "dashboard",
+      element: <Layout />,
+      children: [
+        { path: "ticketboard", element: <Ticketboartd /> },
+        { path: "editTicket/:id", element: <EditTicket /> },
+        { path: "createTicket", element: <CreateTicket /> },
+      ],
+    },
+    { path: "editTicket/:id", element: <EditTicket /> },
   ]);
 
   return (

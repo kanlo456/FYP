@@ -75,7 +75,6 @@ const theme = createTheme();
 
 export default function LoginPage() {
   const { login, error, isLogin } = useLogin();
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -83,7 +82,6 @@ export default function LoginPage() {
     const password = data.get("password");
     console.log(username, password);
     await login(username, password);
-
   };
 
   return (
