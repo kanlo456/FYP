@@ -5,6 +5,11 @@ const validator = require("validator");
 const Schema = mongoose.Schema
 
 const ticketSchema = new Schema({
+    ticketNum: {
+        type: String,
+        required: true,
+
+    },
     caller: {
         type: String,
         required: true
@@ -83,18 +88,18 @@ const ticketSchema = new Schema({
 })
 
 //ticket insert method
-ticketSchema.statics.insert = async function(caller, category, subcategory, service, offering, configItem, contactType, state, impact, urgency, priority, assignmentGroup, assigned, shortDesciption, Description) {
+ticketSchema.statics.insert = async function(ticketNum, caller, category, subcategory, service, offering, configItem, contactType, state, impact, urgency, priority, assignmentGroup, assigned, shortDesciption, Description) {
 
     //validation
-    if (!caller || !category || !subcategory || !service || !offering || !configItem || !contactType || !state || !impact || !urgency || !priority || !shortDesciption || !Description) {
-        throw Error('All fields must be filled with out assignementGroup&assigned')
+    if (!ticketNum || !caller || !category || !subcategory || !service || !offering || !configItem || !contactType || !state || !impact || !urgency || !priority || !shortDesciption || !Description) {
+        throw Error('All fields must be filled with out assignementGroup & assigned')
     }
 
     // const existsMail = await this.findOne({ email })
     // const existsUsername = await this.findOne({ username })
     // const salt = await bcrypt.genSalt(10)
     // const hash = await bcrypt.hash(password, salt)
-    const ticket = await this.create({ caller, category, subcategory, service, offering, configItem, contactType, state, impact, urgency, priority, assignmentGroup, assigned, shortDesciption, Description })
+    const ticket = await this.create({ ticketNum, caller, category, subcategory, service, offering, configItem, contactType, state, impact, urgency, priority, assignmentGroup, assigned, shortDesciption, Description })
     return ticket
 }
 

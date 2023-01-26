@@ -4,6 +4,7 @@ import {useTicket} from "../hooks/useTicket"
 import signIn from "./SignIn";
 
 const TicketCust = () => {
+    const [ticketNum, setticketNum] = useState('')
     const [caller, setcaller] = useState('')
     const [category, setcategory] = useState('')
     const [subcategory, setsubcategory] = useState('')
@@ -23,13 +24,20 @@ const TicketCust = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(caller+"'s ticket has been created")
-        await insert(caller, category, subcategory, service, offering, configItem, contactType, state, impact, urgency, priority, assignmentGroup, assigned, shortDesciption, Description)
+        console.log(caller+"'s ticket has been created:" + ticketNum)
+        await insert(ticketNum, caller, category, subcategory, service, offering, configItem, contactType, state, impact, urgency, priority, assignmentGroup, assigned, shortDesciption, Description)
     }
     
     return(
         <form className="ticket" onSubmit={handleSubmit}>
             <h3>Ticket System</h3>
+            <label>Ticket Number:</label>
+            <input
+                type="string"
+                onChange={(e)=>setticketNum(e.target.value)}
+                value={ticketNum}
+            />
+
             <label>Caller:</label>
             <input
                 type="string"
