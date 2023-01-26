@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useAuthContext } from './useAuthContext'
+import { redirect } from 'react-router-dom'
+import { RedirectFunction } from 'react-router-dom'
 
 export const useLogin = () =>{
     const [error, setError] = useState(null)
@@ -25,11 +27,9 @@ export const useLogin = () =>{
         if(response.ok){
             //save the user to local storage
             localStorage.setItem('user',JSON.stringify(json))
-
             //update the auth context 
             dispatch({type:'LOGIN',payload:json})
-
-            setIsLoading(false)
+            window.location.replace("/dashboard")
         }
     }
     return{login,isLoading,error}

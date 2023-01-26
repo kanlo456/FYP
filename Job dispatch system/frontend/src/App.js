@@ -18,15 +18,21 @@ import Navbar from "./components/Navbar";
 import SignUpPage from "./pages/SignUpPage";
 import { Dashboard } from "./pages/Dashboard";
 import Ticket from "./pages/Ticket";
-
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { useSelector } from "react-redux";
+import { useMemo } from "react";
+import { createTheme } from "@mui/material";
+import { themeSettings } from "./theme";
 
 function App() {
   const { user } = useAuthContext();
+  const mode = useSelector((state) => state.global.mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode), [mode]));
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element:<Navigate to="/login"/>,
+      element: <Navigate to="/login" />,
       errorElement: <Error />,
     },
     {
@@ -42,12 +48,15 @@ function App() {
       path: "insert",
       element: <Ticket />,
     },
-
+    { path: "dashboard", element: <Dashboard /> },
   ]);
 
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <RouterProvider router={router} />
+      </ThemeProvider>
       {/* <BrowserRouter>
         <Navbar />
         <div className="pages">

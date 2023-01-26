@@ -42,8 +42,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -51,6 +51,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
+import { Link as MuiLink } from "@mui/material";
 
 function Copyright(props) {
   return (
@@ -61,9 +62,9 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://www.wsig.hk/">
+      <MuiLink color="inherit" href="https://www.wsig.hk/">
         WSIG
-      </Link>{" "}
+      </MuiLink>{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -82,6 +83,7 @@ export default function LoginPage() {
     const password = data.get("password");
     console.log(username, password);
     await login(username, password);
+
   };
 
   return (
@@ -170,7 +172,7 @@ export default function LoginPage() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link to='../signUp' variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
