@@ -43,6 +43,7 @@ const TicketCust = () => {
                 onChange={(e)=>setcategory(e.target.value)}
                 value={category}
             >
+                <option value=" "> </option>
                 <option value="hardware">Hardware</option>
                 <option value="software">Software</option>
             </select>
@@ -64,6 +65,7 @@ const TicketCust = () => {
                 onChange={(e)=>setservice(e.target.value)}
                 value={service}
             >
+                <option value=" "> </option>
                 <option value="Onsite">Onsite</option>
                 <option value="Remote">Remote</option>
             </select>
@@ -92,6 +94,7 @@ const TicketCust = () => {
                 onChange={(e)=>setcontactType(e.target.value)}
                 value={contactType}
             >
+                <option value=" "> </option>
                 <option value="email">Email</option>
                 <option value="mobile phone">Mobile Phone</option>
             </select>
@@ -106,6 +109,7 @@ const TicketCust = () => {
                 onChange={(e)=>setstate(e.target.value)}
                 value={state}
             >
+                <option value=" "> </option>
                 <option value="on create">On Create</option>
                 <option value="holding">Holding</option>
                 <option value="on progress">On Progress</option>
@@ -122,6 +126,7 @@ const TicketCust = () => {
                 onChange={(e)=>setimpact(e.target.value)}
                 value={impact}
             >
+                <option value=" "> </option>
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
@@ -138,6 +143,7 @@ const TicketCust = () => {
                 onChange={(e)=>seturgency(e.target.value)}
                 value={urgency}
             >
+                <option value=" "> </option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -154,6 +160,7 @@ const TicketCust = () => {
                 onChange={(e)=>setpriority(e.target.value)}
                 value={priority}
             >
+                <option value=" "> </option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -169,6 +176,7 @@ const TicketCust = () => {
                 onChange={(e)=>setassignmentGroup(e.target.value)}
                 value={assignmentGroup}
             >
+                <option value=" "> </option>
                 <option value="hardware">hardware</option>
                 <option value="software">software</option>
             </select>
