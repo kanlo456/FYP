@@ -77,10 +77,13 @@ const TicketForm = () => {
           </FormControl>
         </Grid>
         <Grid xs={2}>
+          <TextField fullWidth type="text" color="info" label="Sub-Category" />
+        </Grid>
+        <Grid xs={2}>
           <TextField fullWidth type="text" color="info" label="Config Item" />
         </Grid>
         <Grid xs={2}>
-          <TextField fullWidth type="text" color="info" label="Sub-Category" />
+          <TextField fullWidth type="text" color="info" label="Offering" />
         </Grid>
         <Grid xs={2}>
           <FormControl fullWidth>
@@ -136,24 +139,6 @@ const TicketForm = () => {
         </Grid>
         <Grid xs={2}>
           <FormControl fullWidth>
-            <InputLabel id="urgency" color="info">
-              Urgency
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              color="info"
-              // value={age}
-              label="Urgency"
-            >
-              <MenuItem value="1">1</MenuItem>
-              <MenuItem value="2">2</MenuItem>
-              <MenuItem value="3">3</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid xs={2}>
-          <FormControl fullWidth>
             <InputLabel id="priority" color="info">
               Priority
             </InputLabel>
@@ -185,6 +170,9 @@ const TicketForm = () => {
               <MenuItem value="network">Network</MenuItem>
             </Select>
           </FormControl>
+        </Grid>
+        <Grid xs={2}>
+          <TextField fullWidth type="text" color="info" label="Assigned To" />
         </Grid>
         <Grid xs={4}>
           <TextField

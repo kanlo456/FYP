@@ -20,6 +20,8 @@ export default function Ticketboartd() {
     if (response.status === 200) {
       console.log("Sucessful");
       setData(response.data);
+      // console.log(response.data.createdAt);
+      // console.log(data.data.createAt);
     }
   };
 
@@ -30,9 +32,9 @@ export default function Ticketboartd() {
   const theme = useTheme();
   const columns = [
     {
-      field: "id",
-      headerName: "Number",
-      width: 130,
+      field: "_id",
+      headerName: "ID",
+      flex: 1,
       renderCell: (params) => (
         <Link
           style={{ color: theme.palette.primary[100] }}
@@ -43,21 +45,24 @@ export default function Ticketboartd() {
       ),
       // valueGetter: (params) => {navigate('editTicket'),
     },
-    { field: "date", headerName: "Date", width: 130 },
+    {
+      field: "createdAt",
+      headerName: "Create Date",
+      type: "dateTime",
+      width: 130,
+    },
     { field: "category", headerName: "Category", width: 130 },
     { field: "subcategory", headerName: "Sub-Category", width: 130 },
     { field: "offering", headerName: "Offering", width: 130 },
-    { field: "configItem", headerName: "configItem", width: 130 },
+    { field: "configItem", headerName: "ConfigItem", width: 130 },
     { field: "shortDescription", headerName: "Short description", width: 130 },
     {
-      field: "customer",
-      headerName: "Customer",
+      field: "caller",
+      headerName: "Caller",
       width: 160,
-      valueGetter: (params) =>
-        `${params.row.firstName || ""} ${params.row.lastName || ""}`,
     },
-    { field: "State", headerName: "State", width: 160 },
-    { field: "assigedTo", headerName: "Assiged to", width: 160 },
+    { field: "state", headerName: "State", width: 160 },
+    { field: "assignedTo", headerName: "Assiged to", width: 160 },
 
     //   {
     //     field: "fullName",
@@ -68,18 +73,6 @@ export default function Ticketboartd() {
     //     valueGetter: (params) =>
     //       `${params.row.firstName || ""} ${params.row.lastName || ""}`,
     //   },
-  ];
-
-  const rows = [
-    { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-    { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-    { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-    { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-    { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-    { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-    { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-    { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-    { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
   ];
 
   // const [currentPath, setCurrentPath] = useSearchParams();
@@ -130,9 +123,10 @@ export default function Ticketboartd() {
           }}
         >
           <DataGrid
-            rows={rows}
+            rows={data || []}
             columns={columns}
             pageSize={10}
+            getRowId={(row) => row._id}
             rowsPerPageOptions={[5]}
             components={{ Toolbar: GridToolbar }}
             disableMultipleSelection={false}

@@ -27,7 +27,8 @@ import {
   AdminPanelSettingsOutlined,
   TrendingUpOutlined,
   PieChartOutlined,
-  ConfirmationNumberOutlined,AccountCircleOutlined
+  ConfirmationNumberOutlined,
+  AccountCircleOutlined,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -97,7 +98,6 @@ const Sidebar = ({
   const [active, setActive] = useState("");
   const navigate = useNavigate();
   const theme = useTheme();
-
 
   useEffect(() => {
     setActive(pathname.substring(1));
@@ -212,7 +212,7 @@ const Sidebar = ({
                 borderRadius="50%"
                 sx={{ objectFit: "cover" }}
               /> */}
-              <AccountCircleOutlined/>
+              <AccountCircleOutlined />
               <Box textAlign="left">
                 <Typography
                   fontWeight="bold"

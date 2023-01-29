@@ -6,6 +6,7 @@ import {
   Search,
   SettingsOutlined,
   ArrowDropDownOutlined,
+  AccountCircleOutlined,
 } from "@mui/icons-material";
 import FlexBetween from "./FlexBetween";
 import { useDispatch } from "react-redux";
@@ -35,7 +36,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const hanldeLogout = () => {
     // logout();
   };
-//   const { logout } = useLogout();
+  //   const { logout } = useLogout();
   return (
     <AppBar
       sx={{
@@ -87,7 +88,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 gap: "1rem",
               }}
             >
-              <Box
+              {/* <Box
                 component="img"
                 alt="profile"
                 // src={profileImage}
@@ -95,7 +96,8 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 width="32px"
                 borderRadius="50%"
                 sx={{ objectFit: "cover" }}
-              />
+              /> */}
+              <AccountCircleOutlined sx={{color:theme.palette.secondary[100]}} />
               <Box textAlign="left">
                 <Typography
                   fontWeight="bold"
