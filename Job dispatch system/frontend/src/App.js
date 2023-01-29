@@ -12,7 +12,6 @@ import { Error } from "./pages/Error";
 // pages & components
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
-import Signup from "./pages/SignIn";
 // import SignupCust from './pages/SignupCust'
 import Navbar from "./components/Navbar";
 import SignUpPage from "./pages/SignUpPage";

@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Unstable_Grid2";
-import Header from "./Header";
 
 const TicketForm = () => {
   const theme = useTheme();

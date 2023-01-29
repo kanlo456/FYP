@@ -52,6 +52,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
 import { Link as MuiLink } from "@mui/material";
+import * as yup from "yup";
+import { Formik } from "formik";
 
 function Copyright(props) {
   return (
@@ -75,15 +77,12 @@ const theme = createTheme();
 
 export default function LoginPage() {
   const { login, error, isLogin } = useLogin();
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const username = data.get("username");
-    const password = data.get("password");
-    console.log(username, password);
-    await login(username, password);
-  };
 
+  const handleSubmit = async (values) => {
+    // event.preventDefault();
+    console.log(values.username, values.password);
+    await login(values.username, values.password);
+  };
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -117,6 +116,9 @@ export default function LoginPage() {
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
+            <Typography component="h1" variant="h4">
+              Welcome to WSIG Ticket System
+            </Typography>
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
@@ -126,43 +128,72 @@ export default function LoginPage() {
               >{`${error}! Please try angin!`}</Typography>
             )}
             <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
+              // component="form"
+              // noValidate
+              // onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="User Name"
-                name="username"
-                autoComplete="username"
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+              <Formik
+                onSubmit={handleSubmit}
+                initialValues={initialValues}
+                validationSchema={checkLoginSchema}
               >
-                Sign In
-              </Button>
+                {({
+                  values,
+                  errors,
+                  touched,
+                  handleBlur,
+                  handleChange,
+                  handleSubmit,
+                }) => (
+                  <form onSubmit={handleSubmit}>
+                    <TextField
+                      fullWidth
+                      margin="normal"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      error={!!touched.username && !!errors.username}
+                      helperText={touched.username && errors.username}
+                      id="username"
+                      label="User Name"
+                      value={values.username}
+                      name="username"
+                      // autoComplete="username"
+                      autoFocus
+                    />
+                    <TextField
+                      margin="normal"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      error={!!touched.password && !!errors.password}
+                      fullWidth
+                      value={values.password}
+                      name="password"
+                      label="Password"
+                      type="password"
+                      id="password"
+                      autoComplete="current-password"
+                    />
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      sx={{ mt: 3, mb: 2 }}
+                    >
+                      Sign In
+                    </Button>
+                  </form>
+                )}
+              </Formik>
+              {/* <Formik>
+                {(<form>
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <form/>
+                )}
+              </Formik> */}
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
@@ -170,7 +201,7 @@ export default function LoginPage() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link to='../signUp' variant="body2">
+                  <Link to="../signUp" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
@@ -183,3 +214,13 @@ export default function LoginPage() {
     </ThemeProvider>
   );
 }
+
+const initialValues = {
+  username: "",
+  password: "",
+};
+
+const checkLoginSchema = yup.object().shape({
+  username: yup.string().required("required"),
+  password: yup.string().required("required"),
+});
