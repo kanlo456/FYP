@@ -3,7 +3,10 @@ import { Box, useMediaQuery } from "@mui/material";
 import { Outlet } from "react-router-dom";
 // import { useSelector } from "react-redux";
 import Sidebar from "../components/Sidebar";
+import Chatbox from "../chatbot/Chatbot";
 import Navbar from "../components/Navbar";
+import Facebook from "../chatbot/Facebook";
+import Whatsapp from "../chatbot/Whatsapp";
 // import Navbar from "components/Navbar";
 // import Sidebar from "components/Sidebar";
 // import { useGetUserQuery } from "state/api";
@@ -11,8 +14,8 @@ import Navbar from "../components/Navbar";
 const Layout = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-//   const userId = useSelector((state) => state.global.userId);
-//   const { data } = useGetUserQuery(userId);
+  //   const userId = useSelector((state) => state.global.userId);
+  //   const { data } = useGetUserQuery(userId);
 
   return (
     <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">
@@ -25,10 +28,13 @@ const Layout = () => {
       />
       <Box flexGrow={1}>
         <Navbar
-        //   user={data || {}}
+          //   user={data || {}}
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
         />
+        <Chatbox />
+        <Facebook />
+        <Whatsapp />
         <Outlet />
       </Box>
     </Box>
