@@ -1,5 +1,5 @@
-const Ticket = require('../models/TicketModel')
-const Count = require('../models/TicketModel')
+const Ticket = require('../models/ticketModel(Oscar version)')
+const Count = require('../models/ticketModel(Oscar version)')
 const mongoose = require('mongoose')
 
 

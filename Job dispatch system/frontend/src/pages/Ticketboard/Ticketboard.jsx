@@ -7,9 +7,26 @@ import { useSearchParams } from "react-router-dom";
 import { GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import classes from "./Ticketboard.module.css";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 // const navigate = useNavigate();
 
 export default function Ticketboartd() {
+  const [data, setData] = useState([]);
+
+  const getTicket = async () => {
+    const response = await axios.get("/api/tickets");
+    if (response.status === 200) {
+      console.log("Sucessful");
+      setData(response.data);
+    }
+  };
+
+  useEffect(() => {
+    getTicket();
+  }, []);
+
   const theme = useTheme();
   const columns = [
     {
@@ -65,9 +82,9 @@ export default function Ticketboartd() {
     { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
   ];
 
-  const [currentPath, setCurrentPath] = useSearchParams();
-  console.log(currentPath);
-  console.log(currentPath);
+  // const [currentPath, setCurrentPath] = useSearchParams();
+  // console.log(currentPath);
+  // console.log(currentPath);
   return (
     <div style={{ height: 400, width: "100%" }}>
       <Box m="1.5rem 2.5rem">
