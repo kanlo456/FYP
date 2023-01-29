@@ -1,0 +1,19 @@
+ .float2 {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    bottom: 250px;
+    right: 42px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+  }
+  
+  .my-float2 {
+    padding: 13px;
+    margin-left: 2px;
+  }
