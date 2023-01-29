@@ -240,7 +240,7 @@ const checkSignInSchema = yup.object().shape({
     .required("required"),
   confirmPassword: yup
     .string()
-    .oneOf(
+    .required("required").oneOf(
       [yup.ref("password"), null],
       "The password doesn't match, please try again!!",
     ),
