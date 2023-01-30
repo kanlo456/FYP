@@ -58,6 +58,23 @@ const CreateTicket = () => {
 
 export default CreateTicket;
 
-// const initialValues = {
-//   caller
-// };
+const initialValues = {
+  caller: "",
+  caller: "Tom",
+  category: "hardware",
+  subcategory: "notebook",
+  service: "Onsite",
+  offering: "notebook",
+  configItem: "notebook",
+  contactType: "email",
+  state: "on create",
+  impact: "low",
+  priority: 1,
+  assignmentGroup: "hardware",
+  assignedTo: "Ken",
+  description: "notebook",
+  shortDescription: "notebook",
+  user_id: "012",
+  createdAt: "2023-01-29T16:21:16.094Z",
+  updatedAt: "2023-01-29T16:21:16.094Z",
+};

@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const ticketRoutes = require('./routes/tickets')
+const userRoutese = require('./routes/user')
 
 //express app
 const app = express()
@@ -20,6 +21,7 @@ app.use((req,res,next)=>{
 
 //routes *tutorial workoutRoutes = ticketRoutes
 app.use('/api/tickets',ticketRoutes)
+app.use('/api/user',userRoutese)
 
 //soft DeprecationWarning: Mongoose: the `strictQuery` option will be switched
 mongoose.set('strictQuery', true);
