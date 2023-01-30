@@ -18,7 +18,6 @@ export default function Ticketboartd() {
   const getTicket = async () => {
     const response = await axios.get("/api/tickets");
     if (response.status === 200) {
-      console.log("Sucessful");
       setData(response.data);
       // console.log(response.data.createdAt);
       // console.log(data.data.createAt);

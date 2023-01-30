@@ -13,12 +13,13 @@ import { red, green } from "@mui/material/colors";
 const CreateTicket = () => {
   const theme = useTheme();
 
-  const handleSubmit = async (values) => {
-    console.log("sucessful");
+  const handleTicketSubmit = async (values) => {
+    console.log("Submiting...");
     console.log(values);
     const response = await fetch("/api/tickets", {
       method: "POST",
-      // body:JSON.stringify(values)
+      body: JSON.stringify(values),
+      headers: { "Content-Type": "application/json" },
     });
   };
 
@@ -27,9 +28,9 @@ const CreateTicket = () => {
       <Box m="1.5rem 2.5rem">
         <Header title="Create Ticket" subtitle="Please fill all information" />
         <Formik
+          onSubmit={handleTicketSubmit}
           initialValues={initialValues}
           validationSchema={createTicketSchema}
-          onSubmit={handleSubmit}
         >
           {({
             values,
@@ -58,13 +59,13 @@ const CreateTicket = () => {
                   Cancel Ticket
                 </Button>
                 <Button
-                  type="submit"
                   variant="outlined"
                   sx={{
                     backgroundColor: green[500],
                     color: "white",
                     ml: "1rem",
                   }}
+                  type="submit"
                 >
                   Create Ticket
                 </Button>
