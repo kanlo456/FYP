@@ -11,7 +11,7 @@ import {
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Unstable_Grid2";
 
-const TicketForm = () => {
+const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
   const theme = useTheme();
   return (
     <Box
@@ -35,10 +35,20 @@ const TicketForm = () => {
             label="Ticket Number"
             disabled
             variant="filled"
+            name="ticketNumber"
           />
         </Grid>
         <Grid xs={2}>
-          <TextField fullWidth type="text" color="info" label="Caller" />
+          <TextField
+            fullWidth
+            type="text"
+            color="info"
+            label="Caller"
+            name="caller"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={values.caller}
+          />
         </Grid>{" "}
         <Grid xs={2}>
           <FormControl fullWidth>
@@ -49,7 +59,7 @@ const TicketForm = () => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               color="info"
-              // value={age}
+              value={values.category}
               label="Configure"
             >
               <MenuItem value="hardware">Hardware</MenuItem>
@@ -64,12 +74,14 @@ const TicketForm = () => {
               Service
             </InputLabel>
             <Select
+              value={values.service}
               placeholder="Contact type"
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               color="info"
               // value={age}
-              label="Configure"
+              name="service"
+              label="service"
             >
               <MenuItem value="onsite">Onsite</MenuItem>
               <MenuItem value="remote">Remote</MenuItem>
@@ -77,13 +89,34 @@ const TicketForm = () => {
           </FormControl>
         </Grid>
         <Grid xs={2}>
-          <TextField fullWidth type="text" color="info" label="Sub-Category" />
+          <TextField
+            fullWidth
+            type="text"
+            color="info"
+            label="Sub-Category"
+            value={values.subcategory}
+            name="subcategory"
+          />
         </Grid>
         <Grid xs={2}>
-          <TextField fullWidth type="text" color="info" label="Config Item" />
+          <TextField
+            fullWidth
+            type="text"
+            color="info"
+            label="Config Item"
+            value={values.configItem}
+            name="configItem"
+          />
         </Grid>
         <Grid xs={2}>
-          <TextField fullWidth type="text" color="info" label="Offering" />
+          <TextField
+            fullWidth
+            type="text"
+            color="info"
+            label="Offering"
+            value={values.offering}
+            name="offering"
+          />
         </Grid>
         <Grid xs={2}>
           <FormControl fullWidth>
@@ -94,6 +127,8 @@ const TicketForm = () => {
               color="info"
               // value={age}
               label="Contact Type"
+              value={values.contactType}
+              name="contactType"
             >
               <MenuItem value="email">Email</MenuItem>
               <MenuItem value="mobilePhone">Mobile phone</MenuItem>
@@ -111,6 +146,8 @@ const TicketForm = () => {
               color="info"
               // value={age}
               label="State"
+              value={values.state}
+              name={values.state}
             >
               <MenuItem value="onCreate">On Create</MenuItem>
               <MenuItem value="holding">Holding</MenuItem>
@@ -128,8 +165,9 @@ const TicketForm = () => {
             <Select
               id="impact"
               color="info"
-              // value={age}
               label="Impact"
+              value={values.impact}
+              name="impact"
             >
               <MenuItem value="low">low</MenuItem>
               <MenuItem value="medium">Medium</MenuItem>
@@ -146,8 +184,9 @@ const TicketForm = () => {
               placeholder="Priority"
               id="priority"
               color="info"
-              // value={age}
               label="Priority"
+              value={values.priority}
+              name="priority"
             >
               <MenuItem value="1">1</MenuItem>
               <MenuItem value="2">2</MenuItem>
@@ -163,8 +202,9 @@ const TicketForm = () => {
             <Select
               id="assignmentGroup"
               color="info"
-              // value={age}
               label="Assignment Group"
+              value={values.assignmentGroup}
+              name="assignmentGroup"
             >
               <MenuItem value="hardware">Hardware</MenuItem>
               <MenuItem value="network">Network</MenuItem>
@@ -180,6 +220,8 @@ const TicketForm = () => {
             type="text"
             color="info"
             label="Short Description"
+            value={values.shortDescription}
+            name="shortDescription"
           />
         </Grid>
         <Grid xs={4}>
@@ -195,6 +237,8 @@ const TicketForm = () => {
                 height: "20vh",
               },
             }}
+            value={values.description}
+            name="description"
           />
         </Grid>
       </Grid>
