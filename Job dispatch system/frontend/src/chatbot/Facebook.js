@@ -4,7 +4,7 @@ import "./Facebook.css";
 const Facebook = () => {
   return (
     <a href="https://www.facebook.com/profile.php?id=100064909925328">
-      <i class="fa fa-facebook my-float3"></i>
+      <i className="fa fa-facebook my-float3"></i>
     </a>
   );
 };

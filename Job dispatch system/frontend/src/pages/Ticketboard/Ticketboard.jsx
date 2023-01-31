@@ -3,14 +3,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Box } from "@mui/system";
 import Header from "../../components/Header";
 import { useTheme, Button } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
 import { GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import classes from "./Ticketboard.module.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-// const navigate = useNavigate();
 
 export default function Ticketboard() {
   const [data, setData] = useState([]);
@@ -126,7 +123,7 @@ export default function Ticketboard() {
             columns={columns}
             pageSize={10}
             getRowId={(row) => row._id}
-            rowsPerPageOptions={[5]}
+            rowsPerPageOptions={[10]}
             components={{ Toolbar: GridToolbar }}
             disableMultipleSelection={false}
             checkboxSelection

@@ -17,9 +17,6 @@ import {
   ChevronLeft,
   ChevronRightOutlined,
   HomeOutlined,
-  ShoppingCartOutlined,
-  Groups2Outlined,
-  ReceiptLongOutlined,
   PublicOutlined,
   PointOfSaleOutlined,
   TodayOutlined,
@@ -103,7 +100,6 @@ const Sidebar = ({
     setActive(pathname.substring(1));
   }, [pathname]);
 
-  console.log(pathname);
   return (
     <Box component="nav">
       {isSidebarOpen && (
@@ -152,28 +148,26 @@ const Sidebar = ({
                     </Typography>
                   );
                 }
-                const lcText = text.toLowerCase();
+                const lcText = "dashboard/" + text.toLowerCase();
 
                 return (
                   <ListItem key={text} disablePadding>
                     <ListItemButton
                       onClick={() => {
-                        if (lcText === "dashboard") {
-                          navigate(".");
+                        if (lcText === "dashboard/dashboard") {
+                          navigate("../dashboard");
                         } else {
                           setActive(lcText);
-                          console.log(active);
-                          console.log(console.log(active));
-                          navigate(`${lcText}`);
+                          navigate(`/${lcText}`);
                         }
                       }}
                       sx={{
                         backgroundColor:
-                          active === `dashboard/${lcText}`
+                          active === `${lcText}`
                             ? theme.palette.secondary[300]
                             : "transparent",
                         color:
-                          active === `dashboard/${lcText}`
+                          active === `${lcText}`
                             ? theme.palette.primary[600]
                             : theme.palette.secondary[100],
                       }}
@@ -182,7 +176,7 @@ const Sidebar = ({
                         sx={{
                           ml: "2rem",
                           color:
-                            active === `dashboard/${lcText}`
+                            active === `${lcText}`
                               ? theme.palette.primary[600]
                               : theme.palette.secondary[200],
                         }}
@@ -190,7 +184,7 @@ const Sidebar = ({
                         {icon}
                       </ListItemIcon>
                       <ListItemText primary={text} />
-                      {active === `dashboard/${lcText}` && (
+                      {active === `${lcText}` && (
                         <ChevronRightOutlined sx={{ ml: "auto" }} />
                       )}
                     </ListItemButton>

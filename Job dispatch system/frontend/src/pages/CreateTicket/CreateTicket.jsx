@@ -1,16 +1,16 @@
 import React, { Fragment } from "react";
 import TicketForm from "../../components/TicketForm";
 import Header from "../../components/Header";
-import { Box, Button } from "@mui/material";
-import { Navigate, redirect, useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
-import axios from "axios";
+import { Box, Button, Alert, AlertTitle } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useTheme } from "@emotion/react";
 import { red, green } from "@mui/material/colors";
+import { useState } from "react";
 
 const CreateTicket = () => {
+  const [statusOK, setStatusOK] = useState(false);
   const theme = useTheme();
   const navigate = useNavigate();
   const handleTicketSubmit = async (values) => {
@@ -22,12 +22,20 @@ const CreateTicket = () => {
       headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
-      return navigate('/dashboard/ticketboard')
+      setStatusOK(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return setTimeout(() => navigate("/dashboard/ticketboard"), 3000);
     }
   };
 
   return (
     <Fragment>
+      {statusOK && (
+        <Alert severity="success">
+          <AlertTitle>Success Submit ticket</AlertTitle>
+          This is a success alert — <strong>check it out!</strong>
+        </Alert>
+      )}
       <Box m="1.5rem 2.5rem">
         <Header title="Create Ticket" subtitle="Please fill all information" />
         <Formik

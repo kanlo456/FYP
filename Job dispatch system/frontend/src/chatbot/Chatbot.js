@@ -88,7 +88,7 @@ function Chatbot() {
               type="text"
               placeholder="Type abbreviation here.."
               required
-              onBlur="CheckLang()"
+              // onBlur="CheckLang()"
             />
             <button id="send-btn" style={marginTop}>
               Send

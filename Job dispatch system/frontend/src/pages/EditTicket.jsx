@@ -1,8 +1,8 @@
 import { Box } from "@mui/system";
-import { Button } from "@mui/material";
+import { Button, Alert, AlertTitle } from "@mui/material";
 import React, { Fragment } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import TicketForm from "../components/TicketForm";
 import { Formik } from "formik";
@@ -13,23 +13,8 @@ import { useState } from "react";
 
 const EditTicket = () => {
   const { id } = useParams();
-
-  const [caller, setCaller] = useState("");
-  const [category, setCategory] = useState("");
-  const [subcategory, setSubcategory] = useState("");
-  const [service, setService] = useState("");
-  const [offering, setOffering] = useState("");
-  const [configItem, setConfigItem] = useState("");
-  const [contactType, setContactType] = useState("");
-  const [state, setState] = useState("");
-  const [impact, setImpact] = useState("");
-  const [priority, setPriority] = useState("");
-  const [assignmentGroup, setAssignmentGroup] = useState("");
-  const [assignedTo, setAssignedTo] = useState("");
-  const [description, setDescription] = useState("");
-  const [shortDescription, setShortDescription] = useState("");
-  const [user_id, setUser_id] = useState("");
-
+  const [statusOK, setStatusOK] = useState(false);
+  const navigate = useNavigate();
   const [responseData, setResponseData] = useState([]);
 
   useEffect(() => {
@@ -39,55 +24,60 @@ const EditTicket = () => {
   console.log(id);
   const getSingleTicket = async (id) => {
     const response = await axios.get(`/api/tickets/${id}`);
-    console.log(response.data.caller);
-    console.log(response.data);
-    setCaller(response.data.caller);
-    setCategory(response.data.category);
-    setSubcategory(response.data.subcategory);
-    setService(response.data.service);
-    setOffering(response.data.offering);
-    setConfigItem(response.data.configItem);
-    setContactType(response.data.contactType);
-    setState(response.data.state);
-    setImpact(response.data.impact);
-    setPriority(response.data.priority);
-    setAssignmentGroup(response.data.assignmentGroup);
-    setAssignedTo(response.data.assignedTo);
-    setDescription(response.data.description);
-    setShortDescription(response.data.shortDescription);
-    setUser_id(response.data.user_id);
-    setResponseData(response.data);
+    const data = response.data;
+    setResponseData(data);
   };
-  console.log("caller", caller);
 
   const initialValues = {
-    caller: caller,
-    category: category,
-    subcategory: subcategory,
-    service: "",
-    offering: "",
-    configItem: "",
-    contactType: "",
-    state: "",
-    impact: "",
-    priority: "",
-    assignmentGroup: "",
-    assignedTo: "",
-    description: "",
-    shortDescription: "",
+    caller: responseData.caller,
+    category: responseData.category,
+    subcategory: responseData.subcategory,
+    service: responseData.service,
+    offering: responseData.offering,
+    configItem: responseData.configItem,
+    contactType: responseData.contactType,
+    state: responseData.state,
+    impact: responseData.impact,
+    priority: responseData.priority,
+    assignmentGroup: responseData.assignmentGroup,
+    assignedTo: responseData.assignedTo,
+    description: responseData.description,
+    shortDescription: responseData.shortDescription,
     user_id: "123",
   };
 
-  const updateTicket = () => {};
+  const updateTicket = async (values) => {
+    const response = await fetch(`/api/tickets/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      setStatusOK(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return setTimeout(() => navigate("/dashboard/ticketboard"), 3000);
+    } else {
+      console.log("fail");
+    }
+  };
 
   return (
     <Fragment>
+      {statusOK && (
+        <Alert severity="success">
+          <AlertTitle>Success Submit ticket</AlertTitle>
+          This is a success alert — <strong>check it out!</strong>
+        </Alert>
+      )}
       <Box m="1.5rem 2.5rem">
         <Header title="Edit Your Ticket" subtitle="We will help you soon!" />
         <Formik
           initialValues={initialValues}
           validationSchema={checkTicketSchema}
-          handleSubmit={updateTicket}
+          onSubmit={updateTicket}
+          enableReinitialize
         >
           {({
             values,

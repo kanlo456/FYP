@@ -6,7 +6,6 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
-  TextareaAutosize,
 } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -48,7 +47,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             onBlur={handleBlur}
             onChange={handleChange}
             error={!!touched.caller && !!errors.caller}
-            value={values.caller}
+            value={values.caller || ""}
             helperText={touched.caller && errors.caller}
           />
         </Grid>{" "}
@@ -63,7 +62,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               color="info"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.category}
+              value={values.category || ""}
               label="Category*"
               name="category"
               error={!!touched.category && !!errors.category}
@@ -87,7 +86,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               id="demo-simple-select"
               color="info"
               // value={age}
-              value={values.service}
+              value={values.service || ""}
               onChange={handleChange}
               onBlur={handleBlur}
               name="service"
@@ -106,7 +105,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             type="text"
             color="info"
             label="Sub-Category"
-            value={values.subcategory}
+            value={values.subcategory || ""}
             onChange={handleChange}
             error={!!touched.subcategory && !!errors.subcategory}
             name="subcategory"
@@ -119,7 +118,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             type="text"
             color="info"
             label="Config Item"
-            value={values.configItem}
+            value={values.configItem || ""}
             onChange={handleChange}
             name="configItem"
             error={!!touched.configItem && !!errors.configItem}
@@ -132,7 +131,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             type="text"
             color="info"
             label="Offering"
-            value={values.offering}
+            value={values.offering || ""}
             error={!!touched.offering && !!errors.offering}
             name="offering"
             onChange={handleChange}
@@ -149,7 +148,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               color="info"
               // value={age}
               label="Contact Type"
-              value={values.contactType}
+              value={values.contactType || ""}
               name="contactType"
               onChange={handleChange}
               error={!!touched.contactType && !!errors.contactType}
@@ -173,7 +172,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               label="State"
               onChange={handleChange}
               error={!!touched.state && !!errors.state}
-              value={values.state}
+              value={values.state || ""}
               name="state"
               helperText={touched.state && errors.state}
             >
@@ -194,7 +193,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               id="impact"
               color="info"
               label="Impact"
-              value={values.impact}
+              value={values.impact || ""}
               onChange={handleChange}
               error={!!touched.impact && !!errors.impact}
               name="impact"
@@ -215,7 +214,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               id="priority"
               color="info"
               label="Priority"
-              value={values.priority}
+              value={values.priority || ""}
               name="priority"
               onChange={handleChange}
               error={!!touched.priority && !!errors.priority}
@@ -235,7 +234,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               id="assignmentGroup"
               color="info"
               label="Assignment Group"
-              value={values.assignmentGroup}
+              value={values.assignmentGroup || ""}
               onChange={handleChange}
               name="assignmentGroup"
               error={!!touched.assignmentGroup && !!errors.assignmentGroup}
@@ -252,7 +251,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             color="info"
             name="assignedTo"
             label="Assigned To"
-            value={values.assignedTo}
+            value={values.assignedTo || ""}
             onChange={handleChange}
             onBlur={handleBlur}
             error={!!errors.assignedTo && !!touched.assignedTo}
@@ -264,7 +263,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             type="text"
             color="info"
             label="Short Description"
-            value={values.shortDescription}
+            value={values.shortDescription || ""}
             onChange={handleChange}
             onBlur={handleBlur}
             name="shortDescription"
@@ -284,7 +283,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
                 height: "20vh",
               },
             }}
-            value={values.description}
+            value={values.description || ""}
             onChange={handleChange}
             onBlur={handleBlur}
             error={!!touched.description && !!errors.description}
