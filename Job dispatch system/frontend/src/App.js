@@ -23,7 +23,7 @@ import { useMemo } from "react";
 import { createTheme } from "@mui/material";
 import { themeSettings } from "./theme";
 import Layout from "./layout/Layout";
-import Ticketboartd from "./pages/Ticketboard/Ticketboard";
+import Ticketboard from "./pages/Ticketboard/Ticketboard";
 import EditTicket from "./pages/EditTicket";
 import CreateTicket from "./pages/CreateTicket/CreateTicket";
 
@@ -55,7 +55,7 @@ function App() {
       path: "dashboard",
       element: <Layout />,
       children: [
-        { path: "ticketboard", element: <Ticketboartd /> },
+        { path: "ticketboard", element: <Ticketboard />, index: true },
         { path: "editTicket/:id", element: <EditTicket /> },
         { path: "createTicket", element: <CreateTicket /> },
       ],

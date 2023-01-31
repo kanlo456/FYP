@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import axios from "axios";
 // const navigate = useNavigate();
 
-export default function Ticketboartd() {
+export default function Ticketboard() {
   const [data, setData] = useState([]);
 
   const getTicket = async () => {

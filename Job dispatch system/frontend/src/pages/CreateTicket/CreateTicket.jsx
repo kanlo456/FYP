@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import TicketForm from "../../components/TicketForm";
 import Header from "../../components/Header";
 import { Box, Button } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { Navigate, redirect, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { Formik } from "formik";
@@ -12,7 +12,7 @@ import { red, green } from "@mui/material/colors";
 
 const CreateTicket = () => {
   const theme = useTheme();
-
+  const navigate = useNavigate();
   const handleTicketSubmit = async (values) => {
     console.log("Submiting...");
     console.log(values);
@@ -21,6 +21,9 @@ const CreateTicket = () => {
       body: JSON.stringify(values),
       headers: { "Content-Type": "application/json" },
     });
+    if (response.ok) {
+      return navigate('/dashboard/ticketboard')
+    }
   };
 
   return (
@@ -95,19 +98,19 @@ const initialValues = {
   assignedTo: "",
   description: "",
   shortDescription: "",
-  user_id: "",
+  user_id: "123",
 };
 
 const createTicketSchema = yup.object().shape({
   caller: yup.string().required("reaquired"),
   category: yup
     .string()
-    .oneOf(["hadware,software,other"], "Invaild Input")
+    .oneOf(["hardware", "software", "other"], "Invaild Input")
     .required("required"),
   subcategory: yup.string().required("required"),
   service: yup
     .string()
-    .oneOf(["onsite,remote"], "Invaild Input")
+    .oneOf(["onsite", "remote"], "Invaild Input")
     .required("required"),
   offering: yup.string().required("required"),
   configItem: yup.string().required("required"),
@@ -126,7 +129,10 @@ const createTicketSchema = yup.object().shape({
     .string()
     .oneOf(["1", "2", "3"], "Invaild Input")
     .required("required"),
-  priority: yup.string().oneOf(["1,2,3"], "Invaild Input").required("required"),
+  priority: yup
+    .string()
+    .oneOf(["1", "2", "3"], "Invaild Input")
+    .required("required"),
   assignmentGroup: yup.string().required("required"),
   assignedTo: yup.string().required("requried"),
   description: yup.string().required("required"),

@@ -43,25 +43,33 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             fullWidth
             type="text"
             color="info"
-            label="Caller"
+            label="Caller*"
             name="caller"
             onBlur={handleBlur}
             onChange={handleChange}
+            error={!!touched.caller && !!errors.caller}
             value={values.caller}
+            helperText={touched.caller && errors.caller}
           />
         </Grid>{" "}
         <Grid xs={2}>
           <FormControl fullWidth>
             <InputLabel id="Category" color="info">
-              Category
+              Category*
             </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               color="info"
+              onChange={handleChange}
+              onBlur={handleBlur}
               value={values.category}
-              label="Configure"
+              label="Category*"
+              name="category"
+              error={!!touched.category && !!errors.category}
+              helperText={touched.caller && errors.caller}
             >
+              <MenuItem value="">----Please select----</MenuItem>
               <MenuItem value="hardware">Hardware</MenuItem>
               <MenuItem value="software">Software</MenuItem>
               <MenuItem value="other">Other</MenuItem>
@@ -71,17 +79,21 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
         <Grid xs={2}>
           <FormControl fullWidth>
             <InputLabel id="service" color="info">
-              Service
+              Service*
             </InputLabel>
             <Select
-              value={values.service}
               placeholder="Contact type"
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               color="info"
               // value={age}
+              value={values.service}
+              onChange={handleChange}
+              onBlur={handleBlur}
               name="service"
               label="service"
+              error={!!touched.service && !!errors.service}
+              helperText={touched.service && errors.service}
             >
               <MenuItem value="onsite">Onsite</MenuItem>
               <MenuItem value="remote">Remote</MenuItem>
@@ -95,7 +107,10 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             color="info"
             label="Sub-Category"
             value={values.subcategory}
+            onChange={handleChange}
+            error={!!touched.subcategory && !!errors.subcategory}
             name="subcategory"
+            helperText={touched.subcategory && errors.subcategory}
           />
         </Grid>
         <Grid xs={2}>
@@ -105,7 +120,10 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             color="info"
             label="Config Item"
             value={values.configItem}
+            onChange={handleChange}
             name="configItem"
+            error={!!touched.configItem && !!errors.configItem}
+            helperText={touched.configItem && errors.configItem}
           />
         </Grid>
         <Grid xs={2}>
@@ -115,7 +133,11 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             color="info"
             label="Offering"
             value={values.offering}
+            error={!!touched.offering && !!errors.offering}
             name="offering"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.offering && errors.offering}
           />
         </Grid>
         <Grid xs={2}>
@@ -129,6 +151,9 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               label="Contact Type"
               value={values.contactType}
               name="contactType"
+              onChange={handleChange}
+              error={!!touched.contactType && !!errors.contactType}
+              helperText={touched.contactType && errors.contactType}
             >
               <MenuItem value="email">Email</MenuItem>
               <MenuItem value="mobilePhone">Mobile phone</MenuItem>
@@ -146,8 +171,11 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               color="info"
               // value={age}
               label="State"
+              onChange={handleChange}
+              error={!!touched.state && !!errors.state}
               value={values.state}
-              name={values.state}
+              name="state"
+              helperText={touched.state && errors.state}
             >
               <MenuItem value="onCreate">On Create</MenuItem>
               <MenuItem value="holding">Holding</MenuItem>
@@ -167,11 +195,13 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               color="info"
               label="Impact"
               value={values.impact}
+              onChange={handleChange}
+              error={!!touched.impact && !!errors.impact}
               name="impact"
             >
-              <MenuItem value="low">low</MenuItem>
-              <MenuItem value="medium">Medium</MenuItem>
-              <MenuItem value="high">High</MenuItem>
+              <MenuItem value="1">low</MenuItem>
+              <MenuItem value="2">Medium</MenuItem>
+              <MenuItem value="3">High</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -187,6 +217,8 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               label="Priority"
               value={values.priority}
               name="priority"
+              onChange={handleChange}
+              error={!!touched.priority && !!errors.priority}
             >
               <MenuItem value="1">1</MenuItem>
               <MenuItem value="2">2</MenuItem>
@@ -204,7 +236,9 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               color="info"
               label="Assignment Group"
               value={values.assignmentGroup}
+              onChange={handleChange}
               name="assignmentGroup"
+              error={!!touched.assignmentGroup && !!errors.assignmentGroup}
             >
               <MenuItem value="hardware">Hardware</MenuItem>
               <MenuItem value="network">Network</MenuItem>
@@ -212,7 +246,17 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
           </FormControl>
         </Grid>
         <Grid xs={2}>
-          <TextField fullWidth type="text" color="info" label="Assigned To" />
+          <TextField
+            fullWidth
+            type="text"
+            color="info"
+            name="assignedTo"
+            label="Assigned To"
+            value={values.assignedTo}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={!!errors.assignedTo && !!touched.assignedTo}
+          />
         </Grid>
         <Grid xs={4}>
           <TextField
@@ -221,7 +265,10 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             color="info"
             label="Short Description"
             value={values.shortDescription}
+            onChange={handleChange}
+            onBlur={handleBlur}
             name="shortDescription"
+            error={!!touched.description && errors.description}
           />
         </Grid>
         <Grid xs={4}>
@@ -238,6 +285,9 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
               },
             }}
             value={values.description}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={!!touched.description && !!errors.description}
             name="description"
           />
         </Grid>

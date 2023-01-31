@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
-import { redirect } from "react-router-dom";
-import { RedirectFunction } from "react-router-dom";
+import { RedirectFunction, useNavigate } from "react-router-dom";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
+  const navigate = useNavigate();
 
   const login = async (username, password) => {
     setIsLoading(true);
     setError(null);
+
 
     const response = await fetch("/api/user/login", {
       method: "POST",
@@ -33,7 +34,8 @@ export const useLogin = () => {
       localStorage.setItem("user", JSON.stringify(json));
       //update the auth context
       dispatch({ type: "LOGIN", payload: json });
-      window.location.replace("/dashboard");
+      // window.location.replace("/dashboard/ticketboard");
+      navigate('/dashboard/ticketboard')
     }
   };
 
