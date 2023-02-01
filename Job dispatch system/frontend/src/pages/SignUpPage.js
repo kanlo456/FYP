@@ -36,7 +36,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const { signup, error, isLoading } = useSignup();
+  const { signup, error } = useSignup();
   const handleSubmit = async (values) => {
     await signup(
       values.userName,
@@ -91,7 +91,7 @@ export default function SignUp() {
                         name="firstName"
                         id="firstName"
                         label="First Name"
-                        value={values.firstName}
+                        value={values.firstName || ""}
                         onBlur={handleBlur}
                         onChange={handleChange}
                         error={!!touched.firstName && !!errors.firstName}
@@ -107,7 +107,7 @@ export default function SignUp() {
                         onChange={handleChange}
                         error={!!touched.lastName && !!errors.lastName}
                         helperText={touched.lastName && errors.lastName}
-                        value={values.lastName}
+                        value={values.lastName || ""}
                         id="lastName"
                         label="Last Name"
                         name="lastName"
@@ -118,7 +118,7 @@ export default function SignUp() {
                         required
                         fullWidth
                         error={!!touched.emailAddress && !!errors.emailAddress}
-                        value={values.emailAddress}
+                        value={values.emailAddress || ""}
                         onBlur={handleBlur}
                         onChange={handleChange}
                         id="emailAdress"
@@ -134,7 +134,7 @@ export default function SignUp() {
                         fullWidth
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.userName}
+                        value={values.userName || ""}
                         error={!!touched.userName && !!errors.userName}
                         helperText={touched.userName && errors.userName}
                         id="username"
@@ -148,7 +148,7 @@ export default function SignUp() {
                         fullWidth
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.password}
+                        value={values.password || ""}
                         error={!!touched.password && !!errors.password}
                         helperText={touched.password && errors.password}
                         name="password"
@@ -165,7 +165,7 @@ export default function SignUp() {
                         fullWidth
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.confirmPassword}
+                        value={values.confirmPassword || ""}
                         error={
                           !!touched.confirmPassword && !!errors.confirmPassword
                         }
@@ -240,7 +240,8 @@ const checkSignInSchema = yup.object().shape({
     .required("required"),
   confirmPassword: yup
     .string()
-    .required("required").oneOf(
+    .required("required")
+    .oneOf(
       [yup.ref("password"), null],
       "The password doesn't match, please try again!!",
     ),

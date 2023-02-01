@@ -35,7 +35,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function LoginPage() {
-  const { login, error, isLogin } = useLogin();
+  const { login, error } = useLogin();
 
   const handleSubmit = async (values) => {
     // event.preventDefault();
@@ -115,7 +115,7 @@ export default function LoginPage() {
                       helperText={touched.username && errors.username}
                       id="username"
                       label="User Name"
-                      value={values.username}
+                      value={values.username || ""}
                       name="username"
                       // autoComplete="username"
                       autoFocus
@@ -126,12 +126,11 @@ export default function LoginPage() {
                       onChange={handleChange}
                       error={!!touched.password && !!errors.password}
                       fullWidth
-                      value={values.password}
+                      value={values.password || ""}
                       name="password"
                       label="Password"
                       type="password"
                       id="password"
-                      autoComplete="current-password"
                     />
                     <Button
                       type="submit"
@@ -144,15 +143,6 @@ export default function LoginPage() {
                   </form>
                 )}
               </Formik>
-              {/* <Formik>
-                {(<form>
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
-                <form/>
-                )}
-              </Formik> */}
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
