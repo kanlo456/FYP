@@ -43,7 +43,6 @@ const EditTicket = () => {
     assignedTo: responseData.assignedTo,
     description: responseData.description,
     shortDescription: responseData.shortDescription,
-    user_id: "123",
   };
 
   const updateTicket = async (values) => {

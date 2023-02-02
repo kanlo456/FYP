@@ -106,8 +106,7 @@ const initialValues = {
   assignmentGroup: "",
   assignedTo: "",
   description: "",
-  shortDescription: "",
-  user_id: "123",
+  shortDescription: ""
 };
 
 const createTicketSchema = yup.object().shape({

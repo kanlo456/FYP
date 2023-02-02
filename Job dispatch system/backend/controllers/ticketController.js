@@ -28,6 +28,7 @@ const getTicket = async(req,res)=>{
 
 //create new ticket 
 const createTicket = async(req,res)=>{
+    const id = req.user._id
     //add doc to db
 
 //     let seqId;
@@ -52,12 +53,12 @@ const createTicket = async(req,res)=>{
 const {
     caller,category,subcategory,service,offering,configItem,contactType,state,
     impact,priority,assignmentGroup,assignedTo,description,
-    shortDescription,user_id} = req.body
+    shortDescription} = req.body
 
     const ticket = await Ticket.create({
         caller,category,subcategory,service,offering,configItem,contactType,state,
         impact,priority,assignmentGroup,assignedTo,description,
-        shortDescription,user_id})
+        shortDescription,id})
         res.status(200).json(ticket)
 }
 

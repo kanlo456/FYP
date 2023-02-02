@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {useTicket} from "../hooks/useTicket"
 
+
 // import signIn from "./SignIn";
 
 const TicketCust = () => {
@@ -20,12 +21,16 @@ const TicketCust = () => {
     const [assigned, setassigned] = useState('')
     const [shortDesciption, setshortDesciption] = useState('')
     const [Description, setDescription] = useState('')
+    const [user_id,setUser_id] = useState('')
     const {insert, error, isLoading} = useTicket()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(caller+"'s ticket has been created:" + ticketNum)
-        await insert(ticketNum, caller, category, subcategory, service, offering, configItem, contactType, state, impact, urgency, priority, assignmentGroup, assigned, shortDesciption, Description)
+        await insert(ticketNum, caller, category, subcategory,
+             service, offering, configItem, contactType, 
+             state, impact, urgency, priority, assignmentGroup, 
+             assigned, shortDesciption, Description)
     }
     
     return(

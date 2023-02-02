@@ -5,8 +5,10 @@ const { getTickets,
     createTicket,
     deleteTicket,
     updateTicket} = require('../controllers/ticketController')
+const requireAuth = require('../middleware/requireAuth') //*** 
 
 const router = express.Router()
+router.use(requireAuth) //***
 
 // GET all tickes
 router.get('/',getTickets)
