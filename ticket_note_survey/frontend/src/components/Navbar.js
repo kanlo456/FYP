@@ -10,6 +10,9 @@ const Navbar = ()=>{
                 <Link to="/insert">
                     <h1>insert ticket</h1>
                 </Link>
+                <Link to="/isuvrey">
+                    <h1>insert survy</h1>
+                </Link>
 
             <Link to="/iworknote"><h1>insert work note</h1></Link>
 

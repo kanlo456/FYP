@@ -5,7 +5,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const surveySchema = new Schema({
-    satisfactionLV: {
+    friendStfLV: {
+      type: Number,
+      required: true
+    },knowlegStfLV: {
+      type: Number,
+      required: true
+    },quickStfLV: {
       type: Number,
       required: true
     },useAgain: {

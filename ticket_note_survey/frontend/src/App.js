@@ -11,6 +11,8 @@ import Navbar from './components/Navbar';
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import WorknoteInsert from './pages/WorknoteInsert'
+import SurveyInsert from './pages/SurveyInsert'
+
 
 function App() {
   const {user} = useAuthContext()
@@ -40,6 +42,9 @@ function App() {
             <Route
             path='/iworknote'
             element={<WorknoteInsert/>}/>
+            <Route
+            path='/isuvrey'
+            element={<SurveyInsert/>}/>
             <Route
             path='/insert'
             element={<TicketInsert/>}
