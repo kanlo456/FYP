@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const ticketRoutes = require('./routes/tickets')
 const userRoutes = require('./routes/user')
 const worknotesRoutes = require('./routes/worknotes')
-
+const surveyRoutes = require('./routes/survey')
 //express app
 const app = express()
 
@@ -24,6 +24,7 @@ app.use((req,res,next)=>{
 app.use('/api/tickets',ticketRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/worknotes', worknotesRoutes)
+app.use('/api/surveys',surveyRoutes)
 
 //soft DeprecationWarning: Mongoose: the `strictQuery` option will be switched
 mongoose.set('strictQuery', true);
