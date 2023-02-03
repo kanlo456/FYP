@@ -125,6 +125,7 @@ export default function LoginPage() {
                       onBlur={handleBlur}
                       onChange={handleChange}
                       error={!!touched.password && !!errors.password}
+                      helperText={touched.password && errors.password}
                       fullWidth
                       value={values.password || ""}
                       name="password"
@@ -135,6 +136,7 @@ export default function LoginPage() {
                     <Button
                       type="submit"
                       fullWidth
+                      disabled={!!errors.password || !!errors.username}
                       variant="contained"
                       sx={{ mt: 3, mb: 2 }}
                     >
