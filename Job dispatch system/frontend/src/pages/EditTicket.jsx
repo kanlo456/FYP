@@ -2,20 +2,26 @@ import { Box } from "@mui/system";
 import { Button, Alert, AlertTitle } from "@mui/material";
 import React, { Fragment } from "react";
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import TicketForm from "../components/TicketForm";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { red, green } from "@mui/material/colors";
+import { red, green, orange } from "@mui/material/colors";
 import axios from "axios";
 import { useState } from "react";
+import WorkNotes from "../components/WorkNotes";
+import { useTheme } from "@emotion/react";
+import CancelAlertBox from "../components/CancelAlertBox";
+import TicketBox from "../components/TicketBox";
 
 const EditTicket = () => {
+  const theme = useTheme();
   const { id } = useParams();
   const [statusOK, setStatusOK] = useState(false);
   const navigate = useNavigate();
   const [responseData, setResponseData] = useState([]);
+  const [openCancelAlertBox, setOpenCancelAlertBox] = useState(false);
 
   useEffect(() => {
     getSingleTicket(id);
@@ -88,38 +94,58 @@ const EditTicket = () => {
             handleSubmit,
           }) => (
             <form onSubmit={handleSubmit}>
-              <TicketForm
-                values={values}
-                errors={errors}
-                touched={touched}
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-              />
-              <Box display="flex" justifyContent="flex-end" mt="1rem">
-                <Button
-                  variant="outlined"
-                  sx={{
-                    backgroundColor: red[500],
-                    color: "white",
-                  }}
-                >
-                  Cancel Edit
-                </Button>
-                <Button
-                  variant="outlined"
-                  sx={{
-                    backgroundColor: green[500],
-                    color: "white",
-                    ml: "1rem",
-                  }}
-                  type="submit"
-                >
-                  Update
-                </Button>
-              </Box>
+              <TicketBox>
+                <TicketForm
+                  values={values}
+                  errors={errors}
+                  touched={touched}
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                />
+                <Box display="flex" justifyContent="flex-end" mt="1rem">
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      backgroundColor: red[500],
+                      color: "white",
+                    }}
+                    onClick={() => setOpenCancelAlertBox(true)}
+                  >
+                    Cancel Edit
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      backgroundColor: green[500],
+                      color: "white",
+                      ml: "1rem",
+                    }}
+                    type="submit"
+                  >
+                    Update
+                  </Button>
+                </Box>
+              </TicketBox>
             </form>
           )}
         </Formik>
+        <CancelAlertBox
+          openCancelAlertBox={openCancelAlertBox}
+          setOpenCancelAlertBox={setOpenCancelAlertBox}
+          alertText={"Are you sure cancel edit?"}
+          alertContent={"Your data will lose!"}
+          navigate={"/dashboard/ticketboard"}
+        />
+        <Header title="Word Notes" subtitle="Please leave your notes here!" />
+        <TicketBox>
+          <WorkNotes />
+          <Button
+            variant="outlined"
+            sx={{ backgroundColor: orange[900], color: "white" }}
+          >
+            POST
+          </Button>
+        </TicketBox>
       </Box>
     </Fragment>
   );

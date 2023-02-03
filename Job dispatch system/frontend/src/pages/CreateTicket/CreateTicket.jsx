@@ -8,10 +8,13 @@ import * as yup from "yup";
 import { useTheme } from "@emotion/react";
 import { red, green } from "@mui/material/colors";
 import { useState } from "react";
+import TicketBox from "../../components/TicketBox";
+import CancelAlertBox from "../../components/CancelAlertBox";
 
 const CreateTicket = () => {
   const [statusOK, setStatusOK] = useState(false);
   const theme = useTheme();
+  const [openCancelAlertBox, setOpenCancelAlertBox] = useState(false);
   const navigate = useNavigate();
   const handleTicketSubmit = async (values) => {
     console.log("Submiting...");
@@ -52,39 +55,50 @@ const CreateTicket = () => {
             handleSubmit,
           }) => (
             <form onSubmit={handleSubmit}>
-              <TicketForm
-                values={values}
-                errors={errors}
-                touched={touched}
-                handleBlur={handleBlur}
-                handleChange={handleChange}
-              />
-              <Box display="flex" justifyContent="flex-end" mt="1rem">
-                <Button
-                  variant="outlined"
-                  sx={{
-                    backgroundColor: red[500],
-                    color: "white",
-                  }}
-                  // onClick={()=>{}}
-                >
-                  Cancel Ticket
-                </Button>
-                <Button
-                  variant="outlined"
-                  sx={{
-                    backgroundColor: green[500],
-                    color: "white",
-                    ml: "1rem",
-                  }}
-                  type="submit"
-                >
-                  Create Ticket
-                </Button>
-              </Box>
+              <TicketBox>
+                <TicketForm
+                  values={values}
+                  errors={errors}
+                  touched={touched}
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                />
+                <Box display="flex" justifyContent="flex-end" mt="1rem">
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      backgroundColor: red[500],
+                      color: "white",
+                    }}
+                    onClick={() => {
+                      setOpenCancelAlertBox(true);
+                    }}
+                  >
+                    Cancel Ticket
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      backgroundColor: green[500],
+                      color: "white",
+                      ml: "1rem",
+                    }}
+                    type="submit"
+                  >
+                    Create Ticket
+                  </Button>
+                </Box>
+              </TicketBox>
             </form>
           )}
         </Formik>
+        <CancelAlertBox
+          openCancelAlertBox={openCancelAlertBox}
+          setOpenCancelAlertBox={setOpenCancelAlertBox}
+          alertText={"Are you sure cancel ticket?"}
+          alertContent={"Your data will lose!"}
+          navigate={"/dashboard/ticketboard"}
+        />
       </Box>
     </Fragment>
   );

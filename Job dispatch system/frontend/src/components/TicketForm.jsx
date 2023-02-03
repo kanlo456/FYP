@@ -14,11 +14,11 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
   const theme = useTheme();
   return (
     <Box
-      mt="40px"
-      display="flex"
-      backgroundColor={theme.palette.background.alt}
-      sx={{ flexGrow: 1 }}
-      p="1.5rem"
+    // mt="40px"
+    // display="flex"
+    // backgroundColor={theme.palette.background.alt}
+    // sx={{ flexGrow: 1 }}
+    // p="1.5rem"
     >
       <Grid
         container
@@ -267,7 +267,7 @@ const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
             onChange={handleChange}
             onBlur={handleBlur}
             name="shortDescription"
-            error={!!touched.description && errors.description}
+            error={!!touched.shortDescription && errors.shortDescription}
           />
         </Grid>
         <Grid xs={4}>
