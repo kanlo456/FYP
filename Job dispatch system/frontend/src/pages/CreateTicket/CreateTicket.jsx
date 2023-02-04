@@ -10,6 +10,7 @@ import { red, green } from "@mui/material/colors";
 import { useState } from "react";
 import TicketBox from "../../components/TicketBox";
 import CancelAlertBox from "../../components/CancelAlertBox";
+import { checkTicketSchema } from "../../validation/schema/checkTicketSchema";
 
 const CreateTicket = () => {
   const [statusOK, setStatusOK] = useState(false);
@@ -44,7 +45,7 @@ const CreateTicket = () => {
         <Formik
           onSubmit={handleTicketSubmit}
           initialValues={initialValues}
-          validationSchema={createTicketSchema}
+          validationSchema={checkTicketSchema}
         >
           {({
             values,
@@ -123,41 +124,3 @@ const initialValues = {
   shortDescription: "",
   user_id: "123",
 };
-
-const createTicketSchema = yup.object().shape({
-  caller: yup.string().required("reaquired"),
-  category: yup
-    .string()
-    .oneOf(["hardware", "software", "other"], "Invaild Input")
-    .required("required"),
-  subcategory: yup.string().required("required"),
-  service: yup
-    .string()
-    .oneOf(["onsite", "remote"], "Invaild Input")
-    .required("required"),
-  offering: yup.string().required("required"),
-  configItem: yup.string().required("required"),
-  contactType: yup
-    .string()
-    .oneOf(["email", "mobilePhone", "Invaild Input"])
-    .required("required"),
-  state: yup
-    .string()
-    .oneOf(
-      ["onCreate", "holding", "progress", "solved", "cancel"],
-      "Invaild Input",
-    )
-    .required("required"),
-  impact: yup
-    .string()
-    .oneOf(["1", "2", "3"], "Invaild Input")
-    .required("required"),
-  priority: yup
-    .string()
-    .oneOf(["1", "2", "3"], "Invaild Input")
-    .required("required"),
-  assignmentGroup: yup.string().required("required"),
-  assignedTo: yup.string().required("requried"),
-  description: yup.string().required("required"),
-  shortDescription: yup.string().required("required"),
-});

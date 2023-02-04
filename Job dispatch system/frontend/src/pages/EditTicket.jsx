@@ -6,7 +6,6 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import TicketForm from "../components/TicketForm";
 import { Formik } from "formik";
-import * as yup from "yup";
 import { red, green, orange } from "@mui/material/colors";
 import axios from "axios";
 import { useState } from "react";
@@ -14,9 +13,9 @@ import WorkNotes from "../components/WorkNotes";
 import { useTheme } from "@emotion/react";
 import CancelAlertBox from "../components/CancelAlertBox";
 import TicketBox from "../components/TicketBox";
+import { checkTicketSchema } from "../validation/schema/checkTicketSchema";
 
 const EditTicket = () => {
-  const theme = useTheme();
   const { id } = useParams();
   const [statusOK, setStatusOK] = useState(false);
   const navigate = useNavigate();
@@ -139,12 +138,14 @@ const EditTicket = () => {
         <Header title="Word Notes" subtitle="Please leave your notes here!" />
         <TicketBox>
           <WorkNotes />
-          <Button
-            variant="outlined"
-            sx={{ backgroundColor: orange[900], color: "white" }}
-          >
-            POST
-          </Button>
+          <Box display="flex" justifyContent="flex-end" mt="1rem">
+            <Button
+              variant="outlined"
+              sx={{ backgroundColor: orange[900], color: "white" }}
+            >
+              POST
+            </Button>
+          </Box>
         </TicketBox>
       </Box>
     </Fragment>
@@ -152,43 +153,3 @@ const EditTicket = () => {
 };
 
 export default EditTicket;
-
-// const initialValues = {};
-
-const checkTicketSchema = yup.object().shape({
-  caller: yup.string().required("reaquired"),
-  category: yup
-    .string()
-    .oneOf(["hardware", "software", "other"], "Invaild Input")
-    .required("required"),
-  subcategory: yup.string().required("required"),
-  service: yup
-    .string()
-    .oneOf(["onsite", "remote"], "Invaild Input")
-    .required("required"),
-  offering: yup.string().required("required"),
-  configItem: yup.string().required("required"),
-  contactType: yup
-    .string()
-    .oneOf(["email", "mobilePhone", "Invaild Input"])
-    .required("required"),
-  state: yup
-    .string()
-    .oneOf(
-      ["onCreate", "holding", "progress", "solved", "cancel"],
-      "Invaild Input",
-    )
-    .required("required"),
-  impact: yup
-    .string()
-    .oneOf(["1", "2", "3"], "Invaild Input")
-    .required("required"),
-  priority: yup
-    .string()
-    .oneOf(["1", "2", "3"], "Invaild Input")
-    .required("required"),
-  assignmentGroup: yup.string().required("required"),
-  assignedTo: yup.string().required("requried"),
-  description: yup.string().required("required"),
-  shortDescription: yup.string().required("required"),
-});

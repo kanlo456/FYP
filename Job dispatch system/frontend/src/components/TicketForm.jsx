@@ -13,13 +13,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
   const theme = useTheme();
   return (
-    <Box
-    // mt="40px"
-    // display="flex"
-    // backgroundColor={theme.palette.background.alt}
-    // sx={{ flexGrow: 1 }}
-    // p="1.5rem"
-    >
+    <Box>
       <Grid
         container
         rowSpacing={2}

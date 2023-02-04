@@ -26,6 +26,7 @@ import Layout from "./layout/Layout";
 import Ticketboard from "./pages/Ticketboard/Ticketboard";
 import EditTicket from "./pages/EditTicket";
 import CreateTicket from "./pages/CreateTicket/CreateTicket";
+import UserSurveyPage from "./pages/UserSurveyPage";
 
 function App() {
   const { user } = useAuthContext();
@@ -43,6 +44,7 @@ function App() {
       element: <LoginPage />,
       errorElement: <Error />,
     },
+
     {
       path: "signUp",
       element: <SignUpPage />,
@@ -60,7 +62,7 @@ function App() {
         { path: "createTicket", element: <CreateTicket /> },
       ],
     },
-    { path: "editTicket/:id", element: <EditTicket /> },
+    { path: "userSurveyFrom", element: <UserSurveyPage /> },
   ]);
 
   return (

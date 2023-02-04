@@ -16,8 +16,6 @@ export default function Ticketboard() {
     const response = await axios.get("/api/tickets");
     if (response.status === 200) {
       setData(response.data);
-      // console.log(response.data.createdAt);
-      // console.log(data.data.createAt);
     }
   };
 
@@ -39,7 +37,6 @@ export default function Ticketboard() {
           {params.value}
         </Link>
       ),
-      // valueGetter: (params) => {navigate('editTicket'),
     },
     {
       field: "createdAt",
@@ -60,21 +57,9 @@ export default function Ticketboard() {
     },
     { field: "state", headerName: "State", width: 160 },
     { field: "assignedTo", headerName: "Assiged to", width: 160 },
-
-    //   {
-    //     field: "fullName",
-    //     headerName: "Full name",
-    //     description: "This column has a value getter and is not sortable.",
-    //     sortable: false,
-    //     width: 160,
-    //     valueGetter: (params) =>
-    //       `${params.row.firstName || ""} ${params.row.lastName || ""}`,
-    //   },
   ];
 
-  // const [currentPath, setCurrentPath] = useSearchParams();
-  // console.log(currentPath);
-  // console.log(currentPath);
+
   return (
     <div style={{ height: 400, width: "100%" }}>
       <Box m="1.5rem 2.5rem">
