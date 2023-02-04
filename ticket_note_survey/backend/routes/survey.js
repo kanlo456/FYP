@@ -6,7 +6,7 @@ const{
     deleteSurvey,
     updateSurvey
 } = require('../controllers/surveyController')
-const requireAuth = require('../middleware/requireAuth')
+const requireAuth = require('../middleware/requireAuth') //*** 
 
 const router = express.Router()
 

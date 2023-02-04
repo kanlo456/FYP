@@ -7,16 +7,16 @@ const Schema = mongoose.Schema
 const surveySchema = new Schema({
     friendStfLV: {
       type: Number,
-      required: true
+      // required: true
     },knowlegStfLV: {
       type: Number,
-      required: true
+      // required: true
     },quickStfLV: {
       type: Number,
-      required: true
+      // required: true
     },useAgain: {
         type: Number,
-        required: true
+        // required: true
       },improve: {
         type: String,
       },
