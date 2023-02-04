@@ -25,10 +25,10 @@ export const useSurvey = () =>{
         }
         if(response.ok){
             //save the user to local storage
-            localStorage.setItem('survey',JSON.stringify(json))
+            // localStorage.setItem('survey',JSON.stringify(json))
 
             //update the auth context 
-            dispatch({type:'LOGIN',payload:json})
+            // dispatch({type:'LOGIN',payload:json})
 
             setIsLoading(false)
         }

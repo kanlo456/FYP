@@ -24,11 +24,11 @@ export const useWorknote = () =>{
             setError(json.error)
         }
         if(response.ok){
-            //save the user to local storage
-            localStorage.setItem('worknote',JSON.stringify(json))
+            // //save the user to local storage
+            // localStorage.setItem('worknote',JSON.stringify(json))
 
-            //update the auth context 
-            dispatch({type:'LOGIN',payload:json})
+            // //update the auth context 
+            // dispatch({type:'LOGIN',payload:json})
 
             setIsLoading(false)
         }
