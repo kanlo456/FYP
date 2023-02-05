@@ -30,10 +30,10 @@ const createWorknote = async(req,res)=>{
     //add doc to db
     const user_id = req.user._id
     const {
-        notes} = req.body
+        notes,ticket_id} = req.body
     
         const worknote = await Worknote.create({
-            notes,user_id})
+            notes,user_id,ticket_id})
             res.status(200).json(worknote)
 
 }
