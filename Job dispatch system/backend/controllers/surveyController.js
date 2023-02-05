@@ -29,8 +29,8 @@ const getSurvey = async(req,res)=>{
 const createSurvey = async(req,res)=>{
     //add doc to db
     const user_id = req.user._id
-    const {friendStfLV,knowlegStfLV,quickStfLV,useAgain,improve,ticket_id} = req.body
-    const survey = await Survey.create({friendStfLV,knowlegStfLV,quickStfLV,useAgain,improve,user_id,ticket_id})
+    const {friendStfLV,knowlegStfLV,quickStfLV,useAgain,improve} = req.body
+    const survey = await Survey.create({friendStfLV,knowlegStfLV,quickStfLV,useAgain,improve,user_id})
     res.status(200).json(survey)
 }
 
