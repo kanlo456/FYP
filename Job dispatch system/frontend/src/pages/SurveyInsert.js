@@ -19,8 +19,6 @@ const Survey = () => {
     
     return(
         <form className="worknote" onSubmit={handleSubmit}>
-            
-            
        <label>Service Friendly:</label>
             <select
                 onChange={(e)=>setFriendStfLV(e.target.value)}

@@ -11,24 +11,30 @@ import { useState } from "react";
 import TicketBox from "../../components/TicketBox";
 import CancelAlertBox from "../../components/CancelAlertBox";
 import { checkTicketSchema } from "../../validation/schema/checkTicketSchema";
+import { useAuthContext } from "../../hooks/useAuthContext";
+
 
 const CreateTicket = () => {
   const [statusOK, setStatusOK] = useState(false);
+  const { dispatch, user } = useAuthContext();
   const theme = useTheme();
   const [openCancelAlertBox, setOpenCancelAlertBox] = useState(false);
   const navigate = useNavigate();
   const handleTicketSubmit = async (values) => {
-    console.log("Submiting...");
-    console.log(values);
     const response = await fetch("/api/tickets", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${user.token}`,
+      },
       body: JSON.stringify(values),
-      headers: { "Content-Type": "application/json" },
     });
+
+    
     if (response.ok) {
       setStatusOK(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
-      return setTimeout(() => navigate("/dashboard/ticketboard"), 3000);
+      return setTimeout(() => navigate("/dashboard/ticketboard"), 2000);
     }
   };
 
@@ -120,7 +126,6 @@ const initialValues = {
   priority: "",
   assignmentGroup: "",
   assignedTo: "",
-  description: "",
   shortDescription: "",
-  user_id: "123",
+  description: "",
 };
