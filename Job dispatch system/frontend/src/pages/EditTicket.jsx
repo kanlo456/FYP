@@ -14,6 +14,7 @@ import { useTheme } from "@emotion/react";
 import CancelAlertBox from "../components/CancelAlertBox";
 import TicketBox from "../components/TicketBox";
 import { checkTicketSchema } from "../validation/schema/checkTicketSchema";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const EditTicket = () => {
   const { id } = useParams();
@@ -21,6 +22,7 @@ const EditTicket = () => {
   const navigate = useNavigate();
   const [responseData, setResponseData] = useState([]);
   const [openCancelAlertBox, setOpenCancelAlertBox] = useState(false);
+  const { dispatch, user } = useAuthContext();
 
   useEffect(() => {
     getSingleTicket(id);
@@ -31,6 +33,24 @@ const EditTicket = () => {
     const response = await axios.get(`/api/tickets/${id}`);
     const data = response.data;
     setResponseData(data);
+  };
+
+  const updateTicket = async (values) => {
+    const response = await fetch(`/api/tickets/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify(values),
+    });
+    if (response.ok) {
+      setStatusOK(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return setTimeout(() => navigate("/dashboard/ticketboard"), 3000);
+    } else {
+      console.log("fail");
+    }
   };
 
   const initialValues = {
@@ -48,24 +68,6 @@ const EditTicket = () => {
     assignedTo: responseData.assignedTo,
     description: responseData.description,
     shortDescription: responseData.shortDescription,
-    user_id: "123",
-  };
-
-  const updateTicket = async (values) => {
-    const response = await fetch(`/api/tickets/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.ok) {
-      setStatusOK(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return setTimeout(() => navigate("/dashboard/ticketboard"), 3000);
-    } else {
-      console.log("fail");
-    }
   };
 
   return (
@@ -95,6 +97,7 @@ const EditTicket = () => {
             <form onSubmit={handleSubmit}>
               <TicketBox>
                 <TicketForm
+                  ticketID={id}
                   values={values}
                   errors={errors}
                   touched={touched}

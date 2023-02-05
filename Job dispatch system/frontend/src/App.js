@@ -28,8 +28,8 @@ import EditTicket from "./pages/EditTicket";
 import CreateTicket from "./pages/CreateTicket/CreateTicket";
 import UserSurveyPage from "./pages/UserSurveyPage";
 
-import WorknoteInsert from './pages/WorknoteInsert'//**0204
-import SurveyInsert from './pages/SurveyInsert'
+import WorknoteInsert from "./pages/WorknoteInsert"; //**0204
+import SurveyInsert from "./pages/SurveyInsert";
 
 function App() {
   const { user } = useAuthContext();
@@ -55,10 +55,9 @@ function App() {
     {
       path: "insert",
       element: <Ticket />,
-    },{path:'iworknote',
-    element:<WorknoteInsert/>},
-    {path:'isuvrey',
-    element:<SurveyInsert/>},
+    },
+    { path: "iworknote", element: <WorknoteInsert /> },
+    { path: "isuvrey", element: <SurveyInsert /> },
     {
       path: "dashboard",
       element: <Layout />,
