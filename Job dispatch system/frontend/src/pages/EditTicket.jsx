@@ -28,7 +28,6 @@ const EditTicket = () => {
     getSingleTicket(id);
   }, [id]);
 
-  console.log(id);
   const getSingleTicket = async (id) => {
     const response = await axios.get(`/api/tickets/${id}`);
     const data = response.data;

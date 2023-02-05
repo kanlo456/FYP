@@ -24,19 +24,22 @@ import {
   MenuItem,
   useTheme,
 } from "@mui/material";
+import { useLogout } from "../hooks/useLogout";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
+const Navbar = ({ username, isSidebarOpen, setIsSidebarOpen }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
-
+  const naviagete = useNavigate()
+  const { logout } = useLogout();
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
   const hanldeLogout = () => {
-    // logout();
+    logout();
+    naviagete('/')
   };
-  //   const { logout } = useLogout();
   return (
     <AppBar
       sx={{
@@ -97,14 +100,16 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 borderRadius="50%"
                 sx={{ objectFit: "cover" }}
               /> */}
-              <AccountCircleOutlined sx={{color:theme.palette.secondary[100]}} />
+              <AccountCircleOutlined
+                sx={{ color: theme.palette.secondary[100] }}
+              />
               <Box textAlign="left">
                 <Typography
                   fontWeight="bold"
                   fontSize="0.85rem"
                   sx={{ color: theme.palette.secondary[100] }}
                 >
-                  {/* {user.name} */}
+                  {username}
                 </Typography>
                 <Typography
                   fontSize="0.75rem"

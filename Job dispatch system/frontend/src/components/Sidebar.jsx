@@ -85,7 +85,7 @@ const navItems = [
 ];
 
 const Sidebar = ({
-  user,
+  username,
   drawerWidth,
   isSidebarOpen,
   setIsSidebarOpen,
@@ -213,7 +213,7 @@ const Sidebar = ({
                   fontSize="0.9rem"
                   sx={{ color: theme.palette.secondary[100] }}
                 >
-                  {/* {user.name} */}
+                  {username}
                 </Typography>
                 <Typography
                   fontSize="0.8rem"

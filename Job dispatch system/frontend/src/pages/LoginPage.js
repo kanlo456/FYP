@@ -39,7 +39,6 @@ export default function LoginPage() {
 
   const handleSubmit = async (values) => {
     // event.preventDefault();
-    console.log(values.username, values.password);
     await login(values.username, values.password);
   };
   return (

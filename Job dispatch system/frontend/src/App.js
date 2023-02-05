@@ -10,7 +10,6 @@ import {
 import { useAuthContext } from "./hooks/useAuthContext";
 import { Error } from "./pages/Error";
 // pages & components
-import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 // import SignupCust from './pages/SignupCust'
 import Navbar from "./components/Navbar";
