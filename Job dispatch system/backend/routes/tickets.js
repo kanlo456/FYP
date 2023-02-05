@@ -5,6 +5,7 @@ const { getTickets,
     createTicket,
     deleteTicket,
     updateTicket} = require('../controllers/ticketController')
+const requireAuth = require('../middleware/requireAuth') //*** 
 
 const router = express.Router()
 
@@ -14,13 +15,18 @@ router.get('/',getTickets)
 //GET a single workout
 router.get('/:id',getTicket)
 
-//POST a new ticket
-router.post('/',createTicket)
-
 //DELETE a ticket
 router.delete('/:id',deleteTicket)
 
 //UPDATE a ticket
 router.patch('/:id',updateTicket)
+
+//Use the token 
+router.use(requireAuth) //***
+
+//POST a new ticket
+router.post('/',createTicket)
+
+
 
 module.exports = router
