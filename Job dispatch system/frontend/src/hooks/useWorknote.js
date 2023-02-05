@@ -29,7 +29,7 @@ export const useWorknote = () =>{
 
             // //update the auth context 
             // dispatch({type:'LOGIN',payload:json})
-            console.log("WorkNotes OK!")
+
             setIsLoading(false)
         }
     }

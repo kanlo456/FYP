@@ -10,7 +10,7 @@ import {
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Unstable_Grid2";
 
-const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange }) => {
+const TicketForm = ({ values, touched, errors, handleBlur, handleChange }) => {
   const theme = useTheme();
   return (
     <Box>
@@ -23,7 +23,6 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
         <Grid xs={2}>
           <TextField
             fullWidth
-            value={ticketID}
             type="text"
             color="primary"
             label="Ticket Number"
