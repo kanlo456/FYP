@@ -29,36 +29,18 @@ const getTicket = async(req,res)=>{
 //create new ticket 
 const createTicket = async(req,res)=>{
     //add doc to db
-
-//     let seqId;
-//     try{Count.findOneAndUpdate(
-//     {id:"autoval"},
-//     {"$inc":{"seq":1}},
-//     {new:true},(err,cd)=>{
-        
-//         if(cd==null){
-//             const newval = new countermodel({id:"autoval",seq:1})
-//             newval.save()
-//             seqId = 1
-//         }else{
-//             seqId=cd.seq
-//         }console.log("counter value",cd)
-//     }
-// )
-//     }catch(error){
-//         res.status(400).json({error:error.message})
-//     }
-
-const {
-    caller,category,subcategory,service,offering,configItem,contactType,state,
-    impact,priority,assignmentGroup,assignedTo,description,
-    shortDescription,user_id} = req.body
-
-    const ticket = await Ticket.create({
+    const user_id = req.user._id
+    const {
         caller,category,subcategory,service,offering,configItem,contactType,state,
         impact,priority,assignmentGroup,assignedTo,description,
-        shortDescription,user_id})
-        res.status(200).json(ticket)
+        shortDescription} = req.body
+    
+        const ticket = await Ticket.create({
+            caller,category,subcategory,service,offering,configItem,contactType,state,
+            impact,priority,assignmentGroup,assignedTo,description,
+            shortDescription,user_id})
+            res.status(200).json(ticket)
+
 }
 
 //delete a ticket
