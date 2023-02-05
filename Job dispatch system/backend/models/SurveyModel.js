@@ -1,28 +1,36 @@
 // tutorial Workout.js = Ticket.js
 
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const surveySchema = new Schema({
+const surveySchema = new Schema(
+  {
     friendStfLV: {
       type: Number,
-      required: true
-    },knowlegStfLV: {
+      required: true,
+    },
+    knowlegStfLV: {
       type: Number,
-      required: true
-    },quickStfLV: {
+      required: true,
+    },
+    quickStfLV: {
       type: Number,
-      required: true
-    },useAgain: {
-        type: Number,
-        required: true
-      },improve: {
-        type: String,
-      },
-    user_id:{
-      type:String
-    }
-  }, { timestamps: true })
-  
-  module.exports = mongoose.model('survey', surveySchema)
+      required: true,
+    },
+    useAgain: {
+      type: Number,
+      required: true,
+    },
+    improve: {
+      type: String,
+    },
+    user_id: {
+      type: String,
+    },
+    ticket_id: { type: String },
+  },
+  { timestamps: true },
+);
+
+module.exports = mongoose.model("survey", surveySchema);

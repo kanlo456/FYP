@@ -1,17 +1,23 @@
 // tutorial Workout.js = Ticket.js
 
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const worknotesSchema = new Schema({
+const worknotesSchema = new Schema(
+  {
     notes: {
       type: String,
-      required: true
+      required: true,
     },
-    user_id:{
-      type:String
-    }
-  }, { timestamps: true })
-  
-  module.exports = mongoose.model('worknote', worknotesSchema)
+    user_id: {
+      type: String,
+    },
+    ticket_id: {
+      type: String,
+    },
+  },
+  { timestamps: true },
+);
+
+module.exports = mongoose.model("worknote", worknotesSchema);
