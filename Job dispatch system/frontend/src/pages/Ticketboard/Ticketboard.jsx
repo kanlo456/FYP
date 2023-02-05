@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { lightBlue } from "@mui/material/colors";
 
 export default function Ticketboard() {
   const [data, setData] = useState([]);
@@ -43,7 +44,7 @@ export default function Ticketboard() {
       headerName: "Create Date",
       type: "dateTime",
       width: 150,
-      valueFormatter: params => new Date(params?.value).toLocaleString(),
+      valueFormatter: (params) => new Date(params?.value).toLocaleString(),
     },
     { field: "category", headerName: "Category", width: 130 },
     { field: "subcategory", headerName: "Sub-Category", width: 130 },
@@ -58,7 +59,6 @@ export default function Ticketboard() {
     { field: "state", headerName: "State", width: 160 },
     { field: "assignedTo", headerName: "Assiged to", width: 160 },
   ];
-
 
   return (
     <div style={{ height: 400, width: "100%" }}>
@@ -101,6 +101,9 @@ export default function Ticketboard() {
             },
             "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
               color: `${theme.palette.secondary[200]} !important`,
+            },
+            "& .MuiCheckbox-root": {
+              color: `${lightBlue[700]} !important`,
             },
           }}
         >
