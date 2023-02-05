@@ -11,6 +11,9 @@ const worknotesSchema = new Schema({
     },
     user_id:{
       type:String
+    },
+    ticket_id:{
+      type:String
     }
   }, { timestamps: true })
   
