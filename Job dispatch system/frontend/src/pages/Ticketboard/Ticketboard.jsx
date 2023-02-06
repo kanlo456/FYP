@@ -9,9 +9,19 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { lightBlue } from "@mui/material/colors";
+import { darken, lighten } from "@mui/system";
+import { red, green, blue, yellow, deepOrange,deepPurple,purple } from "@mui/material/colors";
+import { useSelector } from "react-redux";
+
+const getBackgroundColor = (color, mode) =>
+  mode === "dark" ? darken(color, 0.6) : lighten(color, 0.6);
+
+const getHoverBackgroundColor = (color, mode) =>
+  mode === "dark" ? darken(color, 0.5) : lighten(color, 0.3);
 
 export default function Ticketboard() {
   const [data, setData] = useState([]);
+  const mode = useSelector((state) => state.global.mode);
 
   const getTicket = async () => {
     const response = await axios.get("/api/tickets");
@@ -25,6 +35,7 @@ export default function Ticketboard() {
   }, []);
 
   const theme = useTheme();
+
   const columns = [
     {
       field: "_id",
@@ -39,7 +50,7 @@ export default function Ticketboard() {
         </Link>
       ),
     },
-    { field: "state", headerName: "State", width: 160 },
+    { field: "state", headerName: "Status", width: 160 },
     {
       field: "createdAt",
       headerName: "Create Date",
@@ -105,6 +116,48 @@ export default function Ticketboard() {
             "& .MuiCheckbox-root": {
               color: `${lightBlue[700]} !important`,
             },
+            "& .super-app-theme--Solved": {
+              bgcolor: `${getBackgroundColor(green[800], mode)}!important`,
+              "&:hover": {
+                bgcolor: `${getHoverBackgroundColor(
+                  green[600],
+                  mode,
+                )}!important`,
+              },
+            },
+            "& .super-app-theme--Cancel": {
+              bgcolor: `${getBackgroundColor(red[800], mode)}!important`,
+              "&:hover": {
+                bgcolor: `${getHoverBackgroundColor(red[600], mode)}!important`,
+              },
+            },
+            "& .super-app-theme--On.Create": {
+              bgcolor: `${getBackgroundColor(blue[800], mode)}!important`,
+              "&:hover": {
+                bgcolor: `${getHoverBackgroundColor(
+                  blue[600],
+                  mode,
+                )}!important`,
+              },
+            },
+            "& .super-app-theme--Holding": {
+              bgcolor: `${getBackgroundColor(purple[800], mode)}!important`,
+              "&:hover": {
+                bgcolor: `${getHoverBackgroundColor(
+                  purple[600],
+                  mode,
+                )}!important`,
+              },
+            },
+            "& .super-app-theme--Progress": {
+              bgcolor: `${getBackgroundColor(deepOrange[700], mode)}!important`,
+              "&:hover": {
+                bgcolor: `${getHoverBackgroundColor(
+                  deepOrange[500],
+                  mode,
+                )}!important`,
+              },
+            },
           }}
         >
           <DataGrid
@@ -115,6 +168,7 @@ export default function Ticketboard() {
             rowsPerPageOptions={[10]}
             components={{ Toolbar: GridToolbar }}
             disableMultipleSelection={false}
+            getRowClassName={(params) => `super-app-theme--${params.row.state}`}
             checkboxSelection
           />
         </Box>

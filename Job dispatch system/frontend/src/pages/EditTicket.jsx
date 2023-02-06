@@ -30,6 +30,10 @@ const EditTicket = () => {
     getSingleTicket(id);
   }, [id]);
 
+  const handleWorknoteSubmit = async (values) => {
+    await createWorknote(values, id);
+  };
+
   const getSingleTicket = async (id) => {
     const response = await axios.get(`/api/tickets/${id}`);
     const data = response.data;
@@ -53,7 +57,7 @@ const EditTicket = () => {
       console.log("fail");
     }
   };
-  
+
   const initialTicketValues = {
     caller: responseData.caller,
     category: responseData.category,
@@ -148,6 +152,7 @@ const EditTicket = () => {
           <Formik
             initialValues={initialWorkNoteValues}
             validationSchema={checkWorkNoteSchema}
+            onSubmit={handleWorknoteSubmit}
           >
             {({
               values,
@@ -161,6 +166,7 @@ const EditTicket = () => {
                 <WorkNotes values={values} handleChange={handleChange} />
                 <Box display="flex" justifyContent="flex-end" mt="1rem">
                   <Button
+                    type="submit"
                     variant="outlined"
                     sx={{ backgroundColor: orange[900], color: "white" }}
                   >

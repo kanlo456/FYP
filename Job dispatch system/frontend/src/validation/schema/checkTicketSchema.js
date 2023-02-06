@@ -20,7 +20,7 @@ export const checkTicketSchema = yup.object().shape({
   state: yup
     .string()
     .oneOf(
-      ["onCreate", "holding", "progress", "solved", "cancel"],
+      ["On Create", "Holding", "Progress", "Solved", "Cancel"],
       "Invaild Input",
     )
     .required("required"),

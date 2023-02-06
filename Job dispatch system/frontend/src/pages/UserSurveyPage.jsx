@@ -31,6 +31,7 @@ function getLabelText(value) {
   return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
 }
 
+
 const UserSurveyPage = () => {
   const [friendlnesshover, setFriendlnessHover] = useState(-1);
   const [knowledgeHover, setKnowledgeHover] = useState(-1);
@@ -166,7 +167,6 @@ const UserSurveyPage = () => {
                 </FormControl>
                 <FormControl>
                   <FormLabel color="info" htmlFor="improve">
-                    {" "}
                     How can we improve our service?
                   </FormLabel>
                   <TextField
