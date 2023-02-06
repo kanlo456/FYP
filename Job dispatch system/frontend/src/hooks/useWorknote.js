@@ -14,7 +14,7 @@ export const useWorknote = () =>{
             method:'POST',
             headers:{'Content-Type':'application/json',
             'Authorization':`Bearer ${user.token}`},
-            body: JSON.stringify({notes},ticket_id)
+            body: JSON.stringify(notes,ticket_id)
         })
         //asynchronous method for get json data
         const json = await response.json()
