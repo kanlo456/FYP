@@ -15,7 +15,7 @@ import TicketBox from "../components/TicketBox";
 import { checkTicketSchema } from "../validation/schema/checkTicketSchema";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useWorknote } from "../hooks/useWorknote";
-import checkWorkNoteSchema from "../validation/schema/checkWorkNoteSchema";
+import { checkWorkNoteSchema } from "../validation/schema/checkWorkNoteSchema";
 
 const EditTicket = () => {
   const { id } = useParams();
@@ -53,7 +53,7 @@ const EditTicket = () => {
       console.log("fail");
     }
   };
-
+  
   const initialTicketValues = {
     caller: responseData.caller,
     category: responseData.category,
@@ -71,9 +71,9 @@ const EditTicket = () => {
     shortDescription: responseData.shortDescription,
   };
 
-  const initialWorkNoteValues={
-    worknote:''
-  }
+  const initialWorkNoteValues = {
+    worknote: "",
+  };
 
   return (
     <Fragment>
@@ -145,18 +145,30 @@ const EditTicket = () => {
         />
         <Header title="Word Notes" subtitle="Please leave your notes here!" />
         <TicketBox>
-          <Formik initialValues={initialWorkNoteValues} validationSchema={checkWorkNoteSchema}>
-            <form>
-              <WorkNotes />
-              <Box display="flex" justifyContent="flex-end" mt="1rem">
-                <Button
-                  variant="outlined"
-                  sx={{ backgroundColor: orange[900], color: "white" }}
-                >
-                  POST
-                </Button>
-              </Box>
-            </form>
+          <Formik
+            initialValues={initialWorkNoteValues}
+            validationSchema={checkWorkNoteSchema}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleBlur,
+              handleChange,
+              handleSubmit,
+            }) => (
+              <form onSubmit={handleSubmit}>
+                <WorkNotes values={values} handleChange={handleChange} />
+                <Box display="flex" justifyContent="flex-end" mt="1rem">
+                  <Button
+                    variant="outlined"
+                    sx={{ backgroundColor: orange[900], color: "white" }}
+                  >
+                    POST
+                  </Button>
+                </Box>
+              </form>
+            )}
           </Formik>
         </TicketBox>
       </Box>

@@ -12,7 +12,7 @@ import TicketBox from "../../components/TicketBox";
 import CancelAlertBox from "../../components/CancelAlertBox";
 import { checkTicketSchema } from "../../validation/schema/checkTicketSchema";
 import { useAuthContext } from "../../hooks/useAuthContext";
-
+import { useWorknote } from "../../hooks/useWorknote";
 
 const CreateTicket = () => {
   const [statusOK, setStatusOK] = useState(false);
@@ -25,12 +25,13 @@ const CreateTicket = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${user.token}`,
+        Authorization: `Bearer ${user.token}`,
       },
       body: JSON.stringify(values),
     });
 
-    
+    const handleSubmit = async (values) => {};
+
     if (response.ok) {
       setStatusOK(true);
       window.scrollTo({ top: 0, behavior: "smooth" });

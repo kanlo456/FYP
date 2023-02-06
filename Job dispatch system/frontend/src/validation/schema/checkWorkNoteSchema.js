@@ -1,5 +1,5 @@
-import * as yup from 'yup'
+import * as yup from "yup";
 
-export default checkWorkNoteSchema = yub.object().shape({
-    worknote:yup.string()
-})
+export const checkWorkNoteSchema = yup.object().shape({
+  worknote: yup.string(),
+});

@@ -39,6 +39,7 @@ export default function Ticketboard() {
         </Link>
       ),
     },
+    { field: "state", headerName: "State", width: 160 },
     {
       field: "createdAt",
       headerName: "Create Date",
@@ -56,7 +57,6 @@ export default function Ticketboard() {
       headerName: "Caller",
       width: 160,
     },
-    { field: "state", headerName: "State", width: 160 },
     { field: "assignedTo", headerName: "Assiged to", width: 160 },
   ];
 

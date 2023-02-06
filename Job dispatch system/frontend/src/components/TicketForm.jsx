@@ -45,7 +45,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
             value={values.caller || ""}
             helperText={touched.caller && errors.caller}
           />
-        </Grid>{" "}
+        </Grid>
         <Grid xs={2}>
           <FormControl fullWidth>
             <InputLabel id="Category" color="info">
