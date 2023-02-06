@@ -8,7 +8,6 @@ import { Error } from "./pages/Error";
 // pages & components
 import LoginPage from "./pages/LoginPage";
 // import SignupCust from './pages/SignupCust'
-import Navbar from "./components/Navbar";
 import SignUpPage from "./pages/SignUpPage";
 import Ticket from "./pages/Ticket";
 import { ThemeProvider, CssBaseline } from "@mui/material";
@@ -21,7 +20,6 @@ import Ticketboard from "./pages/Ticketboard/Ticketboard";
 import EditTicket from "./pages/EditTicket";
 import CreateTicket from "./pages/CreateTicket/CreateTicket";
 import UserSurveyPage from "./pages/UserSurveyPage";
-
 import WorknoteInsert from "./pages/WorknoteInsert"; //**0204
 import SurveyInsert from "./pages/SurveyInsert";
 

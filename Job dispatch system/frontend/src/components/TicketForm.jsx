@@ -171,11 +171,11 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
               name="state"
               helperText={touched.state && errors.state}
             >
-              <MenuItem value="onCreate">On Create</MenuItem>
-              <MenuItem value="holding">Holding</MenuItem>
-              <MenuItem value="progress">Progress</MenuItem>
-              <MenuItem value="solved">Solved</MenuItem>
-              <MenuItem value="cancel">Cancel</MenuItem>
+              <MenuItem value="On Create">On Create</MenuItem>
+              <MenuItem value="Holding">Holding</MenuItem>
+              <MenuItem value="Progress">Progress</MenuItem>
+              <MenuItem value="Solved">Solved</MenuItem>
+              <MenuItem value="Cancel">Cancel</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -234,8 +234,8 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
               name="assignmentGroup"
               error={!!touched.assignmentGroup && !!errors.assignmentGroup}
             >
-              <MenuItem value="hardware">Hardware</MenuItem>
-              <MenuItem value="network">Network</MenuItem>
+              <MenuItem value="Hardware">Hardware</MenuItem>
+              <MenuItem value="Network">Network</MenuItem>
             </Select>
           </FormControl>
         </Grid>
