@@ -2,7 +2,7 @@ import { Box } from "@mui/system";
 import { Button, Alert, AlertTitle } from "@mui/material";
 import React, { Fragment } from "react";
 import { useEffect } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import TicketForm from "../components/TicketForm";
 import { Formik } from "formik";
@@ -10,11 +10,12 @@ import { red, green, orange } from "@mui/material/colors";
 import axios from "axios";
 import { useState } from "react";
 import WorkNotes from "../components/WorkNotes";
-import { useTheme } from "@emotion/react";
 import CancelAlertBox from "../components/CancelAlertBox";
 import TicketBox from "../components/TicketBox";
 import { checkTicketSchema } from "../validation/schema/checkTicketSchema";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useWorknote } from "../hooks/useWorknote";
+import checkWorkNoteSchema from "../validation/schema/checkWorkNoteSchema";
 
 const EditTicket = () => {
   const { id } = useParams();
@@ -23,6 +24,7 @@ const EditTicket = () => {
   const [responseData, setResponseData] = useState([]);
   const [openCancelAlertBox, setOpenCancelAlertBox] = useState(false);
   const { dispatch, user } = useAuthContext();
+  const { createWorknote } = useWorknote();
 
   useEffect(() => {
     getSingleTicket(id);
@@ -52,7 +54,7 @@ const EditTicket = () => {
     }
   };
 
-  const initialValues = {
+  const initialTicketValues = {
     caller: responseData.caller,
     category: responseData.category,
     subcategory: responseData.subcategory,
@@ -69,6 +71,10 @@ const EditTicket = () => {
     shortDescription: responseData.shortDescription,
   };
 
+  const initialWorkNoteValues={
+    worknote:''
+  }
+
   return (
     <Fragment>
       {statusOK && (
@@ -80,7 +86,7 @@ const EditTicket = () => {
       <Box m="1.5rem 2.5rem">
         <Header title="Edit Your Ticket" subtitle="We will help you soon!" />
         <Formik
-          initialValues={initialValues}
+          initialValues={initialTicketValues}
           validationSchema={checkTicketSchema}
           onSubmit={updateTicket}
           enableReinitialize
@@ -139,15 +145,19 @@ const EditTicket = () => {
         />
         <Header title="Word Notes" subtitle="Please leave your notes here!" />
         <TicketBox>
-          <WorkNotes />
-          <Box display="flex" justifyContent="flex-end" mt="1rem">
-            <Button
-              variant="outlined"
-              sx={{ backgroundColor: orange[900], color: "white" }}
-            >
-              POST
-            </Button>
-          </Box>
+          <Formik initialValues={initialWorkNoteValues} validationSchema={checkWorkNoteSchema}>
+            <form>
+              <WorkNotes />
+              <Box display="flex" justifyContent="flex-end" mt="1rem">
+                <Button
+                  variant="outlined"
+                  sx={{ backgroundColor: orange[900], color: "white" }}
+                >
+                  POST
+                </Button>
+              </Box>
+            </form>
+          </Formik>
         </TicketBox>
       </Box>
     </Fragment>

@@ -1,11 +1,7 @@
 import {
-  BrowserRouter,
-  Routes,
-  Route,
   Navigate,
   createBrowserRouter,
   RouterProvider,
-  useNavigate,
 } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 import { Error } from "./pages/Error";
@@ -14,7 +10,6 @@ import LoginPage from "./pages/LoginPage";
 // import SignupCust from './pages/SignupCust'
 import Navbar from "./components/Navbar";
 import SignUpPage from "./pages/SignUpPage";
-import { Dashboard } from "./pages/Dashboard";
 import Ticket from "./pages/Ticket";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { useSelector } from "react-redux";

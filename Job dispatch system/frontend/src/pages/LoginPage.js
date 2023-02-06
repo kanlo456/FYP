@@ -74,7 +74,7 @@ export default function LoginPage() {
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h4">
+            <Typography component="h1" variant="h4" textAlign="center">
               Welcome to WSIG Ticket System
             </Typography>
             <Typography component="h1" variant="h5">
