@@ -10,7 +10,15 @@ import { useEffect } from "react";
 import axios from "axios";
 import { lightBlue } from "@mui/material/colors";
 import { darken, lighten } from "@mui/system";
-import { red, green, blue, yellow, deepOrange,deepPurple,purple } from "@mui/material/colors";
+import {
+  red,
+  green,
+  blue,
+  yellow,
+  deepOrange,
+  deepPurple,
+  purple,
+} from "@mui/material/colors";
 import { useSelector } from "react-redux";
 
 const getBackgroundColor = (color, mode) =>
@@ -40,7 +48,7 @@ export default function Ticketboard() {
     {
       field: "_id",
       headerName: "ID",
-      flex: 1,
+      width: 200,
       renderCell: (params) => (
         <Link
           style={{ color: theme.palette.primary[100] }}
