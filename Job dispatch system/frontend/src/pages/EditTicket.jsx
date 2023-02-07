@@ -1,5 +1,11 @@
 import { Box } from "@mui/system";
-import { Button, Alert, AlertTitle, Typography } from "@mui/material";
+import {
+  Button,
+  Alert,
+  AlertTitle,
+  Typography,
+  TextField,
+} from "@mui/material";
 import React, { Fragment } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -21,26 +27,22 @@ const EditTicket = () => {
   const { id } = useParams();
   const [statusOK, setStatusOK] = useState(false);
   const navigate = useNavigate();
-  const [responseData, setResponseData] = useState([]);
+  const [responseSingleTicketData, setResponseSingleTicketData] = useState([]);
+  const [responseWorkNotesData, setResponseWorkNotesData] = useState([]);
   const [openCancelAlertBox, setOpenCancelAlertBox] = useState(false);
   const { dispatch, user } = useAuthContext();
   const { createWorknote } = useWorknote();
 
   useEffect(() => {
     getSingleTicket(id);
+    getSingleWorkNote(id);
   }, [id]);
 
   const handleWorknoteSubmit = async (values) => {
     await createWorknote(values.worknote, id);
   };
 
-  const getSingleTicket = async (id) => {
-    const response = await axios.get(`/api/tickets/${id}`);
-    const data = response.data;
-    setResponseData(data);
-  };
-
-  const updateTicket = async (values) => {
+  const handleUpdateTicket = async (values) => {
     const response = await fetch(`/api/tickets/${id}`, {
       method: "PATCH",
       headers: {
@@ -57,25 +59,54 @@ const EditTicket = () => {
       console.log("fail");
     }
   };
-
-  const initialTicketValues = {
-    caller: responseData.caller,
-    category: responseData.category,
-    subcategory: responseData.subcategory,
-    service: responseData.service,
-    offering: responseData.offering,
-    configItem: responseData.configItem,
-    contactType: responseData.contactType,
-    state: responseData.state,
-    impact: responseData.impact,
-    priority: responseData.priority,
-    assignmentGroup: responseData.assignmentGroup,
-    assignedTo: responseData.assignedTo,
-    description: responseData.description,
-    shortDescription: responseData.shortDescription,
+  const getSingleTicket = async (id) => {
+    const response = await axios.get(`/api/tickets/${id}`);
+    setResponseSingleTicketData(response.data);
   };
 
-  console.log("responseDatID", responseData._id);
+  const getSingleWorkNote = async (id) => {
+    const response = await axios.get(`/api/worknotes/`);
+    const data = response.data;
+    setResponseWorkNotesData(data);
+  };
+
+  // console.log(responseWorkNotesData);
+
+  const showWorkNotes = responseWorkNotesData.map((note) => (
+    <TextField
+      fullWidth
+      value={note.notes}
+      name="workedNote"
+      disabled
+      multiline
+      inputProps={{
+        style: {
+          height: "5vh",
+        },
+      }}
+      sx={{
+        mt: "10px",
+      }}
+    />
+  ));
+
+  const initialTicketValues = {
+    caller: responseSingleTicketData.caller,
+    category: responseSingleTicketData.category,
+    subcategory: responseSingleTicketData.subcategory,
+    service: responseSingleTicketData.service,
+    offering: responseSingleTicketData.offering,
+    configItem: responseSingleTicketData.configItem,
+    contactType: responseSingleTicketData.contactType,
+    state: responseSingleTicketData.state,
+    impact: responseSingleTicketData.impact,
+    priority: responseSingleTicketData.priority,
+    assignmentGroup: responseSingleTicketData.assignmentGroup,
+    assignedTo: responseSingleTicketData.assignedTo,
+    description: responseSingleTicketData.description,
+    shortDescription: responseSingleTicketData.shortDescription,
+  };
+
   const initialWorkNoteValues = {
     worknote: "",
   };
@@ -93,7 +124,7 @@ const EditTicket = () => {
         <Formik
           initialValues={initialTicketValues}
           validationSchema={checkTicketSchema}
-          onSubmit={updateTicket}
+          onSubmit={handleUpdateTicket}
           enableReinitialize
         >
           {({
@@ -177,6 +208,24 @@ const EditTicket = () => {
               </form>
             )}
           </Formik>
+          <Typography>Activites:</Typography>
+
+          {showWorkNotes}
+          <TextField
+            fullWidth
+            value="12321312312312eqwedrasede"
+            name="workedNote"
+            disabled
+            multiline
+            inputProps={{
+              style: {
+                height: "5vh",
+              },
+            }}
+            sx={{
+              mt: "10px",
+            }}
+          />
         </TicketBox>
       </Box>
     </Fragment>
