@@ -31,12 +31,12 @@ const createTicket = async(req,res)=>{
     //add doc to db
     const user_id = req.user._id
     const {
-        caller,category,subcategory,service,offering,configItem,contactType,state,
+        caller,category,subcategory,service,offering,configItem,contactType,status,
         impact,priority,assignmentGroup,assignedTo,description,
         shortDescription} = req.body
     
         const ticket = await Ticket.create({
-            caller,category,subcategory,service,offering,configItem,contactType,state,
+            caller,category,subcategory,service,offering,configItem,contactType,status,
             impact,priority,assignmentGroup,assignedTo,description,
             shortDescription,user_id})
             res.status(200).json(ticket)
