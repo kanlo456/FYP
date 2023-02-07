@@ -30,7 +30,7 @@ const ticketSchema = new Schema({
       type: String,
       required: true
     },
-    state:{
+    status:{
       type:String,
       required: true
     },
