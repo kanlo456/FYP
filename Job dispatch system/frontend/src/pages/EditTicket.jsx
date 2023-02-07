@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import { Button, Alert, AlertTitle } from "@mui/material";
+import { Button, Alert, AlertTitle, Typography } from "@mui/material";
 import React, { Fragment } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -31,7 +31,6 @@ const EditTicket = () => {
   }, [id]);
 
   const handleWorknoteSubmit = async (values) => {
-    console.log(values.worknote);
     await createWorknote(values.worknote, id);
   };
 
@@ -76,6 +75,7 @@ const EditTicket = () => {
     shortDescription: responseData.shortDescription,
   };
 
+  console.log("responseDatID", responseData._id);
   const initialWorkNoteValues = {
     worknote: "",
   };
