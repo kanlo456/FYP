@@ -31,7 +31,8 @@ const EditTicket = () => {
   }, [id]);
 
   const handleWorknoteSubmit = async (values) => {
-    await createWorknote(values, id);
+    console.log(values.worknote);
+    await createWorknote(values.worknote, id);
   };
 
   const getSingleTicket = async (id) => {
