@@ -33,7 +33,7 @@ export const checkTicketSchema = yup.object().shape({
     .oneOf(["1", "2", "3"], "Invaild Input")
     .required("required"),
   assignmentGroup: yup.string().required("required"),
-  assignedTo: yup.string().required("requried"),
+  assignedTo: yup.string(),
   description: yup.string().required("required"),
   shortDescription: yup.string().required("required"),
 });
