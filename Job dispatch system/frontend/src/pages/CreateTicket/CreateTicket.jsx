@@ -30,8 +30,6 @@ const CreateTicket = () => {
       body: JSON.stringify(values),
     });
 
-    const handleSubmit = async (values) => {};
-
     if (response.ok) {
       setStatusOK(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -122,7 +120,7 @@ const initialValues = {
   offering: "",
   configItem: "",
   contactType: "",
-  state: "",
+  status: "",
   impact: "",
   priority: "",
   assignmentGroup: "",

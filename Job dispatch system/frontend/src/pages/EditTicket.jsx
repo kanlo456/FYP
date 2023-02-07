@@ -90,8 +90,6 @@ const EditTicket = () => {
     />
   ));
 
-  console.log(responseSingleTicketData)
-    
   const initialTicketValues = {
     caller: responseSingleTicketData.caller,
     category: responseSingleTicketData.category,

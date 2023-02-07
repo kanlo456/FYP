@@ -171,7 +171,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
               onChange={handleChange}
               error={!!touched.status && !!errors.status}
               value={values.status || ""}
-              name="state"
+              name="status"
               helperText={touched.status && errors.status}
             >
               <MenuItem value="On Create">On Create</MenuItem>
