@@ -58,7 +58,7 @@ export default function Ticketboard() {
         </Link>
       ),
     },
-    { field: "state", headerName: "Status", width: 160 },
+    { field: "status", headerName: "Status", width: 160 },
     {
       field: "createdAt",
       headerName: "Create Date",
@@ -176,7 +176,7 @@ export default function Ticketboard() {
             rowsPerPageOptions={[10]}
             components={{ Toolbar: GridToolbar }}
             disableMultipleSelection={false}
-            getRowClassName={(params) => `super-app-theme--${params.row.state}`}
+            getRowClassName={(params) => `super-app-theme--${params.row.status}`}
             checkboxSelection
           />
         </Box>

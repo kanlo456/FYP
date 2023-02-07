@@ -90,6 +90,8 @@ const EditTicket = () => {
     />
   ));
 
+  console.log(responseSingleTicketData)
+    
   const initialTicketValues = {
     caller: responseSingleTicketData.caller,
     category: responseSingleTicketData.category,
@@ -98,7 +100,7 @@ const EditTicket = () => {
     offering: responseSingleTicketData.offering,
     configItem: responseSingleTicketData.configItem,
     contactType: responseSingleTicketData.contactType,
-    state: responseSingleTicketData.state,
+    status: responseSingleTicketData.status,
     impact: responseSingleTicketData.impact,
     priority: responseSingleTicketData.priority,
     assignmentGroup: responseSingleTicketData.assignmentGroup,
@@ -209,23 +211,7 @@ const EditTicket = () => {
             )}
           </Formik>
           <Typography>Activites:</Typography>
-
           {showWorkNotes}
-          <TextField
-            fullWidth
-            value="12321312312312eqwedrasede"
-            name="workedNote"
-            disabled
-            multiline
-            inputProps={{
-              style: {
-                height: "5vh",
-              },
-            }}
-            sx={{
-              mt: "10px",
-            }}
-          />
         </TicketBox>
       </Box>
     </Fragment>

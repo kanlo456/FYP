@@ -160,20 +160,19 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
         <Grid xs={2}>
           <FormControl fullWidth>
             <InputLabel id="state" color="info">
-              State
+              Status
             </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               color="info"
-              // value={age}
-              label="State"
+              label="Status"
               onBlur={handleBlur}
               onChange={handleChange}
-              error={!!touched.state && !!errors.state}
-              value={values.state || ""}
+              error={!!touched.status && !!errors.status}
+              value={values.status || ""}
               name="state"
-              helperText={touched.state && errors.state}
+              helperText={touched.status && errors.status}
             >
               <MenuItem value="On Create">On Create</MenuItem>
               <MenuItem value="Holding">Holding</MenuItem>
