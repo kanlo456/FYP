@@ -89,6 +89,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
               error={!!touched.service && !!errors.service}
               helperText={touched.service && errors.service}
             >
+              <MenuItem value="">----Please select----</MenuItem>
               <MenuItem value="onsite">Onsite</MenuItem>
               <MenuItem value="remote">Remote</MenuItem>
             </Select>
@@ -152,6 +153,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
               error={!!touched.contactType && !!errors.contactType}
               helperText={touched.contactType && errors.contactType}
             >
+              <MenuItem value="">----Please select----</MenuItem>
               <MenuItem value="email">Email</MenuItem>
               <MenuItem value="mobilePhone">Mobile phone</MenuItem>
             </Select>
@@ -174,6 +176,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
               name="status"
               helperText={touched.status && errors.status}
             >
+              <MenuItem value="">----Please select----</MenuItem>
               <MenuItem value="On Create">On Create</MenuItem>
               <MenuItem value="Holding">Holding</MenuItem>
               <MenuItem value="Progress">Progress</MenuItem>
@@ -197,6 +200,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
               error={!!touched.impact && !!errors.impact}
               name="impact"
             >
+              <MenuItem value="">----Please select----</MenuItem>
               <MenuItem value="1">low</MenuItem>
               <MenuItem value="2">Medium</MenuItem>
               <MenuItem value="3">High</MenuItem>
@@ -219,6 +223,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
               onChange={handleChange}
               error={!!touched.priority && !!errors.priority}
             >
+              <MenuItem value="">----Please select----</MenuItem>
               <MenuItem value="1">1</MenuItem>
               <MenuItem value="2">2</MenuItem>
               <MenuItem value="3">3</MenuItem>
@@ -240,6 +245,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
               name="assignmentGroup"
               error={!!touched.assignmentGroup && !!errors.assignmentGroup}
             >
+              <MenuItem value="">----Please select----</MenuItem>
               <MenuItem value="Hardware">Hardware</MenuItem>
               <MenuItem value="Network">Network</MenuItem>
             </Select>
