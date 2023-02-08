@@ -25,7 +25,8 @@ import { checkWorkNoteSchema } from "../validation/schema/checkWorkNoteSchema";
 
 const EditTicket = () => {
   const { id } = useParams();
-  const [statusOK, setStatusOK] = useState(false);
+  const [sendTicketStatusOK, setSendTicketStatusOK] = useState(false);
+  const {sendWorkNoteOK,setSendWorkNoteOk} = useState(false);
   const navigate = useNavigate();
   const [responseSingleTicketData, setResponseSingleTicketData] = useState([]);
   const [responseWorkNotesData, setResponseWorkNotesData] = useState([]);
@@ -36,10 +37,13 @@ const EditTicket = () => {
   useEffect(() => {
     getSingleTicket(id);
     getSingleWorkNote(id);
+    // getSingleWorkNote(id)
+    
   }, [id]);
 
   const handleWorknoteSubmit = async (values) => {
     await createWorknote(values.worknote, id);
+    // sendWorkNoteOK(true);
   };
 
   const handleUpdateTicket = async (values) => {
@@ -52,7 +56,7 @@ const EditTicket = () => {
       body: JSON.stringify(values),
     });
     if (response.ok) {
-      setStatusOK(true);
+      setSendTicketStatusOK(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
       return setTimeout(() => navigate("/dashboard/ticketboard"), 3000);
     } else {
@@ -72,10 +76,10 @@ const EditTicket = () => {
 
   // console.log(responseWorkNotesData);
 
-  const showWorkNotes = responseWorkNotesData.map((note) => (
+  const showWorkNotes = responseWorkNotesData.map((data) => (
     <TextField
       fullWidth
-      value={note.notes}
+      value={`${data.createdAt}\n${data.notes}`}
       name="workedNote"
       disabled
       multiline
@@ -113,7 +117,7 @@ const EditTicket = () => {
 
   return (
     <Fragment>
-      {statusOK && (
+      {sendTicketStatusOK && (
         <Alert severity="success">
           <AlertTitle>Success Submit ticket</AlertTitle>
           This is a success alert — <strong>check it out!</strong>
@@ -176,7 +180,7 @@ const EditTicket = () => {
           openCancelAlertBox={openCancelAlertBox}
           setOpenCancelAlertBox={setOpenCancelAlertBox}
           alertText={"Are you sure cancel edit?"}
-          alertContent={"Your data will lose!"}
+          alertContent={"Your data will lost!"}
           navigate={"/dashboard/ticketboard"}
         />
         <Header title="Word Notes" subtitle="Please leave your notes here!" />

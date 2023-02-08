@@ -21,7 +21,6 @@ export const useWorknote = () => {
       body: JSON.stringify({ notes, ticket_id }),
     });
     //asynchronous method for get json data
-    console.error();
     const json = await response.json();
     //can't get the json data
     if (!response.ok) {

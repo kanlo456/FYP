@@ -102,7 +102,7 @@ const CreateTicket = () => {
           openCancelAlertBox={openCancelAlertBox}
           setOpenCancelAlertBox={setOpenCancelAlertBox}
           alertText={"Are you sure cancel ticket?"}
-          alertContent={"Your data will lose!"}
+          alertContent={"Your data will lost!"}
           navigate={"/dashboard/ticketboard"}
         />
       </Box>
