@@ -79,7 +79,8 @@ const EditTicket = () => {
   const showWorkNotes = responseWorkNotesData.map((data) => (
     <TextField
       fullWidth
-      value={`${data.createdAt}\n${data.notes}`}
+      // new Date(params?.value).toLocaleString()
+      value={`${new Date(data.createdAt).toLocaleString()}\n${data.notes}`}
       name="workedNote"
       disabled
       multiline
