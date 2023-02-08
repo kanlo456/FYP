@@ -99,7 +99,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
             fullWidth
             type="text"
             color="info"
-            label="Sub-Category"
+            label="Sub-Category*"
             value={values.subcategory || ""}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -113,7 +113,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
             fullWidth
             type="text"
             color="info"
-            label="Config Item"
+            label="Config Item*"
             value={values.configItem || ""}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -127,7 +127,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
             fullWidth
             type="text"
             color="info"
-            label="Offering"
+            label="Offering*"
             value={values.offering || ""}
             error={!!touched.offering && !!errors.offering}
             name="offering"
@@ -144,7 +144,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
             <Select
               color="info"
               // value={age}
-              label="Contact Type"
+              label="Contact Type*"
               value={values.contactType || ""}
               onBlur={handleBlur}
               name="contactType"
@@ -160,13 +160,13 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
         <Grid xs={2}>
           <FormControl fullWidth>
             <InputLabel id="state" color="info">
-              Status
+              Status*
             </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               color="info"
-              label="Status"
+              label="Status*"
               onBlur={handleBlur}
               onChange={handleChange}
               error={!!touched.status && !!errors.status}
@@ -185,12 +185,12 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
         <Grid xs={2}>
           <FormControl fullWidth>
             <InputLabel id="state" color="info">
-              Impact
+              Impact*
             </InputLabel>
             <Select
               id="impact"
               color="info"
-              label="Impact"
+              label="Impact*"
               value={values.impact || ""}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -206,13 +206,13 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
         <Grid xs={2}>
           <FormControl fullWidth>
             <InputLabel id="priority" color="info">
-              Priority
+              Priority*
             </InputLabel>
             <Select
               placeholder="Priority"
               id="priority"
               color="info"
-              label="Priority"
+              label="Priority*"
               onBlur={handleBlur}
               value={values.priority || ""}
               name="priority"
@@ -228,12 +228,12 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
         <Grid xs={2}>
           <FormControl fullWidth>
             <InputLabel id="assignmentGroup" color="info">
-              Assignment Group
+              Assignment Group*
             </InputLabel>
             <Select
               id="assignmentGroup"
               color="info"
-              label="Assignment Group"
+              label="Assignment Group*"
               onBlur={handleBlur}
               value={values.assignmentGroup || ""}
               onChange={handleChange}
@@ -263,7 +263,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
             fullWidth
             type="text"
             color="info"
-            label="Short Description"
+            label="Short Description*"
             value={values.shortDescription || ""}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -277,7 +277,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
             multiline
             type="text"
             color="info"
-            label="Description"
+            label="Description*"
             sx={{ height: "50%" }}
             inputProps={{
               style: {
