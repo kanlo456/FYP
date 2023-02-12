@@ -70,7 +70,7 @@ export default function Ticketboard() {
     { field: "subcategory", headerName: "Sub-Category", width: 130 },
     { field: "offering", headerName: "Offering", width: 130 },
     { field: "configItem", headerName: "ConfigItem", width: 130 },
-    { field: "shortDescription", headerName: "Short description", width: 130 },
+    { field: "shortDescription", headerName: "Short description", width: 200 },
     {
       field: "caller",
       headerName: "Caller",

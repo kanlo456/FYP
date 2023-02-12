@@ -9,7 +9,6 @@ import { Error } from "./pages/Error";
 import LoginPage from "./pages/LoginPage";
 // import SignupCust from './pages/SignupCust'
 import SignUpPage from "./pages/SignUpPage";
-import Ticket from "./pages/Ticket";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
@@ -24,7 +23,6 @@ import WorknoteInsert from "./pages/WorknoteInsert"; //**0204
 import SurveyInsert from "./pages/SurveyInsert";
 
 function App() {
-  const { user } = useAuthContext();
   const mode = useSelector((state) => state.global.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode), [mode]));
 
@@ -44,17 +42,13 @@ function App() {
       path: "signUp",
       element: <SignUpPage />,
     },
-    {
-      path: "insert",
-      element: <Ticket />,
-    },
     { path: "iworknote", element: <WorknoteInsert /> },
     { path: "isuvrey", element: <SurveyInsert /> },
     {
       path: "dashboard",
       element: <Layout />,
       children: [
-        { path: "ticketboard", element: <Ticketboard />, index: true },
+        { path: "ticketboard", element: <Ticketboard /> },
         { path: "editTicket/:id", element: <EditTicket /> },
         { path: "createTicket", element: <CreateTicket /> },
       ],

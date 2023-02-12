@@ -213,7 +213,7 @@ const EditTicket = () => {
               </form>
             )}
           </Formik>
-          <Typography>Activites:</Typography>
+          <Typography variant="h4">Activites:</Typography>
           {showWorkNotes}
         </TicketBox>
       </Box>
