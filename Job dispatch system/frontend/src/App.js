@@ -21,6 +21,7 @@ import CreateTicket from "./pages/CreateTicket/CreateTicket";
 import UserSurveyPage from "./pages/UserSurveyPage";
 import SurveyInsert from "./pages/SurveyInsert";
 import LimitTimeTicket from "./pages/LimitTimeTicket";
+import { DatePicker } from "@mui/x-date-pickers";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -54,6 +55,7 @@ function App() {
       ],
     },
     { path: "userSurveyFrom", element: <UserSurveyPage /> },
+    { path: "date", element: <DatePicker /> },
   ]);
 
   return (

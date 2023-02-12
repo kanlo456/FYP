@@ -20,6 +20,7 @@ const TicketForm = ({
   errors,
   handleBlur,
   handleChange,
+  setFieldValue,
 }) => {
   const theme = useTheme();
   return (
@@ -278,13 +279,16 @@ const TicketForm = ({
           <FormControl fullWidth>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
+                inputFormat="MM/DD/YYYY"
                 variant="standard"
-                onChange={handleChange}
+                onChange={(val) => {
+                  setFieldValue("limitDate", val);
+                  // console.log(val);
+                }}
                 value={values.limitDate || ""}
                 label="Limit Date"
-                renderInput={(params) => (
-                  <TextField name="limitDate" {...params} />
-                )}
+                name="limitDate"
+                renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
           </FormControl>

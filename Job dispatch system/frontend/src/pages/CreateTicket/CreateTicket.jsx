@@ -4,18 +4,17 @@ import Header from "../../components/Header";
 import { Box, Button, Alert, AlertTitle } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
-import { useTheme } from "@emotion/react";
 import { red, green } from "@mui/material/colors";
 import { useState } from "react";
 import TicketBox from "../../components/TicketBox";
 import CancelAlertBox from "../../components/CancelAlertBox";
 import { checkTicketSchema } from "../../validation/schema/checkTicketSchema";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import dayjs from "dayjs";
 
 const CreateTicket = () => {
   const [statusOK, setStatusOK] = useState(false);
   const { dispatch, user } = useAuthContext();
-  const theme = useTheme();
   const [openCancelAlertBox, setOpenCancelAlertBox] = useState(false);
   const navigate = useNavigate();
   const handleTicketSubmit = async (values) => {
@@ -57,6 +56,7 @@ const CreateTicket = () => {
             handleBlur,
             handleChange,
             handleSubmit,
+            setFieldValue,
           }) => (
             <form onSubmit={handleSubmit}>
               <TicketBox>
@@ -66,6 +66,7 @@ const CreateTicket = () => {
                   touched={touched}
                   handleBlur={handleBlur}
                   handleChange={handleChange}
+                  setFieldValue={setFieldValue}
                 />
                 <Box display="flex" justifyContent="flex-end" mt="1rem">
                   <Button
@@ -125,5 +126,5 @@ const initialValues = {
   assignedTo: "",
   shortDescription: "",
   description: "",
-  limitDate:null
+  limitDate: dayjs(""),
 };
