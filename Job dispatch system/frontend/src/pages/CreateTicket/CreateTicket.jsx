@@ -4,7 +4,6 @@ import Header from "../../components/Header";
 import { Box, Button, Alert, AlertTitle } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
-import * as yup from "yup";
 import { useTheme } from "@emotion/react";
 import { red, green } from "@mui/material/colors";
 import { useState } from "react";
@@ -12,7 +11,6 @@ import TicketBox from "../../components/TicketBox";
 import CancelAlertBox from "../../components/CancelAlertBox";
 import { checkTicketSchema } from "../../validation/schema/checkTicketSchema";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { useWorknote } from "../../hooks/useWorknote";
 
 const CreateTicket = () => {
   const [statusOK, setStatusOK] = useState(false);
@@ -127,4 +125,5 @@ const initialValues = {
   assignedTo: "",
   shortDescription: "",
   description: "",
+  limitDate:null
 };

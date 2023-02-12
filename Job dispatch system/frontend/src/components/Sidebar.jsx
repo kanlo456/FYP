@@ -26,6 +26,7 @@ import {
   PieChartOutlined,
   ConfirmationNumberOutlined,
   AccountCircleOutlined,
+  RunningWithErrorsOutlined,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -49,6 +50,10 @@ const navItems = [
   {
     text: "Geography",
     icon: <PublicOutlined />,
+  },
+  { 
+    text: "Limit Time Ticekets", 
+    icon: <RunningWithErrorsOutlined /> 
   },
   {
     text: "Ticket Report",
@@ -81,7 +86,7 @@ const navItems = [
   {
     text: "Performance",
     icon: <TrendingUpOutlined />,
-  }
+  },
 ];
 
 const Sidebar = ({
@@ -101,7 +106,7 @@ const Sidebar = ({
   }, [pathname]);
 
   return (
-    <Box component="nav" >
+    <Box component="nav">
       {isSidebarOpen && (
         <Drawer
           open={isSidebarOpen}
@@ -139,62 +144,66 @@ const Sidebar = ({
                 )}
               </FlexBetween>
             </Box>
-              <List>
-                {navItems.map(({ text, icon }) => {
-                  if (!icon) {
-                    return (
-                      <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem" }}>
-                        {text}
-                      </Typography>
-                    );
-                  }
-                  const lcText = "dashboard/" + text.toLowerCase();
-
+            <List>
+              {navItems.map(({ text, icon }) => {
+                if (!icon) {
                   return (
-                    <ListItem key={text} disablePadding>
-                      <ListItemButton
-                        onClick={() => {
-                          if (lcText === "dashboard/dashboard") {
-                            navigate("../dashboard");
-                          } else {
-                            setActive(lcText);
-                            navigate(`/${lcText}`);
-                          }
-                        }}
+                    <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem" }}>
+                      {text}
+                    </Typography>
+                  );
+                }
+                const lcText = "dashboard/" + text.toLowerCase();
+
+                return (
+                  <ListItem key={text} disablePadding>
+                    <ListItemButton
+                      onClick={() => {
+                        if (lcText === "dashboard/dashboard") {
+                          navigate("../dashboard");
+                        } else {
+                          setActive(lcText.replace(/ /g,''));
+                          navigate(`/${lcText.replace(/ /g,'')}`);
+                        }
+                      }}
+                      sx={{
+                        backgroundColor:
+                          active === `${lcText}`
+                            ? theme.palette.secondary[300]
+                            : "transparent",
+                        color:
+                          active === `${lcText}`
+                            ? theme.palette.primary[600]
+                            : theme.palette.secondary[100],
+                      }}
+                    >
+                      <ListItemIcon
                         sx={{
-                          backgroundColor:
-                            active === `${lcText}`
-                              ? theme.palette.secondary[300]
-                              : "transparent",
+                          ml: "2rem",
                           color:
                             active === `${lcText}`
                               ? theme.palette.primary[600]
-                              : theme.palette.secondary[100],
+                              : theme.palette.secondary[200],
                         }}
                       >
-                        <ListItemIcon
-                          sx={{
-                            ml: "2rem",
-                            color:
-                              active === `${lcText}`
-                                ? theme.palette.primary[600]
-                                : theme.palette.secondary[200],
-                          }}
-                        >
-                          {icon}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                        {active === `${lcText}` && (
-                          <ChevronRightOutlined sx={{ ml: "auto" }} />
-                        )}
-                      </ListItemButton>
-                    </ListItem>
-                  );
-                })}
-              </List>
+                        {icon}
+                      </ListItemIcon>
+                      <ListItemText primary={text} />
+                      {active === `${lcText}` && (
+                        <ChevronRightOutlined sx={{ ml: "auto" }} />
+                      )}
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
+            </List>
           </Box>
 
-          <Box position="absolute" bottom="2rem" bgcolor={theme.palette.background.alt}>
+          <Box
+            position="absolute"
+            bottom="2rem"
+            bgcolor={theme.palette.background.alt}
+          >
             <Divider />
             <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
               {/* <Box
@@ -207,8 +216,8 @@ const Sidebar = ({
                 sx={{ objectFit: "cover" }}
               /> */}
               <AccountCircleOutlined />
-              
-              <Box textAlign="left" >
+
+              <Box textAlign="left">
                 <Typography
                   fontWeight="bold"
                   fontSize="0.9rem"

@@ -14,9 +14,7 @@ import {
   red,
   green,
   blue,
-  yellow,
   deepOrange,
-  deepPurple,
   purple,
 } from "@mui/material/colors";
 import { useSelector } from "react-redux";
@@ -80,7 +78,6 @@ export default function Ticketboard() {
   ];
 
   return (
-    <div style={{ height: 400, width: "100%" }}>
       <Box m="1.5rem 2.5rem">
         <Header title="Ticketboard" />
         <Box>
@@ -181,6 +178,5 @@ export default function Ticketboard() {
           />
         </Box>
       </Box>
-    </div>
   );
 }

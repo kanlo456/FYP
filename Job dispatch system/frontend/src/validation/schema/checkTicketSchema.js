@@ -36,4 +36,5 @@ export const checkTicketSchema = yup.object().shape({
   assignedTo: yup.string(),
   description: yup.string().required("required"),
   shortDescription: yup.string().required("required"),
+  limitDate: yup.date(),
 });

@@ -6,11 +6,21 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  colors,
 } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Unstable_Grid2";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers/";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange }) => {
+const TicketForm = ({
+  ticketID,
+  values,
+  touched,
+  errors,
+  handleBlur,
+  handleChange,
+}) => {
   const theme = useTheme();
   return (
     <Box>
@@ -158,7 +168,7 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
               <MenuItem value="mobilePhone">Mobile phone</MenuItem>
             </Select>
           </FormControl>
-        </Grid>{" "}
+        </Grid>
         <Grid xs={2}>
           <FormControl fullWidth>
             <InputLabel id="state" color="info">
@@ -263,6 +273,21 @@ const TicketForm = ({ticketID, values, touched, errors, handleBlur, handleChange
             onBlur={handleBlur}
             error={!!errors.assignedTo && !!touched.assignedTo}
           />
+        </Grid>
+        <Grid xs={2}>
+          <FormControl fullWidth>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                variant="standard"
+                onChange={handleChange}
+                value={values.limitDate || ""}
+                label="Limit Date"
+                renderInput={(params) => (
+                  <TextField name="limitDate" {...params} />
+                )}
+              />
+            </LocalizationProvider>
+          </FormControl>
         </Grid>
         <Grid xs={4}>
           <TextField

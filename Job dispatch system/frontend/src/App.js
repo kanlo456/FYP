@@ -19,8 +19,8 @@ import Ticketboard from "./pages/Ticketboard/Ticketboard";
 import EditTicket from "./pages/EditTicket";
 import CreateTicket from "./pages/CreateTicket/CreateTicket";
 import UserSurveyPage from "./pages/UserSurveyPage";
-import WorknoteInsert from "./pages/WorknoteInsert"; //**0204
 import SurveyInsert from "./pages/SurveyInsert";
+import LimitTimeTicket from "./pages/LimitTimeTicket";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -42,7 +42,6 @@ function App() {
       path: "signUp",
       element: <SignUpPage />,
     },
-    { path: "iworknote", element: <WorknoteInsert /> },
     { path: "isuvrey", element: <SurveyInsert /> },
     {
       path: "dashboard",
@@ -51,6 +50,7 @@ function App() {
         { path: "ticketboard", element: <Ticketboard /> },
         { path: "editTicket/:id", element: <EditTicket /> },
         { path: "createTicket", element: <CreateTicket /> },
+        { path: "limittimeticekets", element: <LimitTimeTicket /> },
       ],
     },
     { path: "userSurveyFrom", element: <UserSurveyPage /> },
