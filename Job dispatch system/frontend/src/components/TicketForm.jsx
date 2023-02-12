@@ -288,7 +288,9 @@ const TicketForm = ({
                 value={values.limitDate || ""}
                 label="Limit Date"
                 name="limitDate"
-                renderInput={(params) => <TextField {...params} />}
+                renderInput={(params) => (
+                  <TextField color="info" {...params} error={false} />
+                )}
               />
             </LocalizationProvider>
           </FormControl>
