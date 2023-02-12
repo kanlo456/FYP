@@ -54,6 +54,9 @@ const ticketSchema = new Schema({
     shortDescription:{
       type:String
     },
+    limitDate:{
+      type:Date
+    },
     user_id:{
       type:String,
       required: true
