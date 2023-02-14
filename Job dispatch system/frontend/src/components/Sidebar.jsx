@@ -200,9 +200,10 @@ const Sidebar = ({
           </Box>
 
           <Box
-            position="absolute"
-            bottom="2rem"
+            position='absolute'
+            bottom="1rem"
             bgcolor={theme.palette.background.alt}
+            sx={{display:"flex"}}
           >
             <Divider />
             <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">

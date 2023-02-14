@@ -21,6 +21,7 @@ const getHoverBackgroundColor = (color, mode) =>
 
 export default function Ticketboard() {
   const [data, setData] = useState([]);
+  const [limitDateData, setLimitDateData] = useState([]);
   const mode = useSelector((state) => state.global.mode);
 
   const getTicket = async () => {
@@ -30,9 +31,14 @@ export default function Ticketboard() {
     }
   };
 
+  function getLimitDateTickets(data) {
+    const limitDateTickets = data;
+    setLimitDateData(limitDateTickets.filter((getData) => getData.limitDate != null));
+  }
   useEffect(() => {
     getTicket();
-  }, []);
+    getLimitDateTickets(data);
+  }, [data]);
 
   const theme = useTheme();
 
@@ -52,12 +58,20 @@ export default function Ticketboard() {
     },
     { field: "status", headerName: "Status", width: 160 },
     {
+      field: "limitDate",
+      headerName: "Limit Date",
+      width: 170,
+      valueFormatter: (params) =>
+        params.value == null ? "" : new Date(params.value).toLocaleDateString(),
+    },
+    {
       field: "createdAt",
       headerName: "Create Date",
       type: "dateTime",
       width: 150,
       valueFormatter: (params) => new Date(params?.value).toLocaleString(),
     },
+    {},
     { field: "category", headerName: "Category", width: 130 },
     { field: "subcategory", headerName: "Sub-Category", width: 130 },
     { field: "offering", headerName: "Offering", width: 130 },
@@ -73,7 +87,10 @@ export default function Ticketboard() {
 
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="Ticketboard" />
+      <Header
+        title="Limit Time Ticket"
+        subtitle="Please handle the ticket AS SOON AS POSSIBLE!"
+      />
       <Box
         mt="40px"
         height="75vh"
@@ -142,7 +159,7 @@ export default function Ticketboard() {
         }}
       >
         <DataGrid
-          rows={data || []}
+          rows={limitDateData || []}
           columns={columns}
           pageSize={10}
           getRowId={(row) => row._id}
