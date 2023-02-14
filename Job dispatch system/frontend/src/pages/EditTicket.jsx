@@ -110,6 +110,7 @@ const EditTicket = () => {
     assignedTo: responseSingleTicketData.assignedTo,
     description: responseSingleTicketData.description,
     shortDescription: responseSingleTicketData.shortDescription,
+    limitDate:responseSingleTicketData.limitDate
   };
 
   const initialWorkNoteValues = {
@@ -139,6 +140,7 @@ const EditTicket = () => {
             handleBlur,
             handleChange,
             handleSubmit,
+            setFieldValue
           }) => (
             <form onSubmit={handleSubmit}>
               <TicketBox>
@@ -149,6 +151,7 @@ const EditTicket = () => {
                   touched={touched}
                   handleBlur={handleBlur}
                   handleChange={handleChange}
+                  setFieldValue={setFieldValue}
                 />
                 <Box display="flex" justifyContent="flex-end" mt="1rem">
                   <Button

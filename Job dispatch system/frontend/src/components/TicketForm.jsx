@@ -283,7 +283,6 @@ const TicketForm = ({
                 variant="standard"
                 onChange={(val) => {
                   setFieldValue("limitDate", val);
-                  // console.log(val);
                 }}
                 value={values.limitDate || ""}
                 label="Limit Date"
