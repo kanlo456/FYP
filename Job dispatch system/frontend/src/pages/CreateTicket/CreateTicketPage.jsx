@@ -12,7 +12,7 @@ import { checkTicketSchema } from "../../validation/schema/checkTicketSchema";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import dayjs from "dayjs";
 
-const CreateTicket = () => {
+const CreateTicketPage = () => {
   const [statusOK, setStatusOK] = useState(false);
   const { dispatch, user } = useAuthContext();
   const [openCancelAlertBox, setOpenCancelAlertBox] = useState(false);
@@ -109,7 +109,7 @@ const CreateTicket = () => {
   );
 };
 
-export default CreateTicket;
+export default CreateTicketPage;
 
 const initialValues = {
   caller: "",
