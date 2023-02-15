@@ -6,7 +6,7 @@ import { useTheme, Button } from "@mui/material";
 import { GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import axios from "axios";
 import { lightBlue } from "@mui/material/colors";
 import { darken, lighten } from "@mui/system";
@@ -24,21 +24,20 @@ export default function Ticketboard() {
   const [limitDateData, setLimitDateData] = useState([]);
   const mode = useSelector((state) => state.global.mode);
 
-  const getTicket = async () => {
+  const getTicket = useCallback(async () => {
     const response = await axios.get("/api/tickets");
     if (response.status === 200) {
       setData(response.data);
+      const limitDateTickets = response.data;
+      setLimitDateData(
+        limitDateTickets.filter((getData) => getData.limitDate != null),
+      );
     }
-  };
+  }, []);
 
-  function getLimitDateTickets(data) {
-    const limitDateTickets = data;
-    setLimitDateData(limitDateTickets.filter((getData) => getData.limitDate != null));
-  }
   useEffect(() => {
     getTicket();
-    getLimitDateTickets(data);
-  }, [data]);
+  }, []);
 
   const theme = useTheme();
 

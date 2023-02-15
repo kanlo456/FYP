@@ -153,7 +153,7 @@ const Sidebar = ({
                     </Typography>
                   );
                 }
-                const lcText = "dashboard/" + text.toLowerCase();
+                const lcText = "dashboard/" + text.toLowerCase().replace(/ /g,'');
 
                 return (
                   <ListItem key={text} disablePadding>
@@ -162,8 +162,8 @@ const Sidebar = ({
                         if (lcText === "dashboard/dashboard") {
                           navigate("../dashboard");
                         } else {
-                          setActive(lcText.replace(/ /g,''));
-                          navigate(`/${lcText.replace(/ /g,'')}`);
+                          setActive(lcText);
+                          navigate(`/${lcText}`);
                         }
                       }}
                       sx={{
