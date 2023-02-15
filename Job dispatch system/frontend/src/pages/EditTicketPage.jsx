@@ -23,7 +23,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useWorknote } from "../hooks/useWorknote";
 import { checkWorkNoteSchema } from "../validation/schema/checkWorkNoteSchema";
 
-const EditTicket = () => {
+const EditTicketPage = () => {
   const { id } = useParams();
   const [sendTicketStatusOK, setSendTicketStatusOK] = useState(false);
   const {sendWorkNoteOK,setSendWorkNoteOk} = useState(false);
@@ -224,4 +224,4 @@ const EditTicket = () => {
   );
 };
 
-export default EditTicket;
+export default EditTicketPage;

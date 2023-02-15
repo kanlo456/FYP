@@ -4,7 +4,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
-import { Error } from "./pages/Error";
+import { ErrorPage } from "./pages/ErrorPage";
 // pages & components
 import LoginPage from "./pages/LoginPage";
 // import SignupCust from './pages/SignupCust'
@@ -15,12 +15,12 @@ import { useMemo } from "react";
 import { createTheme } from "@mui/material";
 import { themeSettings } from "./theme";
 import Layout from "./layout/Layout";
-import Ticketboard from "./pages/Ticketboard/Ticketboard";
-import EditTicket from "./pages/EditTicket";
-import CreateTicket from "./pages/CreateTicket/CreateTicket";
+import TicketboardPage from "./pages/Ticketboard/TicketboardPage";
+import EditTicketPage from "./pages/EditTicketPage";
+import CreateTicketPage from "./pages/CreateTicket/CreateTicketPage";
 import UserSurveyPage from "./pages/UserSurveyPage";
 import SurveyInsert from "./pages/SurveyInsert";
-import LimitTimeTicket from "./pages/LimitTimeTicket";
+import LimitTimeTicketPage from "./pages/LimitTimeTicketPage";
 import { DatePicker } from "@mui/x-date-pickers";
 
 function App() {
@@ -31,12 +31,12 @@ function App() {
     {
       path: "/",
       element: <Navigate to="/login" />,
-      errorElement: <Error />,
+      errorElement: <ErrorPage />,
     },
     {
       path: "login",
       element: <LoginPage />,
-      errorElement: <Error />,
+      errorElement: <ErrorPage />,
     },
 
     {
@@ -48,10 +48,10 @@ function App() {
       path: "dashboard",
       element: <Layout />,
       children: [
-        { path: "ticketboard", element: <Ticketboard /> },
-        { path: "editTicket/:id", element: <EditTicket /> },
-        { path: "createTicket", element: <CreateTicket /> },
-        { path: "limittimeticekets", element: <LimitTimeTicket /> },
+        { path: "ticketboard", element: <TicketboardPage /> },
+        { path: "editTicket/:id", element: <EditTicketPage /> },
+        { path: "createTicket", element: <CreateTicketPage /> },
+        { path: "limittimeticekets", element: <LimitTimeTicketPage /> },
       ],
     },
     { path: "userSurveyFrom", element: <UserSurveyPage /> },
