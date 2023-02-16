@@ -53,7 +53,7 @@ function App() {
         { path: "editTicket/:id", element: <EditTicketPage /> },
         { path: "createTicket", element: <CreateTicketPage /> },
         { path: "limittimeticekets", element: <LimitTimeTicketPage /> },
-        { path: "daily", element: <DailyChartPage /> },
+        { path: "Daily", element: <DailyChartPage /> },
       ],
     },
     { path: "userSurveyFrom", element: <UserSurveyPage /> },
