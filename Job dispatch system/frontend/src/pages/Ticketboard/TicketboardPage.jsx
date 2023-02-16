@@ -5,8 +5,7 @@ import Header from "../../components/Header";
 import { useTheme, Button } from "@mui/material";
 import { GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { lightBlue } from "@mui/material/colors";
 import { darken, lighten } from "@mui/system";
@@ -23,17 +22,18 @@ export default function TicketboardPage() {
   const [data, setData] = useState([]);
   const mode = useSelector((state) => state.global.mode);
 
-  const getTicket = async () => {
+  const getTicket = useCallback(async () => {
     const response = await axios.get("/api/tickets");
     if (response.status === 200) {
       setData(response.data);
     }
-  };
-  
+  }, []);
+
   useEffect(() => {
     getTicket();
+    return () => {};
   }, []);
-  
+
   const theme = useTheme();
 
   const columns = [
@@ -73,7 +73,8 @@ export default function TicketboardPage() {
       field: "limitDate",
       headerName: "Limit Date",
       width: 150,
-      valueFormatter: (params) => params.value== null ?'':new Date(params.value).toLocaleDateString()
+      valueFormatter: (params) =>
+        params.value == null ? "" : new Date(params.value).toLocaleDateString(),
     },
   ];
 
@@ -159,7 +160,6 @@ export default function TicketboardPage() {
           },
         }}
       >
-        
         <DataGrid
           rows={data || []}
           columns={columns}

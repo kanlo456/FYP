@@ -38,7 +38,6 @@ const EditTicketPage = () => {
     getSingleTicket(id);
     getSingleWorkNote(id);
     // getSingleWorkNote(id)
-    
   }, [id]);
 
   const handleWorknoteSubmit = async (values) => {
@@ -74,7 +73,6 @@ const EditTicketPage = () => {
     setResponseWorkNotesData(data);
   };
 
-  // console.log(responseWorkNotesData);
 
   const showWorkNotes = responseWorkNotesData.map((data) => (
     <TextField

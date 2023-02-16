@@ -1,8 +1,9 @@
+import { Box } from '@mui/system'
 import React from 'react'
 
 const StatusBox = () => {
   return (
-    <div>StatusBox</div>
+    <Box>test 123</Box>
   )
 }
 
