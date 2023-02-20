@@ -2,8 +2,28 @@ const Ticket = require('../models/TicketModel')
 const Count = require('../models/TicketModel')
 const mongoose = require('mongoose')
 
+//get report data
+const getReport = async(req, res)=>{
+    const status = [];
 
-//get all tickets 
+    const onCreate_data = await Ticket.find({status:'On Create'}).count();
+    const holding_data = await Ticket.find({status:'Holding'}).count();
+    const progress_data = await Ticket.find({status:'Progress'}).count();
+    const solved_data = await Ticket.find({status:'Solved'}).count();
+    const cancel_data = await Ticket.find({status:'Cancel'}).count();
+
+    status.push({
+        onCreate:onCreate_data,
+        holding:holding_data,
+        progress:progress_data,
+        solved:solved_data,
+        cancel:cancel_data,
+
+    })
+
+    res.status(200).json(status)
+}
+//get all tickets
 const getTickets = async(req,res)=>{
     const tickets = await Ticket.find({}).sort({createdAt:-1})
 
@@ -79,6 +99,7 @@ const updateTicket =  async(req,res)=>{
 
 
 module.exports ={
+    getReport,
     getTickets,
     getTicket,
     createTicket,

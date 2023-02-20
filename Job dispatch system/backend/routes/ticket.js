@@ -1,12 +1,16 @@
 // *tutorial  workouts.js = tickets.js 
 const express = require('express')
-const { getTickets,
+const { getReport,
+    getTickets,
     getTicket,
     createTicket,
     deleteTicket,
     updateTicket} = require('../controllers/ticketController')
 
 const router = express.Router()
+
+// GET report data
+router.get('/',getReport)
 
 // GET all tickes
 router.get('/',getTickets)
