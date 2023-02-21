@@ -1,6 +1,8 @@
 // *tutorial  workouts.js = tickets.js 
 const express = require('express')
-const { getTickets,
+const {
+    getReport,
+    getTickets,
     getTicket,
     createTicket,
     deleteTicket,
@@ -8,6 +10,9 @@ const { getTickets,
 const requireAuth = require('../middleware/requireAuth') //*** 
 
 const router = express.Router()
+
+//Generate report
+router.get('/',getReport)
 
 // GET all tickes
 router.get('/',getTickets)
