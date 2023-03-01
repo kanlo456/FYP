@@ -4,9 +4,36 @@ const express = require('express')
 const mongoose = require('mongoose')
 const ticketRoutes = require('./routes/tickets')
 const userRoutese = require('./routes/user')
+const nodemailer = require('nodemailer') //for send email to user
 
 const worknotesRoutes = require('./routes/worknotes')//*0402
 const surveyRoutes = require('./routes/survey')
+const { response } = require('express')//for send email to user
+
+function sendEmail(){
+    return new Promise((resolve,reject)=>{
+        var transporter = nodemailer.createTransport({
+           service:'gmail',
+        auth:{
+            user:'acftestcodewu@gmail.com',
+            pass:'xmbyiemcydfndldl'
+        } 
+        })
+    const mail_configs = {
+        from:'acftestcodewu@gmail.com',
+        to:'fschllabwu@gmail.com',
+        subject:'Testing coding 101 email',
+        text:"Justing check if the email will be sent"
+    }
+    transporter.sendMail(mail_configs,function(error,info){
+    if(error){
+        console.log(error)
+        return reject({message:`An error has occured`})
+    }
+    return resolve({message:"Email sent successfuly"})
+        })
+    })
+}
 
 //express app
 const app = express()
@@ -20,7 +47,11 @@ app.use((req,res,next)=>{
     next()
 })
 
-
+app.get('/mail',(req,res)=>{ //send email
+    sendEmail()
+    .then(response=>res.send(response.message))
+    .catch(error=>res.status(500).send(error.message))
+})
 
 //routes *tutorial workoutRoutes = ticketRoutes
 app.use('/api/tickets',ticketRoutes)
