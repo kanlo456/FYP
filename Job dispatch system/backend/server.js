@@ -2,14 +2,17 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
+const nodemailer = require('nodemailer') //for send email to user
+//routs
 const ticketRoutes = require('./routes/tickets')
 const userRoutese = require('./routes/user')
-const nodemailer = require('nodemailer') //for send email to user
-
 const worknotesRoutes = require('./routes/worknotes')//*0402
 const surveyRoutes = require('./routes/survey')
-const { response } = require('express')//for send email to user
+const resetpwRoutes = require('./routes/resetpw')
 
+const { response } = require('express')
+
+//send email
 function sendEmail(){
     return new Promise((resolve,reject)=>{
         var transporter = nodemailer.createTransport({
@@ -35,8 +38,11 @@ function sendEmail(){
     })
 }
 
+
 //express app
 const app = express()
+
+
 
 //middleware
 app.use(express.json())
@@ -47,8 +53,9 @@ app.use((req,res,next)=>{
     next()
 })
 
-app.get('/mail',(req,res)=>{ //send email
-    sendEmail()
+//test send email function
+app.get('/mail',(req,res)=>{ 
+     sendEmail()
     .then(response=>res.send(response.message))
     .catch(error=>res.status(500).send(error.message))
 })
@@ -59,6 +66,8 @@ app.use('/api/user',userRoutese)
 
 app.use('/api/worknotes', worknotesRoutes)//*0402
 app.use('/api/surveys',surveyRoutes)
+
+app.use('/api/resetpw',resetpwRoutes)
 
 //soft DeprecationWarning: Mongoose: the `strictQuery` option will be switched
 mongoose.set('strictQuery', true);
