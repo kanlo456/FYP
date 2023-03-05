@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 //get report data
 const getReport = async(req, res)=>{
     const status = [];
-
     const onCreate_data = await Ticket.find({status:'On Create'}).count();
     const holding_data = await Ticket.find({status:'Holding'}).count();
     const progress_data = await Ticket.find({status:'Progress'}).count();
@@ -18,7 +17,6 @@ const getReport = async(req, res)=>{
         progress:progress_data,
         solved:solved_data,
         cancel:cancel_data,
-
     })
 
     res.status(200).json(status)

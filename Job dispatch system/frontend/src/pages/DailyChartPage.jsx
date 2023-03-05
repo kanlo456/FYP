@@ -15,3 +15,4 @@ const DailyChartPage = () => {
 };
 
 export default DailyChartPage;
+
