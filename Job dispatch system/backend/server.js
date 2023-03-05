@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const nodemailer = require('nodemailer') //for send email to user
+
 //routs
 const ticketRoutes = require('./routes/tickets')
 const userRoutese = require('./routes/user')
