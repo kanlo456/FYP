@@ -20,7 +20,7 @@ const OverViewPage = () => {
     {
       text: "On Create",
       icon: <AddCircleOutlineOutlinedIcon />,
-      // status: getStatusData.find("onCreate"),
+      // status: getStatusData
     },
     { text: "Holding", icon: <PauseCircleOutlineOutlinedIcon /> },
     {
@@ -38,7 +38,7 @@ const OverViewPage = () => {
     const response = await axios.get(`/api/tickets/getReport`);
     setGetStatusData(response.data);
   };
-  console.log(getStatusData);
+  
 
   return (
     <Fragment>
