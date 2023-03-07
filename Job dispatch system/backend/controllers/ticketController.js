@@ -5,12 +5,14 @@ const mongoose = require('mongoose')
 //get report data
 const getReport = async(req, res)=>{
     const status = [];
-
+    //count the status
     const onCreate_data = await Ticket.find({status:'On Create'}).count();
     const holding_data = await Ticket.find({status:'Holding'}).count();
     const progress_data = await Ticket.find({status:'Progress'}).count();
     const solved_data = await Ticket.find({status:'Solved'}).count();
     const cancel_data = await Ticket.find({status:'Cancel'}).count();
+
+    const emp1 = await Ticket.find({status:'Solved'}).select('assignedTo')
 
     status.push({
         onCreate:onCreate_data,
