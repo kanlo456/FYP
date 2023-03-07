@@ -1,18 +1,22 @@
-// *tutorial  workouts.js = tickets.js 
-const express = require('express')
+// *tutorial  workouts.js = tickets.js
+const express = require("express");
 const {
-    getReport,
-    getTickets,
-    getTicket,
-    createTicket,
-    deleteTicket,
-    updateTicket} = require('../controllers/ticketController')
-const requireAuth = require('../middleware/requireAuth') //*** 
+  getReport,
+  getTickets,
+  getTicket,
+  createTicket,
+  deleteTicket,
+  updateTicket,
+} = require("../controllers/ticketController");
+const requireAuth = require("../middleware/requireAuth"); //***
 
-const router = express.Router()
+const router = express.Router();
 
 // GET all tickes
 router.get("/", getTickets);
+
+//Generate report
+router.get("/getReport", getReport);
 
 //GET a single workout
 router.get("/:id", getTicket);

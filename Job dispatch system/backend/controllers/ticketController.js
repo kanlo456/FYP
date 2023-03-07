@@ -1,6 +1,9 @@
 const Ticket = require('../models/TicketModel')
 const Count = require('../models/TicketModel')
+const User = require('../models/userModel')
+
 const mongoose = require('mongoose')
+const nodemailer = require('nodemailer')
 
 //get report data
 const getReport = async(req, res)=>{

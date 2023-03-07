@@ -23,7 +23,6 @@ import SurveyInsert from "./pages/SurveyInsert";
 import LimitTimeTicketPage from "./pages/LimitTimeTicketPage";
 import { DatePicker } from "@mui/x-date-pickers";
 import DailyChartPage from "./pages/DailyChartPage";
-import OverViewPage from "./pages/OverViewPage";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -55,7 +54,6 @@ function App() {
         { path: "createTicket", element: <CreateTicketPage /> },
         { path: "limittimeticekets", element: <LimitTimeTicketPage /> },
         { path: "Daily", element: <DailyChartPage /> },
-        { path: "overView", element: <OverViewPage /> },
       ],
     },
     { path: "userSurveyFrom", element: <UserSurveyPage /> },
