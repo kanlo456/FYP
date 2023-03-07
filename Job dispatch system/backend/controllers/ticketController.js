@@ -15,8 +15,6 @@ const getReport = async(req, res)=>{
     const solved_data = await Ticket.find({status:'Solved'}).count();
     const cancel_data = await Ticket.find({status:'Cancel'}).count();
 
-    const emp1 = await Ticket.find({status:'Solved'}).select('assignedTo')
-
     status.push({
         onCreate:onCreate_data,
         holding:holding_data,
@@ -25,8 +23,13 @@ const getReport = async(req, res)=>{
         cancel:cancel_data,
 
     })
-
+    const objStatus = Object.fromEntries(status)
     res.status(200).json(status)
+
+    // const graph = [];
+    // const emp1 = await Ticket.find({status:'Solved'}).select('assignedTo')
+    //
+
 }
 //get all tickets
 const getTickets = async(req,res)=>{
