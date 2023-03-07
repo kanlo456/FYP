@@ -55,7 +55,6 @@ function App() {
         { path: "createTicket", element: <CreateTicketPage /> },
         { path: "limittimeticekets", element: <LimitTimeTicketPage /> },
         { path: "Daily", element: <DailyChartPage /> },
-        { path: "overView", element: <OverviewPage /> },
       ],
     },
     { path: "userSurveyFrom", element: <UserSurveyPage /> },

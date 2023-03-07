@@ -1,29 +1,7 @@
 const Ticket = require('../models/TicketModel')
 const Count = require('../models/TicketModel')
-const User = require('../models/userModel')
-
 const mongoose = require('mongoose')
-const nodemailer = require('nodemailer')
 
-//get report data
-const getReport = async(req, res)=>{
-    const status = [];
-    const onCreate_data = await Ticket.find({status:'On Create'}).count();
-    const holding_data = await Ticket.find({status:'Holding'}).count();
-    const progress_data = await Ticket.find({status:'Progress'}).count();
-    const solved_data = await Ticket.find({status:'Solved'}).count();
-    const cancel_data = await Ticket.find({status:'Cancel'}).count();
-
-    status.push({
-        onCreate:onCreate_data,
-        holding:holding_data,
-        progress:progress_data,
-        solved:solved_data,
-        cancel:cancel_data,
-    })
-
-    res.status(200).json(status)
-}
 //get all tickets
 const getTickets = async(req,res)=>{
     const tickets = await Ticket.find({}).sort({createdAt:-1})
@@ -45,6 +23,28 @@ const getTicket = async(req,res)=>{
         return res.status(404).json({error:'No such ticket, can not find the ticket'})
     }
     res.status(200).json(ticket)
+}
+
+//get report data
+const getReport = async(req, res)=>{
+    const status = [];
+
+    const onCreate_data = await Ticket.find({status:'On Create'}).count();
+    const holding_data = await Ticket.find({status:'Holding'}).count();
+    const progress_data = await Ticket.find({status:'Progress'}).count();
+    const solved_data = await Ticket.find({status:'Solved'}).count();
+    const cancel_data = await Ticket.find({status:'Cancel'}).count();
+
+    status.push({
+        onCreate:onCreate_data,
+        holding:holding_data,
+        progress:progress_data,
+        solved:solved_data,
+        cancel:cancel_data,
+
+    })
+
+    res.status(200).json(status)
 }
 
 //create new ticket 
@@ -82,24 +82,22 @@ const deleteTicket = async(req,res)=>{
 
 //update a ticke
 const updateTicket =  async(req,res)=>{
-    const{id} = req.params
-    const caller = req.body.caller
-    const user_mail = await User.find({username:caller}).select('email')
+    const{id,email,status} = req.params
 
     function sendEmail(){
         return new Promise((resolve,reject)=>{
             var transporter = nodemailer.createTransport({
                service:'gmail',
             auth:{
-                user:process.env.MAILSENDER,
-                pass:process.env.MAILSENDERPW
+                user:'acftestcodewu@gmail.com',
+                pass:'xmbyiemcydfndldl'
             } 
             })
         const mail_configs = {
-            from:process.env.MAILSENDER,
-            to:user_mail,
+            from:'acftestcodewu@gmail.com',
+            to:'fschllabwu@gmail.com',
             subject:'Testing coding 101 email',
-            text:"Hello "+caller+" your ticket "+id+" has been solved"
+            text:"Justing check if the email will be sent"
         }
         transporter.sendMail(mail_configs,function(error,info){
         if(error){
@@ -122,21 +120,25 @@ const updateTicket =  async(req,res)=>{
     if(!ticket){
         return res.status(404).json({error:'No such ticket, can not update the ticket'})
     }
-
-     if(req.body.status === "Solved"){
-        sendEmail();
-        // return resolve({message:"The ticket complete help us to improve our service"})
-    }  
-
+    if(status === "solved"){
+        Ticket.find({email:email},{status:status},function(err,docs){
+            if(!err){
+                sendEmail();
+                return resolve({message:"Email sent successfuly"})
+            }else{
+                return reject({message:`An error has occured`})
+            }});
+    }
+    
+    
     res.status(200).json(ticket)
-    console.log(req.body.status)
 }
 
 
 module.exports ={
-    getReport,
     getTickets,
     getTicket,
+    getReport,
     createTicket,
     deleteTicket,
     updateTicket
