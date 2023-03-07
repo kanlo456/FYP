@@ -25,7 +25,7 @@ function Copyright(props) {
       {"Copyright © "}
       <MuiLink color="inherit" href="https://www.wsig.hk/">
         WSIG
-      </MuiLink>
+      </MuiLink>{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>

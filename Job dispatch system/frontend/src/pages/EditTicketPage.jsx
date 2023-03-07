@@ -111,7 +111,6 @@ const EditTicketPage = () => {
     limitDate:responseSingleTicketData.limitDate
   };
 
-  console.log("testData",responseSingleTicketData)
   const initialWorkNoteValues = {
     worknote: "",
   };

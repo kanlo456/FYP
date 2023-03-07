@@ -1,16 +1,10 @@
-import { Paper, Card, CardContent } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box } from '@mui/system'
+import React from 'react'
 
-const StatusBox = ({ text, icon, status }) => {
+const StatusBox = () => {
   return (
-    <Card sx={{ display: "flex" }}>
-      <CardContent sx={{ display: "flex" }}>
-        {icon}
-        {text}
-        {status}
-      </CardContent>
-    </Card>
-  );
-};
+    <Box>test 123</Box>
+  )
+}
 
-export default StatusBox;
+export default StatusBox

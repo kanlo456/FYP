@@ -1,7 +1,6 @@
 // *tutorial  workouts.js = tickets.js 
 const express = require('express')
-const {
-    getReport,
+const { getReport,
     getTickets,
     getTicket,
     createTicket,

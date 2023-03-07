@@ -2,48 +2,14 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
-const nodemailer = require('nodemailer') //for send email to user
-
-//routs
 const ticketRoutes = require('./routes/tickets')
 const userRoutese = require('./routes/user')
+
 const worknotesRoutes = require('./routes/worknotes')//*0402
 const surveyRoutes = require('./routes/survey')
-const resetpwRoutes = require('./routes/resetpw')
-
-const { response } = require('express')
-
-//send email
-function sendEmail(){
-    return new Promise((resolve,reject)=>{
-        var transporter = nodemailer.createTransport({
-           service:'gmail',
-        auth:{
-            user:'acftestcodewu@gmail.com',
-            pass:'xmbyiemcydfndldl'
-        } 
-        })
-    const mail_configs = {
-        from:'acftestcodewu@gmail.com',
-        to:'fschllabwu@gmail.com',
-        subject:'Testing coding 101 email',
-        text:"Justing check if the email will be sent"
-    }
-    transporter.sendMail(mail_configs,function(error,info){
-    if(error){
-        console.log(error)
-        return reject({message:`An error has occured`})
-    }
-    return resolve({message:"Email sent successfuly"})
-        })
-    })
-}
-
 
 //express app
 const app = express()
-
-
 
 //middleware
 app.use(express.json())
@@ -54,12 +20,7 @@ app.use((req,res,next)=>{
     next()
 })
 
-//test send email function
-app.get('/mail',(req,res)=>{ 
-     sendEmail()
-    .then(response=>res.send(response.message))
-    .catch(error=>res.status(500).send(error.message))
-})
+
 
 //routes *tutorial workoutRoutes = ticketRoutes
 app.use('/api/tickets',ticketRoutes)
@@ -67,8 +28,6 @@ app.use('/api/user',userRoutese)
 
 app.use('/api/worknotes', worknotesRoutes)//*0402
 app.use('/api/surveys',surveyRoutes)
-
-app.use('/api/resetpw',resetpwRoutes)
 
 //soft DeprecationWarning: Mongoose: the `strictQuery` option will be switched
 mongoose.set('strictQuery', true);

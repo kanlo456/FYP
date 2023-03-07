@@ -14,4 +14,6 @@ router.post('/cs',createStaff)
 //signup route
 router.post('/signup',signUser)
 
+
+
 module.exports = router;
