@@ -90,6 +90,33 @@ const deleteTicket = async(req,res)=>{
 //update a ticke
 const updateTicket =  async(req,res)=>{
     const{id} = req.params
+    const caller = req.body.caller
+    const user_mail = await User.find({username:caller}).select('email')
+
+    function sendEmail(){
+        return new Promise((resolve,reject)=>{
+            var transporter = nodemailer.createTransport({
+               service:'gmail',
+            auth:{
+                user:process.env.MAILSENDER,
+                pass:process.env.MAILSENDERPW
+            } 
+            })
+        const mail_configs = {
+            from:process.env.MAILSENDER,
+            to:user_mail,
+            subject:'Testing coding 101 email',
+            text:"Hello "+caller+" your ticket "+id+" has been solved"
+        }
+        transporter.sendMail(mail_configs,function(error,info){
+        if(error){
+            console.log(error)
+            return reject({message:`An error has occured`})
+        }
+        return resolve({message:"Email sent successfuly"})
+            })
+        })
+    }
     
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error:'No such workout, ID error'})
