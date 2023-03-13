@@ -58,6 +58,26 @@ const getTicket = async(req,res)=>{
 const createTicket = async(req,res)=>{
     //add doc to db
     const user_id = req.user._id
+    //part for format ticket ID
+    let ticket_id ;
+    const ticket_count = await Ticket.count();
+
+    if(ticket_count==0){
+        ticket_id = TCKNum000001
+    }else if(ticket_count<10){
+        ticket_id = "TCKNum00000"+ticket_count
+    }else if (ticket_count<100){
+        ticket_id = "TCKNum0000"+ticket_count
+    }else if (ticket_count<1000){
+        ticket_id = "TCKNum000"+ticket_count
+    }else if (ticket_count<10000){
+        ticket_id = "TCKNum00"+ticket_count
+    }else if (ticket_count<100000){
+        ticket_id = "TCKNum0"+ticket_count
+    }else if (ticket_count<1000000){
+        ticket_id = "TCKNum"+ticket_count
+    }  
+    
     const {
         caller,category,subcategory,service,offering,configItem,contactType,status,
         impact,priority,assignmentGroup,assignedTo,description,
@@ -66,9 +86,9 @@ const createTicket = async(req,res)=>{
         const ticket = await Ticket.create({
             caller,category,subcategory,service,offering,configItem,contactType,status,
             impact,priority,assignmentGroup,assignedTo,description,
-            shortDescription,limitDate,user_id})
+            shortDescription,limitDate,user_id,ticket_id})
+        
             res.status(200).json(ticket)
-
 }
 
 //delete a ticket
