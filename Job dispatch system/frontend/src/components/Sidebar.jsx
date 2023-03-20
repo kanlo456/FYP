@@ -46,10 +46,6 @@ const navItems = [
     text: "Ticketboard",
     icon: <ConfirmationNumberOutlined />,
   },
-  {
-    text: "Geography",
-    icon: <PublicOutlined />,
-  },
   { 
     text: "Limit Time Ticekets", 
     icon: <RunningWithErrorsOutlined /> 

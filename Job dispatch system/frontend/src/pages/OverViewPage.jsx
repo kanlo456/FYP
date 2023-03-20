@@ -20,25 +20,34 @@ const OverViewPage = () => {
     {
       text: "On Create",
       icon: <AddCircleOutlineOutlinedIcon />,
-      // status: getStatusData.find("onCreate"),
+      number: getStatusData.cancel,
     },
-    { text: "Holding", icon: <PauseCircleOutlineOutlinedIcon /> },
+    {
+      text: "Holding",
+      icon: <PauseCircleOutlineOutlinedIcon />,
+      number: getStatusData.holding,
+    },
     {
       text: "Progress",
       icon: <SyncOutlinedIcon />,
+      number: getStatusData.progress,
     },
     {
       text: "Solved",
       icon: <CheckOutlinedIcon />,
+      number: getStatusData.solved,
     },
-    { text: "Cancel", icon: <CancelOutlinedIcon /> },
+    {
+      text: "Cancel",
+      icon: <CancelOutlinedIcon />,
+      number: getStatusData.cancel,
+    },
   ];
 
   const getStatus = async () => {
     const response = await axios.get(`/api/tickets/getReport`);
-    setGetStatusData(response.data);
+    setGetStatusData(response.data[0]);
   };
-  console.log(getStatusData);
 
   return (
     <Fragment>
@@ -51,7 +60,7 @@ const OverViewPage = () => {
                   key={index}
                   text={statusItem.text}
                   icon={statusItem.icon}
-                  status={statusItem.status}
+                  number={statusItem.number}
                 />
               </Grid>
             );
