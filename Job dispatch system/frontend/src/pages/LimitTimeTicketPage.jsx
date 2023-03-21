@@ -55,6 +55,7 @@ export default function Ticketboard() {
         </Link>
       ),
     },
+    { field: "ticket_id", headerName: "Ticket ID", width: 200 },
     { field: "status", headerName: "Status", width: 160 },
     {
       field: "limitDate",

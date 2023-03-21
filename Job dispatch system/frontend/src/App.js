@@ -31,7 +31,15 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Navigate to="/login" />,
+      element: (
+        <Navigate
+          to={
+            localStorage.getItem("user") === null
+              ? "/login"
+              : localStorage.getItem("lastpage")
+          }
+        />
+      ),
       errorElement: <ErrorPage />,
     },
     {

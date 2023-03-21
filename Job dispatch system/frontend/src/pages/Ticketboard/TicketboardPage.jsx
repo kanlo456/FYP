@@ -50,6 +50,7 @@ export default function TicketboardPage() {
         </Link>
       ),
     },
+    { field: "ticket_id", headerName: "Ticket ID", width: 200 },
     { field: "status", headerName: "Status", width: 160 },
     {
       field: "createdAt",
