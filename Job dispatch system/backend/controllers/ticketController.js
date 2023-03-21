@@ -8,6 +8,7 @@ const nodemailer = require('nodemailer')
 //get report data
 const getReport = async(req, res)=>{
     const status = [];
+    //count the status
     const onCreate_data = await Ticket.find({status:'On Create'}).count();
     const holding_data = await Ticket.find({status:'Holding'}).count();
     const progress_data = await Ticket.find({status:'Progress'}).count();
@@ -20,9 +21,15 @@ const getReport = async(req, res)=>{
         progress:progress_data,
         solved:solved_data,
         cancel:cancel_data,
-    })
 
+    })
+    const objStatus = Object.fromEntries(status)
     res.status(200).json(status)
+
+    // const graph = [];
+    // const emp1 = await Ticket.find({status:'Solved'}).select('assignedTo')
+    //
+
 }
 //get all tickets
 const getTickets = async(req,res)=>{
@@ -51,6 +58,26 @@ const getTicket = async(req,res)=>{
 const createTicket = async(req,res)=>{
     //add doc to db
     const user_id = req.user._id
+    //part for format ticket ID
+    let ticket_id ;
+    const ticket_count = await Ticket.count();
+
+    if(ticket_count==0){
+        ticket_id = TCKNum000001
+    }else if(ticket_count<10){
+        ticket_id = "TCKNum00000"+ticket_count
+    }else if (ticket_count<100){
+        ticket_id = "TCKNum0000"+ticket_count
+    }else if (ticket_count<1000){
+        ticket_id = "TCKNum000"+ticket_count
+    }else if (ticket_count<10000){
+        ticket_id = "TCKNum00"+ticket_count
+    }else if (ticket_count<100000){
+        ticket_id = "TCKNum0"+ticket_count
+    }else if (ticket_count<1000000){
+        ticket_id = "TCKNum"+ticket_count
+    }  
+    
     const {
         caller,category,subcategory,service,offering,configItem,contactType,status,
         impact,priority,assignmentGroup,assignedTo,description,
@@ -59,9 +86,9 @@ const createTicket = async(req,res)=>{
         const ticket = await Ticket.create({
             caller,category,subcategory,service,offering,configItem,contactType,status,
             impact,priority,assignmentGroup,assignedTo,description,
-            shortDescription,limitDate,user_id})
+            shortDescription,limitDate,user_id,ticket_id})
+        
             res.status(200).json(ticket)
-
 }
 
 //delete a ticket
@@ -122,14 +149,7 @@ const updateTicket =  async(req,res)=>{
     if(!ticket){
         return res.status(404).json({error:'No such ticket, can not update the ticket'})
     }
-
-     if(req.body.status === "Solved"){
-        sendEmail();
-        // return resolve({message:"The ticket complete help us to improve our service"})
-    }  
-
     res.status(200).json(ticket)
-    console.log(req.body.status)
 }
 
 
