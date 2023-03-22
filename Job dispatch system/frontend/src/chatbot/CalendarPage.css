@@ -1,0 +1,18 @@
+  .calfloat {
+    position: fixed;
+    width: 	250px;
+    top: 14px;   
+    left: 680px;
+    background-color:#191F45;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;   
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000;
+  }
+
+  .datetime{
+    height: 20px !important; 
+    margin-bottom:0px;    
+  }
+ 

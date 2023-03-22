@@ -24,13 +24,24 @@ import {
   MenuItem,
   useTheme,
 } from "@mui/material";
+
 import { useLogout } from "../hooks/useLogout";
 import { useNavigate } from "react-router-dom";
+
+//sunny code
+import { Route, Link, Routes, useLocation } from "react-router-dom";
+import { SessionContextProvider } from "@supabase/auth-helpers-react";
+import Calendar from "../chatbot/CalendarPage";
+import { createClient } from "@supabase/supabase-js";
+const supabase = createClient(
+  "https://coqfsglfzatmjcnepyyv.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvcWZzZ2xmemF0bWpjbmVweXl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzczMzM4ODIsImV4cCI6MTk5MjkwOTg4Mn0.NE-VumMCMKuBcd33sKMyqOpx9JQhmttHdlCI-XrC98U",
+);
 
 const Navbar = ({ username, isSidebarOpen, setIsSidebarOpen }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const naviagete = useNavigate()
+  const naviagete = useNavigate();
   const { logout } = useLogout();
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
@@ -38,8 +49,15 @@ const Navbar = ({ username, isSidebarOpen, setIsSidebarOpen }) => {
   const handleClose = () => setAnchorEl(null);
   const hanldeLogout = () => {
     logout();
-    naviagete('/')
+    naviagete("/");
   };
+
+  const location = useLocation();
+  var isShowCal =
+    location.pathname == "/dashboard/ticketboard" ||
+    location.pathname == "/dashboard/limittimeticekets";
+  localStorage.setItem("lastpage", location.pathname);
+
   return (
     <AppBar
       sx={{
@@ -68,6 +86,17 @@ const Navbar = ({ username, isSidebarOpen, setIsSidebarOpen }) => {
         </FlexBetween>
 
         {/* RIGHT SIDE */}
+
+        {isShowCal ? (
+          <FlexBetween>
+            <SessionContextProvider supabaseClient={supabase}>
+              <Calendar />
+            </SessionContextProvider>
+          </FlexBetween>
+        ) : (
+          ""
+        )}
+
         <FlexBetween gap="1.5rem">
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (

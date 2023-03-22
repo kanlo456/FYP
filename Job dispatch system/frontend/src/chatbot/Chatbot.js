@@ -28,7 +28,7 @@ $(function () {
     //Call wit.ai API
     const uri =
       "https://api.wit.ai/event?v=20221218&session_id=3s&context_map=%7B%7D";
-    const auth = "Bearer XQDRHPXHJHC6TYWKERMJQZS4LCGJUH3Z";
+    const auth = "Bearer EEY6T3XJCXI43EE64U7AGUALOGNQJ2P5";
 
     fetch(uri, {
       method: "POST",
@@ -47,7 +47,7 @@ $(function () {
 
 function writemsg(result) {
   const $replay =
-    '<div class="bot-inbox inbox"><div class="icon"><i class="fa fa-check"></i></div><div class="msg-header"><p>' +
+    '<div class="bot-inbox inbox"><div class="icon"><i class="fa fa-cog fa-spin fa-lg fa-fw"></i></div><div class="msg-header"><p>' +
     result +
     "</p></div></div>";
   $(".form").append($replay);
@@ -70,7 +70,7 @@ function Chatbot() {
         <div className="form">
           <div className="bot-inbox inbox">
             <div className="icon">
-              <i className="fa fa-check" style={verticalAlign} />
+              <i className="fa fa-cog fa-spin fa-lg fa-fw" style={verticalAlign} />
             </div>
             <div className="msg-header">
               <p>
