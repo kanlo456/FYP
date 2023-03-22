@@ -1,9 +1,7 @@
-import React from 'react'
+import { ResponsiveLine } from "@nivo/line";
 
 const DailyChart = () => {
-  return (
-    <div>DailyChart</div>
-  )
-}
+  
+};
 
-export default DailyChart
+export default DailyChart;
