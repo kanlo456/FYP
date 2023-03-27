@@ -1,7 +1,7 @@
 const express = require('express');
 
 //controller
-const {loginUser,createStaff,signUser} = require('../controllers/userController');
+const {loginUser,createStaff,signUser,getUserInfo} = require('../controllers/userController');
 
 const router = express.Router();
 
@@ -13,5 +13,8 @@ router.post('/cs',createStaff)
 
 //signup route
 router.post('/signup',signUser)
+
+//get user info by username
+router.get('/info',getUserInfo)
 
 module.exports = router;
