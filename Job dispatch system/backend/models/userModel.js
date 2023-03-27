@@ -30,6 +30,9 @@ const userSchema = new Schema({
     role: {
         type: String,
         default: "Customer"
+    },
+    qtyofticket:{
+        type: Number
     }
 })
 
