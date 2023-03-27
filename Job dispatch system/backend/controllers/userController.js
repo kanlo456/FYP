@@ -57,4 +57,27 @@ const signUser = async(req, res) => {
     }
 };
 
-module.exports = { loginUser,createStaff, signUser }
+//get user info by username
+const getUserInfo = async(req, res) => {
+    const { username } = req.body
+    const info = [];
+    try {
+        //get the role of the user
+        // const role = await User.find({username:username});
+        const role = await User.distinct( "role", {username:username} )
+        //get the number of tickets of the user
+        // const qtyofticket = await Ticket.find({assignedTo:username,status:"Progress",status:"Holding"}).count();
+        const qtyofticket = await Ticket.find({assignedTo:username,status:["Progress","Holding"]}).count();
+
+        info.push({username:username,
+                   role:role,  
+                   NoOfTicket:qtyofticket});
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+    // const objStatus = Object.fromEntries(info)
+    res.status(200).json(info)
+};
+
+
+module.exports = { loginUser,createStaff, signUser,getUserInfo }
