@@ -11,6 +11,7 @@ import { lightBlue } from "@mui/material/colors";
 import { darken, lighten } from "@mui/system";
 import { red, green, blue, deepOrange, purple } from "@mui/material/colors";
 import { useSelector } from "react-redux";
+import StatusBar from "../../components/StatusBar";
 
 const getBackgroundColor = (color, mode) =>
   mode === "dark" ? darken(color, 0.6) : lighten(color, 0.6);
@@ -93,6 +94,9 @@ export default function TicketboardPage() {
             Create Ticket
           </Button>
         </Link>
+      </Box>
+      <Box>
+        <StatusBar />
       </Box>
       <Box
         mt="40px"

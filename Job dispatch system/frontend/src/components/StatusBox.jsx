@@ -1,9 +1,9 @@
 import { Paper, Card, CardContent } from "@mui/material";
-import { Box } from "@mui/system";
+import { blue, red } from "@mui/material/colors";
 
-const StatusBox = ({ text, icon, status, number }) => {
+const StatusBox = ({ text, icon, status, number, color }) => {
   return (
-    <Card sx={{ display: "flex" }}>
+    <Card sx={{ display: "flex",backgroundColor:color }}>
       <CardContent sx={{ display: "flex" }}>
         {icon}
         {text}: {number}
