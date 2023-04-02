@@ -1,5 +1,6 @@
 const User = require('../models/userModel')
 const jwt = require('jsonwebtoken')
+const Ticket = require('../models/TicketModel')
 
 const createToken = (_id) => { //id, secret code , the date/time will save 
     return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '3d' })
