@@ -111,6 +111,7 @@ const deleteTicket = async(req,res)=>{
 const updateTicket =  async(req,res)=>{
     const{id} = req.params
     const caller = req.body.caller
+    const ticket_id = req.body.ticket_id
     const user_mail = await User.find({username:caller}).select('email')
 
     function sendEmail(){
@@ -125,8 +126,8 @@ const updateTicket =  async(req,res)=>{
         const mail_configs = {
             from:process.env.MAILSENDER,
             to:user_mail,
-            subject:'Testing coding 101 email',
-            text:"Hello "+caller+" your ticket "+id+" has been solved"
+            subject:'Configs mail for ticket',
+            text:"Hello "+caller+" your ticket "+ticket_id+" has been solved please check it"
         }
         transporter.sendMail(mail_configs,function(error,info){
         if(error){
@@ -149,6 +150,10 @@ const updateTicket =  async(req,res)=>{
     if(!ticket){
         return res.status(404).json({error:'No such ticket, can not update the ticket'})
     }
+    if(req.body.status === "Solved"){
+        sendEmail();
+        // return resolve({message:"The ticket complete help us to improve our service"})
+    }  
     res.status(200).json(ticket)
 }
 
