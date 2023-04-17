@@ -81,5 +81,13 @@ const getUserInfo = async(req, res) => {
     res.status(200).json(info)
 };
 
+//get handle ticked
+const getHandleTicket= async(req, res) => {
+    const { username } = req.body
+    const tickets = await Ticket.find({assignedTo:username,status:["Progress","Holding"]},{_id:1,ticket_id:1})
 
-module.exports = { loginUser,createStaff, signUser,getUserInfo }
+    res.status(200).json(tickets)
+
+};
+
+module.exports = { loginUser,createStaff, signUser,getUserInfo ,getHandleTicket}
