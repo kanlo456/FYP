@@ -1,7 +1,7 @@
 const express = require('express');
 
 //controller
-const {loginUser,createStaff,signUser,getUserInfo} = require('../controllers/userController');
+const {loginUser,createStaff,signUser,getUserInfo,getHandleTicket} = require('../controllers/userController');
 
 const router = express.Router();
 
@@ -16,5 +16,8 @@ router.post('/signup',signUser)
 
 //get user info by username
 router.get('/info',getUserInfo)
+
+//get handle ticket by username
+router.get('/handle',getHandleTicket)
 
 module.exports = router;
