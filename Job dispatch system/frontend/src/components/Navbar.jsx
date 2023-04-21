@@ -23,8 +23,10 @@ import {
   Menu,
   MenuItem,
   useTheme,
+  Badge,
+  Popper,
 } from "@mui/material";
-
+import MailIcon from "@mui/icons-material/Mail";
 import { useLogout } from "../hooks/useLogout";
 import { useNavigate } from "react-router-dom";
 
@@ -96,7 +98,6 @@ const Navbar = ({ username, isSidebarOpen, setIsSidebarOpen }) => {
         ) : (
           ""
         )}
-
         <FlexBetween gap="1.5rem">
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
@@ -105,7 +106,7 @@ const Navbar = ({ username, isSidebarOpen, setIsSidebarOpen }) => {
               <LightModeOutlined sx={{ fontSize: "25px" }} />
             )}
           </IconButton>
-          <IconButton>
+          <IconButton onClick={isOpen}>
             <SettingsOutlined sx={{ fontSize: "25px" }} />
           </IconButton>
 

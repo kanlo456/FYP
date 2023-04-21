@@ -18,7 +18,7 @@ const getBackgroundColor = (color, mode) =>
 
 const getHoverBackgroundColor = (color, mode) =>
   mode === "dark" ? darken(color, 0.5) : lighten(color, 0.3);
-
+  
 export default function TicketboardPage() {
   const [data, setData] = useState([]);
   const mode = useSelector((state) => state.global.mode);

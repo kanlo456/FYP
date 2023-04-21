@@ -30,7 +30,7 @@ const StatusBar = () => {
       text: "Holding",
       icon: <PauseCircleOutlineOutlinedIcon />,
       number: getStatusData.holding,
-      color: purple[600],
+      color: purple[800],
     },
     {
       text: "Progress",
@@ -48,7 +48,7 @@ const StatusBar = () => {
       text: "Cancel",
       icon: <CancelOutlinedIcon />,
       number: getStatusData.cancel,
-      color:red[800]
+      color:  red[800]
     },
   ];
 
