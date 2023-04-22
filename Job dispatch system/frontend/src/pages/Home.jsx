@@ -1,9 +1,15 @@
-import React from 'react'
+import { Box, Typography } from "@mui/material";
+import React from "react";
 
 const Home = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const username = user.username;
+  const role = user.role[0];
   return (
-    <div>Home</div>
-  )
-}
+    <Box m="1.5rem 2.5rem">
+      <Typography>Welcome! {username}</Typography>
+    </Box>
+  );
+};
 
-export default Home
+export default Home;

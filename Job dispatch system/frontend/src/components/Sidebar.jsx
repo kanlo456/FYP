@@ -34,7 +34,7 @@ import FlexBetween from "./FlexBetween";
 
 const navItems = [
   {
-    text: "Dashboard",
+    text: "Home",
     icon: <HomeOutlined />,
   },
   {
@@ -84,7 +84,6 @@ const navItems = [
 ];
 
 const Sidebar = ({
-  role,
   username,
   drawerWidth,
   isSidebarOpen,
@@ -221,7 +220,6 @@ const Sidebar = ({
                   sx={{ color: theme.palette.secondary[100] }}
                 >
                   {username}
-                  {role}
                 </Typography>
                 <Typography
                   fontSize="0.8rem"

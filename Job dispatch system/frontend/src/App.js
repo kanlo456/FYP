@@ -23,7 +23,9 @@ import SurveyInsert from "./pages/SurveyInsert";
 import LimitTimeTicketPage from "./pages/LimitTimeTicketPage";
 import DailyChartPage from "./pages/DailyChartPage";
 import OverViewPage from "./pages/OverViewPage";
-import { Home } from "@mui/icons-material";
+import PrivateRoutes from "./pages/untils/PrivateRoutes";
+import DashboardPage from "./pages/Dashboard";
+import Home from "./pages/Home";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -48,7 +50,6 @@ function App() {
       element: <LoginPage />,
       errorElement: <ErrorPage />,
     },
-
     {
       path: "signUp",
       element: <SignUpPage />,
@@ -56,10 +57,17 @@ function App() {
     { path: "isuvrey", element: <SurveyInsert /> },
     {
       path: "dashboard",
-      element: <Layout />,
+      element: (
+        <PrivateRoutes>
+          <Layout />
+        </PrivateRoutes>
+      ),
       children: [
-        { path: "home", element: <Home /> },
-        { path: "ticketboard", element: <TicketboardPage /> },
+        { path: "home", element: <Home/> },
+        {
+          path: "ticketboard",
+          element: <TicketboardPage />,
+        },
         { path: "editTicket/:id", element: <EditTicketPage /> },
         { path: "createTicket", element: <CreateTicketPage /> },
         { path: "limittimeticekets", element: <LimitTimeTicketPage /> },

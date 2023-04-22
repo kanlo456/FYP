@@ -40,8 +40,6 @@ const getReport2 = async(req, res)=>{
     const Sam = await Ticket.find({assignedTo:'Sam'}).count();
     const KenLo = await Ticket.find({assignedTo:'KenLo'}).count();
 
-
-
     graph.push({
         Tom_tck:Tom,
         Oscar_tck:Oscar,
