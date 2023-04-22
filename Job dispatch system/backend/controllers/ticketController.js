@@ -182,6 +182,7 @@ const updateTicket =  async(req,res)=>{
 
 module.exports ={
     getReport,
+    getReport2,
     getTickets,
     getTicket,
     createTicket,
