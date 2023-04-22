@@ -2,6 +2,7 @@
 const express = require("express");
 const {
   getReport,
+  getReport2,
   getTickets,
   getTicket,
   createTicket,
@@ -17,6 +18,9 @@ router.get("/", getTickets);
 
 //Generate report
 router.get("/getReport", getReport);
+
+//gen graph
+router.get("/getReport2", getReport2);
 
 //GET a single workout
 router.get("/:id", getTicket);

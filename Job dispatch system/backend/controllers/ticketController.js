@@ -31,6 +31,30 @@ const getReport = async(req, res)=>{
     //
 
 }
+//get graph data
+const getReport2 = async(req, res)=>{
+    const graph = [];
+    //count the status
+    const Tom = await Ticket.find({assignedTo:'Tom'}).count();
+    const Oscar = await Ticket.find({assignedTo:'Oscar'}).count();
+    const Sam = await Ticket.find({assignedTo:'Sam'}).count();
+    const KenLo = await Ticket.find({assignedTo:'KenLo'}).count();
+
+
+
+    graph.push({
+        Tom_tck:Tom,
+        Oscar_tck:Oscar,
+        KenLo_tck:KenLo,
+        Sam_tck:Sam,
+
+    })
+    // const objGraph = Object.fromEntries(graph)
+    res.status(200).json(graph)
+
+
+}
+
 //get all tickets
 const getTickets = async(req,res)=>{
     const tickets = await Ticket.find({}).sort({createdAt:-1})

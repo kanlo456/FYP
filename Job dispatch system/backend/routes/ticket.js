@@ -2,6 +2,7 @@
 const express = require('express')
 const {
     getReport,
+    getReport2,
     getTickets,
     getTicket,
     createTicket,
@@ -12,6 +13,9 @@ const router = express.Router()
 
 // GET report data
 router.get('/',getReport)
+
+//gen graph
+router.get('/',getReport2)
 
 // GET all tickes
 router.get('/',getTickets)
