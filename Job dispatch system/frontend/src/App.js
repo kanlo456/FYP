@@ -23,6 +23,7 @@ import SurveyInsert from "./pages/SurveyInsert";
 import LimitTimeTicketPage from "./pages/LimitTimeTicketPage";
 import DailyChartPage from "./pages/DailyChartPage";
 import OverViewPage from "./pages/OverViewPage";
+import { Home } from "@mui/icons-material";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -57,6 +58,7 @@ function App() {
       path: "dashboard",
       element: <Layout />,
       children: [
+        { path: "home", element: <Home /> },
         { path: "ticketboard", element: <TicketboardPage /> },
         { path: "editTicket/:id", element: <EditTicketPage /> },
         { path: "createTicket", element: <CreateTicketPage /> },

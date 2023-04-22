@@ -38,20 +38,27 @@ export default function TicketboardPage() {
   const theme = useTheme();
 
   const columns = [
-    {
-      field: "_id",
-      headerName: "ID",
-      width: 200,
-      renderCell: (params) => (
-        <Link
-          style={{ color: theme.palette.primary[100] }}
-          to={`/dashboard/editTicket/${params.value}`}
-        >
-          {params.value}
-        </Link>
-      ),
-    },
-    { field: "ticket_id", headerName: "Ticket ID", width: 200 },
+    // {
+    //   field: "_id",
+    //   headerName: "ID",
+    //   width: 200,
+    //   renderCell: (params) => (
+    //     <Link
+    //       style={{ color: theme.palette.primary[100] }}
+    //       to={`/dashboard/editTicket/${params.value}`}
+    //     >
+    //       {params.value}
+    //     </Link>
+    //   ),
+    // },
+    { field: "ticket_id", headerName: "Ticket ID", width: 200,  renderCell: (params) => (
+      <Link
+        style={{ color: theme.palette.primary[100] }}
+        to={`/dashboard/editTicket/${params.value}`}
+      >
+        {params.value}
+      </Link>
+    ), },
     { field: "status", headerName: "Status", width: 160 },
     {
       field: "createdAt",

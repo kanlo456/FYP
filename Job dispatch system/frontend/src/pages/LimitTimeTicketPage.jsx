@@ -42,9 +42,22 @@ export default function Ticketboard() {
   const theme = useTheme();
 
   const columns = [
+    // {
+    //   field: "_id",
+    //   headerName: "ID",
+    //   width: 200,
+    //   renderCell: (params) => (
+    //     <Link
+    //       style={{ color: theme.palette.primary[100] }}
+    //       to={`/dashboard/editTicket/${params.value}`}
+    //     >
+    //       {params.value}
+    //     </Link>
+    //   ),
+    // },
     {
-      field: "_id",
-      headerName: "ID",
+      field: "ticket_id",
+      headerName: "Ticket ID",
       width: 200,
       renderCell: (params) => (
         <Link
@@ -55,7 +68,6 @@ export default function Ticketboard() {
         </Link>
       ),
     },
-    { field: "ticket_id", headerName: "Ticket ID", width: 200 },
     { field: "status", headerName: "Status", width: 160 },
     {
       field: "limitDate",
@@ -71,7 +83,6 @@ export default function Ticketboard() {
       width: 150,
       valueFormatter: (params) => new Date(params?.value).toLocaleString(),
     },
-    {},
     { field: "category", headerName: "Category", width: 130 },
     { field: "subcategory", headerName: "Sub-Category", width: 130 },
     { field: "offering", headerName: "Offering", width: 130 },

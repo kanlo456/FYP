@@ -17,7 +17,6 @@ import {
   ChevronLeft,
   ChevronRightOutlined,
   HomeOutlined,
-  PublicOutlined,
   PointOfSaleOutlined,
   TodayOutlined,
   CalendarMonthOutlined,
@@ -46,9 +45,9 @@ const navItems = [
     text: "Ticketboard",
     icon: <ConfirmationNumberOutlined />,
   },
-  { 
-    text: "Limit Time Ticekets", 
-    icon: <RunningWithErrorsOutlined /> 
+  {
+    text: "Limit Time Ticekets",
+    icon: <RunningWithErrorsOutlined />,
   },
   {
     text: "Ticket Report",
@@ -85,6 +84,7 @@ const navItems = [
 ];
 
 const Sidebar = ({
+  role,
   username,
   drawerWidth,
   isSidebarOpen,
@@ -148,7 +148,8 @@ const Sidebar = ({
                     </Typography>
                   );
                 }
-                const lcText = "dashboard/" + text.toLowerCase().replace(/ /g,'');
+                const lcText =
+                  "dashboard/" + text.toLowerCase().replace(/ /g, "");
 
                 return (
                   <ListItem key={text} disablePadding>
@@ -195,10 +196,10 @@ const Sidebar = ({
           </Box>
 
           <Box
-            position='absolute'
+            position="absolute"
             bottom="1rem"
             bgcolor={theme.palette.background.alt}
-            sx={{display:"flex"}}
+            sx={{ display: "flex" }}
           >
             <Divider />
             <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
@@ -220,6 +221,7 @@ const Sidebar = ({
                   sx={{ color: theme.palette.secondary[100] }}
                 >
                   {username}
+                  {role}
                 </Typography>
                 <Typography
                   fontSize="0.8rem"

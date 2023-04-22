@@ -19,10 +19,12 @@ const Layout = () => {
   //   const { data } = useGetUserQuery(userId);
   const user = JSON.parse(localStorage.getItem("user"));
   const username = user.username;
+  const role = user.role[0];
 
   return (
     <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">
       <Sidebar
+        role = {role}
         username={username}
         isNonMobile={isNonMobile}
         drawerWidth="250px"
