@@ -15,12 +15,12 @@ router.post('/cs',createStaff)
 router.post('/signup',signUser)
 
 //get user info by username
-router.get('/info',getUserInfo)
+router.post('/info',getUserInfo)
 
 //get handle ticket by username
 router.get('/handle',getHandleTicket)
 
 //get customer ticket
-router.get('/cstt',getCustomerTickets)
+router.post('/cstt',getCustomerTickets)
 
 module.exports = router;

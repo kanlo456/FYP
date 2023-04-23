@@ -12,16 +12,22 @@ import { darken, lighten } from "@mui/system";
 import { red, green, blue, deepOrange, purple } from "@mui/material/colors";
 import { useSelector } from "react-redux";
 import StatusBar from "../../components/StatusBar";
+import { get } from "jquery";
 
 const getBackgroundColor = (color, mode) =>
   mode === "dark" ? darken(color, 0.6) : lighten(color, 0.6);
 
 const getHoverBackgroundColor = (color, mode) =>
   mode === "dark" ? darken(color, 0.5) : lighten(color, 0.3);
-  
+
 export default function TicketboardPage() {
   const [data, setData] = useState([]);
   const mode = useSelector((state) => state.global.mode);
+  //get user role
+  const user = JSON.parse(localStorage.getItem("user"));
+  const username = user.username;
+  const role = user.role[0];
+  const [staffNum, setStaffNum] = useState([]);
 
   const getTicket = useCallback(async () => {
     const response = await axios.get("/api/tickets");
@@ -30,10 +36,41 @@ export default function TicketboardPage() {
     }
   }, []);
 
+  const getCutomerTicket = useCallback(async () => {
+    const response = await fetch("/api/user/cstt", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+      }),
+    });
+    const data = await response.json();
+    setData(data);
+  });
+
+  const getStaffTicketNum = useCallback(async () => {
+    const response = await fetch("/api/user/info", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+      }),
+    });
+    const data = await response.json();
+    setStaffNum(data);
+    console.log("StaffNum", staffNum);
+  });
+
   useEffect(() => {
-    getTicket();
-    return () => {};
+    if (role == "Customer") {
+      getCutomerTicket();
+    } else {
+      getTicket();
+    }
+    getStaffTicketNum();
   }, []);
+
+ console.log(staffNum);
 
   const theme = useTheme();
 
@@ -51,14 +88,19 @@ export default function TicketboardPage() {
     //     </Link>
     //   ),
     // },
-    { field: "ticket_id", headerName: "Ticket ID", width: 200,  renderCell: (params) => (
-      <Link
-        style={{ color: theme.palette.primary[100] }}
-        to={`/dashboard/editTicket/${params.value}`}
-      >
-        {params.value}
-      </Link>
-    ), },
+    {
+      field: "ticket_id",
+      headerName: "Ticket ID",
+      width: 200,
+      renderCell: (params) => (
+        <Link
+          style={{ color: theme.palette.primary[100] }}
+          to={`/dashboard/editTicket/${params.value}`}
+        >
+          {params.value}
+        </Link>
+      ),
+    },
     { field: "status", headerName: "Status", width: 160 },
     {
       field: "createdAt",

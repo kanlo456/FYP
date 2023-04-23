@@ -1,17 +1,46 @@
 import { ResponsiveBar } from "@nivo/bar";
 import { barData as data } from "../dummyData/barData";
 import { Box, useTheme } from "@mui/material";
-
+import axios from "axios";
+import { useState,useEffect } from "react";
 
 const DailyChart = () => {
 
+  useEffect(() => {
+    getStatus();
+  }, []);
 
+  const [getStatusData, setGetStatusData] = useState([]);
+  const getStatus = async () => {
+    const response = await axios.get(`/api/tickets/getReport2`);
+    setGetStatusData(response.data[0]);
   
+  };
+
+  const data =[
+    {
+      country:"Tom",
+      "Ticket":getStatusData.Tom_tck
+    },
+    {
+      country:"Oscar",
+      "Ticket":getStatusData.Oscar_tck
+    },
+    {
+      country:"Ken Lo",
+      "Ticket":getStatusData.KenLo_tck
+    },
+    {
+      country:"Sam",
+      "Ticket":getStatusData.Sam_tck
+    },
+  ]
+
   return (
     <Box height="55vh">
       <ResponsiveBar
         data={data}
-        keys={["hot dog"]}
+        keys={["Ticket"]}
         indexBy="country"
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.3}

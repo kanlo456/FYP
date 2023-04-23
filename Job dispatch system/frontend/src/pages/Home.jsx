@@ -7,7 +7,7 @@ const Home = () => {
   const role = user.role[0];
   return (
     <Box m="1.5rem 2.5rem">
-      <Typography>Welcome! {username}</Typography>
+      <Typography variant="h1">Welcome! {username}, Your Role {role}!</Typography>
     </Box>
   );
 };

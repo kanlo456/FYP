@@ -25,7 +25,6 @@ export const useWorknote = () => {
     //can't get the json data
     if (!response.ok) {
       setIsLoading(false);
-
       setError(json.error);
     }
     if (response.ok) {

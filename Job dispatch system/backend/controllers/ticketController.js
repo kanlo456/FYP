@@ -21,7 +21,6 @@ const getReport = async(req, res)=>{
         progress:progress_data,
         solved:solved_data,
         cancel:cancel_data,
-
     })
     const objStatus = Object.fromEntries(status)
     res.status(200).json(status)
