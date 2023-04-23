@@ -97,5 +97,11 @@ const getCustomerTickets = async(req,res)=>{
     res.status(200).json(tickets)
 }
 
+//get No of staff tickets
+const getNoOfTickets = async(req,res)=>{
+    const { username } = req.params
+    const tickets = await Ticket.find({assignedTo:username,status:["Progress","Holding"]}).count();
+    res.status(200).json(tickets)
+}
 
-module.exports = { loginUser,createStaff, signUser,getUserInfo ,getHandleTicket,getCustomerTickets}
+module.exports = { loginUser,createStaff, signUser,getUserInfo ,getHandleTicket,getCustomerTickets,getNoOfTickets}
