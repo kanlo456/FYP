@@ -63,16 +63,55 @@ function App() {
         </PrivateRoutes>
       ),
       children: [
-        { path: "home", element: <Home/> },
+        { path: "home", element: <Home /> },
         {
           path: "ticketboard",
-          element: <TicketboardPage />,
+          element: (
+            <PrivateRoutes>
+              <TicketboardPage />
+            </PrivateRoutes>
+          ),
         },
-        { path: "editTicket/:id", element: <EditTicketPage /> },
-        { path: "createTicket", element: <CreateTicketPage /> },
-        { path: "limittimeticekets", element: <LimitTimeTicketPage /> },
-        { path: "Daily", element: <DailyChartPage /> },
-        { path: "overView", element: <OverViewPage /> },
+        {
+          path: "editTicket/:id",
+          element: (
+            <PrivateRoutes>
+              <EditTicketPage />
+            </PrivateRoutes>
+          ),
+        },
+        {
+          path: "createTicket",
+          element: (
+            <PrivateRoutes>
+              <CreateTicketPage />
+            </PrivateRoutes>
+          ),
+        },
+        {
+          path: "limittimeticekets",
+          element: (
+            <PrivateRoutes>
+              <LimitTimeTicketPage />
+            </PrivateRoutes>
+          ),
+        },
+        {
+          path: "Daily",
+          element: (
+            <PrivateRoutes>
+              <DailyChartPage />
+            </PrivateRoutes>
+          ),
+        },
+        {
+          path: "overView",
+          element: (
+            <PrivateRoutes>
+              <OverViewPage />
+            </PrivateRoutes>
+          ),
+        },
       ],
     },
     { path: "userSurveyFrom", element: <UserSurveyPage /> },
