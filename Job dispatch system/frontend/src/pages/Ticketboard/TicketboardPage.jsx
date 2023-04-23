@@ -27,7 +27,8 @@ export default function TicketboardPage() {
   const user = JSON.parse(localStorage.getItem("user"));
   const username = user.username;
   const role = user.role[0];
-  const [staffNum, setStaffNum] = useState([]);
+  const [staffNum, setStaffNum] = useState();
+  const [staffRespone, setStaffResponse] = useState(false);
 
   const getTicket = useCallback(async () => {
     const response = await axios.get("/api/tickets");
@@ -57,20 +58,21 @@ export default function TicketboardPage() {
       }),
     });
     const data = await response.json();
-    setStaffNum(data);
-    console.log("StaffNum", staffNum);
+    setStaffResponse(true);
+    setStaffNum(data[0].NoOfTicket);
   });
 
   useEffect(() => {
-    if (role == "Customer") {
-      getCutomerTicket();
-    } else {
-      getTicket();
-    }
     getStaffTicketNum();
-  }, []);
-
- console.log(staffNum);
+    if (staffRespone) {
+      if (role == "Customer") {
+        getCutomerTicket();
+      } else if (role == "Staff" && staffNum > 5) {
+      } else {
+        getTicket();
+      }
+    }
+  }, [staffRespone]);
 
   const theme = useTheme();
 
@@ -131,6 +133,7 @@ export default function TicketboardPage() {
 
   return (
     <Box m="1.5rem 2.5rem">
+      {console.log(staffNum, staffRespone)}
       <Header title="Ticketboard" />
       <Box>
         <Link to="../createTicket" style={{ textDecoration: "none" }}>
