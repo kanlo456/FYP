@@ -1,7 +1,7 @@
 const express = require('express');
 
 //controller
-const {loginUser,createStaff,signUser,getUserInfo,getHandleTicket} = require('../controllers/userController');
+const {loginUser,createStaff,signUser,getUserInfo,getHandleTicket,getCustomerTickets} = require('../controllers/userController');
 
 const router = express.Router();
 
@@ -19,5 +19,8 @@ router.get('/info',getUserInfo)
 
 //get handle ticket by username
 router.get('/handle',getHandleTicket)
+
+//get customer ticket
+router.get('/cstt',getCustomerTickets)
 
 module.exports = router;
