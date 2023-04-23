@@ -90,4 +90,12 @@ const getHandleTicket= async(req, res) => {
 
 };
 
-module.exports = { loginUser,createStaff, signUser,getUserInfo ,getHandleTicket}
+const getCustomerTickets = async(req,res)=>{
+    const { username } = req.body
+    const tickets = await Ticket.find({caller:username}).sort({createdAt:-1})
+
+    res.status(200).json(tickets)
+}
+
+
+module.exports = { loginUser,createStaff, signUser,getUserInfo ,getHandleTicket,getCustomerTickets}
