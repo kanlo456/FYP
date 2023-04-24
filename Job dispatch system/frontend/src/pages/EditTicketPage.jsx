@@ -26,7 +26,7 @@ import { checkWorkNoteSchema } from "../validation/schema/checkWorkNoteSchema";
 const EditTicketPage = () => {
   const { id } = useParams();
   const [sendTicketStatusOK, setSendTicketStatusOK] = useState(false);
-  const {sendWorkNoteOK,setSendWorkNoteOk} = useState(false);
+  const { sendWorkNoteOK, setSendWorkNoteOk } = useState(false);
   const navigate = useNavigate();
   const [responseSingleTicketData, setResponseSingleTicketData] = useState([]);
   const [responseWorkNotesData, setResponseWorkNotesData] = useState([]);
@@ -46,11 +46,14 @@ const EditTicketPage = () => {
   };
 
   const handleUpdateTicket = async (values) => {
+    const token = JSON.parse(localStorage.getItem("user")).token;
+
+    console.log("token",token);
     const response = await fetch(`/api/tickets/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
@@ -91,9 +94,9 @@ const EditTicketPage = () => {
       }}
     />
   ));
-    
+
   const initialTicketValues = {
-    ticketNumber:responseSingleTicketData.ticket_id,
+    ticketNumber: responseSingleTicketData.ticket_id,
     caller: responseSingleTicketData.caller,
     category: responseSingleTicketData.category,
     subcategory: responseSingleTicketData.subcategory,
@@ -108,7 +111,7 @@ const EditTicketPage = () => {
     assignedTo: responseSingleTicketData.assignedTo,
     description: responseSingleTicketData.description,
     shortDescription: responseSingleTicketData.shortDescription,
-    limitDate:responseSingleTicketData.limitDate
+    limitDate: responseSingleTicketData.limitDate,
   };
 
   const initialWorkNoteValues = {
@@ -138,7 +141,7 @@ const EditTicketPage = () => {
             handleBlur,
             handleChange,
             handleSubmit,
-            setFieldValue
+            setFieldValue,
           }) => (
             <form onSubmit={handleSubmit}>
               <TicketBox>
