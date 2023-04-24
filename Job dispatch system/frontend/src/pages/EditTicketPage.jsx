@@ -73,7 +73,6 @@ const EditTicketPage = () => {
     setResponseWorkNotesData(data);
   };
 
-
   const showWorkNotes = responseWorkNotesData.map((data) => (
     <TextField
       fullWidth
@@ -92,8 +91,9 @@ const EditTicketPage = () => {
       }}
     />
   ));
-
+    
   const initialTicketValues = {
+    ticketNumber:responseSingleTicketData.ticket_id,
     caller: responseSingleTicketData.caller,
     category: responseSingleTicketData.category,
     subcategory: responseSingleTicketData.subcategory,
@@ -111,7 +111,6 @@ const EditTicketPage = () => {
     limitDate:responseSingleTicketData.limitDate
   };
 
-  console.log("testData",responseSingleTicketData)
   const initialWorkNoteValues = {
     worknote: "",
   };

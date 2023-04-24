@@ -14,7 +14,6 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers/";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const TicketForm = ({
-  ticketID,
   values,
   touched,
   errors,
@@ -34,7 +33,7 @@ const TicketForm = ({
         <Grid xs={2}>
           <TextField
             fullWidth
-            value={ticketID}
+            value={values.ticketNumber || ""}
             type="text"
             color="primary"
             label="Ticket Number"

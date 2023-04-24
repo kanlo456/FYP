@@ -97,7 +97,7 @@ export default function TicketboardPage() {
       renderCell: (params) => (
         <Link
           style={{ color: theme.palette.primary[100] }}
-          to={`/dashboard/editTicket/${params.value}`}
+          to={`/dashboard/editTicket/${params.row._id}`}
         >
           {params.value}
         </Link>
